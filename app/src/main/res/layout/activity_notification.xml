@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity">
+    tools:context=".NotificationActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -20,20 +20,14 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_home" />
+    <include layout="@layout/content_notification" />
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottom_navi_view"
-        android:layout_width="match_parent"
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:backgroundTint="@color/colorPrimary"
-        android:backgroundTintMode="src_over"
-        app:menu="@menu/menu_bottom_navi"
-        android:background="?android:attr/windowBackground"
-        app:itemBackground="@color/colorPrimary"
-        android:foreground="?attr/selectableItemBackground"
-        app:itemIconTint="@drawable/bottom_navi_bar_icon_colors"
-        app:itemTextColor="@drawable/bottom_navi_bar_icon_colors" />
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@android:drawable/ic_dialog_email" />
 
 </android.support.design.widget.CoordinatorLayout>

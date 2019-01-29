@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bottom_nav_events"
+        android:contentDescription="@string/events"
+        android:icon="@drawable/ic_events_white_24dp"
+        android:title="@string/events" />
+
+    <item
+        android:id="@+id/bottom_nav_fixtures"
+        android:contentDescription="@string/fixtures"
+        android:icon="@drawable/ic_fixtures_white_24dp"
+        android:title="@string/fixtures" />
+
+    <item
+        android:id="@+id/bottom_nav_scores"
+        android:contentDescription="@string/scores"
+        android:icon="@drawable/ic_scores_white_24dp"
+        android:title="@string/scores" />
+
+    <item
+        android:id="@+id/bottom_nav_about"
+        android:contentDescription="@string/about"
+        android:icon="@drawable/ic_about_white_24dp"
+        android:title="@string/about" />
+
+
+</menu>
