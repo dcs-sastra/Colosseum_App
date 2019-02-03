@@ -26,20 +26,21 @@ public class FixtureAdapter extends RecyclerView.Adapter<FixtureAdapter.FixtureH
         
         public FixtureHolder(View itemView) {
             super(itemView);
-            txtName = itemView.findViewById(R.id.txtName);
-            txtA = itemView.findViewById(R.id.txtA);
-            txtB = itemView.findViewById(R.id.txtB);
-            txtTime = itemView.findViewById(R.id.txtTime);
+            txtName = itemView.findViewById(R.id.sub_name);
+            txtA = itemView.findViewById(R.id.team_a);
+            txtB = itemView.findViewById(R.id.team_b);
+            txtTime = itemView.findViewById(R.id.time);
         }
 
-        public void setDetails(Fixture planet) {
-            txtName.setText(planet.getEvent_name());
-            txtA.setText(planet.getTeamA());
-            txtB.setText(planet.getTeamB());
-            txtTime.setText(planet.getEvent_time());
+        public void setDetails(Fixture fixture) {
+            txtName.setText(fixture.getEvent_name());
+            txtA.setText(fixture.getTeamA());
+            txtB.setText(fixture.getTeamB());
+            txtTime.setText(fixture.getEvent_time());
         }
     }
-    
+
+
     @Override
     public int getItemCount() {
         return fixtureList.size();
@@ -55,7 +56,7 @@ public class FixtureAdapter extends RecyclerView.Adapter<FixtureAdapter.FixtureH
     @Override
     public FixtureHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         mContext = parent.getContext();
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item_row,parent, false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.fixtures_sub_item,parent, false);
         return new FixtureHolder(view);
     }
 
@@ -66,6 +67,11 @@ public class FixtureAdapter extends RecyclerView.Adapter<FixtureAdapter.FixtureH
     public void addEvent(Fixture fixture){
         if (fixtureList != null)
             fixtureList.add(fixture);
+    }
+
+    public void setData(ArrayList<Fixture> data){
+        this.fixtureList = data;
+        notifyDataSetChanged();
     }
 
     public int numberOfevents(){
