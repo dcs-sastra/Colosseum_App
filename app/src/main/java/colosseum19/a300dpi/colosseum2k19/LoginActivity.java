@@ -1,6 +1,8 @@
 package colosseum19.a300dpi.colosseum2k19;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -8,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -29,6 +32,8 @@ import butterknife.OnClick;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private VideoView mVideoView;
+
     private static final int RC_SIGN_IN = 100;
     private static final String TAG = LoginActivity.class.getSimpleName();
     private GoogleSignInClient mSignInClient;
@@ -42,6 +47,20 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
+        mVideoView = (VideoView) findViewById(R.id.bgVideoView);
+
+        Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.bg_video);
+
+        mVideoView.setVideoURI(uri);
+        mVideoView.start();
+
+        mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                mediaPlayer.setLooping(true);
+            }
+        });
 
         GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
