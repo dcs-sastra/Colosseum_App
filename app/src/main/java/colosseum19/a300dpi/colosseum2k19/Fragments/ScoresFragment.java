@@ -14,12 +14,15 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -29,6 +32,9 @@ import java.util.Objects;
 
 import butterknife.ButterKnife;
 import colosseum19.a300dpi.colosseum2k19.Adapters.PointsAdapter;
+import colosseum19.a300dpi.colosseum2k19.Adapters.ScoreGameListAdapter;
+import colosseum19.a300dpi.colosseum2k19.Interfaces.CallbackInterface;
+import colosseum19.a300dpi.colosseum2k19.Model.Fixture;
 import colosseum19.a300dpi.colosseum2k19.Model.Score;
 import colosseum19.a300dpi.colosseum2k19.R;
 
@@ -37,14 +43,14 @@ public class ScoresFragment extends Fragment {
 
     private String TAG = ScoresFragment.class.getSimpleName();
 
-    private RecyclerView recyclerView;
+    private RecyclerView gameNameList;
+    private ScoreGameListAdapter gameListAdapter;
     private List<Score> scoreList = new ArrayList<>();
+    private ArrayList<Score>scoreArrayList = new ArrayList<>();
 
     private Context context;
-    private PointsAdapter pointsAdapter = new PointsAdapter();
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference collection_scores = db.collection("scores");
 
     public ScoresFragment() {
     }
@@ -56,52 +62,11 @@ public class ScoresFragment extends Fragment {
         ButterKnife.bind(this,view);
         context = view.getContext();
 
-        recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView);
-        db.collection("scores")
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@javax.annotation.Nullable QuerySnapshot queryDocumentSnapshots, @javax.annotation.Nullable FirebaseFirestoreException e) {
-                        if (e != null) {
-                            Log.w(TAG, "listen:error", e);
-                            return;
-                        }
+        gameNameList = view.findViewById(R.id.score_game_name_list);
+        gameListAdapter = new ScoreGameListAdapter(getActivity());
+        gameNameList.setAdapter(gameListAdapter);
+        gameNameList.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-                        for(DocumentChange dc: queryDocumentSnapshots.getDocumentChanges()){
-                            switch (dc.getType()){
-                                case ADDED:
-                                    pointsAdapter.addScores(dc.getDocument().toObject(Score.class));
-                                    pointsAdapter.notifyItemInserted(pointsAdapter.numberOfevents());
-                                    break;
-                                case REMOVED:
-                                    break;
-                            }
-                        }
-                    }
-                });
-
-        collection_scores
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot snapshot: Objects.requireNonNull(task.getResult())){
-                                Score score = snapshot.toObject(Score.class);
-                                Toast.makeText(context, score.getEvent_name(), Toast.LENGTH_SHORT).show();
-                                scoreList.add(score);
-                            }
-                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
-
-                            pointsAdapter.setScores(scoreList);
-                            recyclerView.setLayoutManager(linearLayoutManager);
-                            recyclerView.setHasFixedSize(true);
-                            recyclerView.setAdapter(pointsAdapter);
-
-                        }else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
         return view;
     }
 
@@ -113,5 +78,26 @@ public class ScoresFragment extends Fragment {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
+    }
+
+    //get list of  scores fora particular game
+    //use callback to send the data back to recyclerview adaptar
+    public void getGameScores(String query, final CallbackInterface callbackInterface,final ScoreGameListAdapter.ScoreGameHolder scoreHolder){
+
+        Log.d(TAG,query);
+        Query gameQuery = db.collection("scores").whereEqualTo("game_name", query);
+        gameQuery.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                scoreArrayList.clear();
+                Log.d(TAG,"TASK SUCCESSFULL");
+                for (DocumentSnapshot doc : queryDocumentSnapshots) {
+                    Score singleScore = doc.toObject(Score.class);
+                    scoreArrayList.add(singleScore);
+                }
+                //QueryData.setData(fixtureArrayList);
+                callbackInterface.setScoreData(scoreArrayList,scoreHolder);
+            }
+        });
     }
 }

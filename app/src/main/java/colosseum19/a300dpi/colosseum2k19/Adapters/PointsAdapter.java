@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import colosseum19.a300dpi.colosseum2k19.Model.Score;
@@ -22,11 +21,11 @@ public class PointsAdapter extends RecyclerView.Adapter<PointsAdapter.PointsHold
         private TextView txtName, txtA, txtB, txtScore, txtWinner;
         public PointsHolder(View itemView) {
             super(itemView);
-            txtName = itemView.findViewById(R.id.txtName);
+            /*txtName = itemView.findViewById(R.id.txtName);
             txtA = itemView.findViewById(R.id.txtA);
             txtB = itemView.findViewById(R.id.txtB);
             txtScore = itemView.findViewById(R.id.txtScore);
-            txtWinner = itemView.findViewById(R.id.txtWinner);
+            txtWinner = itemView.findViewById(R.id.txtWinner);*/
         }
 
         public void setDetails(Score planet) {
@@ -52,7 +51,7 @@ public class PointsAdapter extends RecyclerView.Adapter<PointsAdapter.PointsHold
     @Override
     public PointsHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mContext = parent.getContext();
-        View view = LayoutInflater.from(mContext).inflate(R.layout.livescoreitem,parent, false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.score_sub_item,parent, false);
         return new PointsHolder(view);
     }
 

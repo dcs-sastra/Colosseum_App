@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,17 +18,18 @@ import java.util.ArrayList;
 import colosseum19.a300dpi.colosseum2k19.Fragments.FixturesFragment;
 import colosseum19.a300dpi.colosseum2k19.Interfaces.CallbackInterface;
 import colosseum19.a300dpi.colosseum2k19.Model.Fixture;
+import colosseum19.a300dpi.colosseum2k19.Model.Score;
 import colosseum19.a300dpi.colosseum2k19.R;
 
-public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.GameHolder> implements CallbackInterface{
+public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameListAdapter.GameHolder> implements CallbackInterface{
 
     private ArrayList<String> gameNames = new ArrayList<>();
     private ArrayList<Drawable> gameIcons = new ArrayList<>();
     private Context ctx;
     private ProgressDialog progressDialog;
-    private GameListAdapter callBack;
+    private FixtureGameListAdapter callBack;
 
-    public GameListAdapter(Context ctx){
+    public FixtureGameListAdapter(Context ctx){
         this.ctx = ctx;
         this.callBack = this;
 
@@ -59,7 +61,7 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.GameHo
     @NonNull
     @Override
     public GameHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_row,viewGroup,false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fixture_item_row,viewGroup,false);
         return new GameHolder(v);
     }
 
@@ -69,7 +71,7 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.GameHo
 
         gameHolder.gameName.setText(gameName);
         gameHolder.gameIcon.setImageDrawable(gameIcons.get(i));
-        gameHolder.gameIcon.setOnClickListener(new View.OnClickListener() {
+        gameHolder.rootLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 progressDialog.show();
@@ -103,20 +105,27 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.GameHo
         return gameIcons.size();
     }
 
+    //call back containing data from querying
     @Override
     public void callback(String queryGame) {
 
     }
+
     @Override
-    public void setData(ArrayList<Fixture> data,GameHolder gameHolder) {
+    public void setFixtureData(ArrayList<Fixture> data, GameHolder gameHolder) {
         gameHolder.setRecyclerView(data);
+    }
+
+    @Override
+    public void setScoreData(ArrayList<Score> data, ScoreGameListAdapter.ScoreGameHolder gameHolder) {
+
     }
 
 
     //view holder
     public class GameHolder extends RecyclerView.ViewHolder{
+        ConstraintLayout rootLayout;
         TextView gameName;
-
         ImageView gameIcon;
         ImageView dropDown;
         RecyclerView specificGameList;
@@ -124,6 +133,7 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.GameHo
 
         public GameHolder(@NonNull View itemView) {
             super(itemView);
+            rootLayout = itemView.findViewById(R.id.root_layout);
             gameName = itemView.findViewById(R.id.game_name);
             gameIcon = itemView.findViewById(R.id.game_image);
             dropDown = itemView.findViewById(R.id.drop_down);

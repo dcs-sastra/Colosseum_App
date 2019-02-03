@@ -25,10 +25,9 @@ import java.util.ArrayList;
 
 import butterknife.ButterKnife;
 import colosseum19.a300dpi.colosseum2k19.Adapters.FixtureAdapter;
-import colosseum19.a300dpi.colosseum2k19.Adapters.GameListAdapter;
+import colosseum19.a300dpi.colosseum2k19.Adapters.FixtureGameListAdapter;
 import colosseum19.a300dpi.colosseum2k19.Interfaces.CallbackInterface;
 import colosseum19.a300dpi.colosseum2k19.Model.Fixture;
-import colosseum19.a300dpi.colosseum2k19.Model.QueryData;
 import colosseum19.a300dpi.colosseum2k19.R;
 
 public class FixturesFragment extends Fragment{
@@ -38,7 +37,7 @@ public class FixturesFragment extends Fragment{
     private Context context;
     private RecyclerView gameList;
     private FixtureAdapter fixtureAdapter = new FixtureAdapter();
-    private GameListAdapter gameListAdapter;
+    private FixtureGameListAdapter fixtureGameListAdapter;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     public ArrayList<Fixture> fixtureArrayList = new ArrayList<>();
@@ -62,9 +61,9 @@ public class FixturesFragment extends Fragment{
         context = view.getContext();
 
         //recycler adapter for game names
-        gameList = view.findViewById(R.id.game_names_list);
-        gameListAdapter = new GameListAdapter(getActivity());
-        gameList.setAdapter(gameListAdapter);
+        gameList = view.findViewById(R.id.fixtures_game_names_list);
+        fixtureGameListAdapter = new FixtureGameListAdapter(getActivity());
+        gameList.setAdapter(fixtureGameListAdapter);
         gameList.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
@@ -112,7 +111,7 @@ public class FixturesFragment extends Fragment{
 
     //to get the results for particular game
     //send the data back toadapter using interface
-    public  void getGameFixtures(String query, final CallbackInterface callbackInterface, final GameListAdapter.GameHolder gameHolder){
+    public  void getGameFixtures(String query, final CallbackInterface callbackInterface, final FixtureGameListAdapter.GameHolder gameHolder){
         Log.d(TAG,query);
         Query gameQuery = db.collection("current_events").whereEqualTo("game_name", query);
         gameQuery.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -130,7 +129,7 @@ public class FixturesFragment extends Fragment{
                     fixtureArrayList.add(singleFixture);
                 }
                 //QueryData.setData(fixtureArrayList);
-                callbackInterface.setData(fixtureArrayList,gameHolder);
+                callbackInterface.setFixtureData(fixtureArrayList,gameHolder);
             }
         });
     }

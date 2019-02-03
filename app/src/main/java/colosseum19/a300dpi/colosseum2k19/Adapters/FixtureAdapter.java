@@ -23,6 +23,7 @@ public class FixtureAdapter extends RecyclerView.Adapter<FixtureAdapter.FixtureH
     public class FixtureHolder extends RecyclerView.ViewHolder {
         
         private TextView txtName, txtA, txtB, txtTime;
+        private TextView chessRound,physiqueCategory;
         
         public FixtureHolder(View itemView) {
             super(itemView);
@@ -30,6 +31,8 @@ public class FixtureAdapter extends RecyclerView.Adapter<FixtureAdapter.FixtureH
             txtA = itemView.findViewById(R.id.team_a);
             txtB = itemView.findViewById(R.id.team_b);
             txtTime = itemView.findViewById(R.id.time);
+            chessRound = itemView.findViewById(R.id.chess_round);
+            physiqueCategory = itemView.findViewById(R.id.physique_category);
         }
 
         public void setDetails(Fixture fixture) {
@@ -37,6 +40,14 @@ public class FixtureAdapter extends RecyclerView.Adapter<FixtureAdapter.FixtureH
             txtA.setText(fixture.getTeamA());
             txtB.setText(fixture.getTeamB());
             txtTime.setText(fixture.getEvent_time());
+            if(fixture.getBestPhysiqueCategory() != null){
+                physiqueCategory.setVisibility(View.VISIBLE);
+                physiqueCategory.setText(fixture.getBestPhysiqueCategory());
+            }
+            if(fixture.getRoundNumChess() != null){
+                chessRound.setVisibility(View.VISIBLE);
+                chessRound.setText(fixture.getRoundNumChess());
+            }
         }
     }
 
