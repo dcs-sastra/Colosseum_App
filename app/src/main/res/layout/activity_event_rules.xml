@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/event_title_image"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:padding="4dp"
+            android:src="@drawable/badminton_men_women" />
+
+        <TextView
+            android:id="@+id/rule_tv"
+            android:layout_width="wrap_content"
+            android:fontFamily="@font/montserratbold"
+            android:layout_height="wrap_content"
+
+            android:text="Rules"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/event_title_image" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_rule_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="true"
+            android:fontFamily="@font/montserrat"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rule_tv" />
+
+        <TextView
+            android:id="@+id/contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Contact"
+            android:fontFamily="@font/montserratbold"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recycler_rule_view" />
+
+        <TextView
+            android:id="@+id/contact_details"
+            android:fontFamily="@font/montserrat"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:layout_height="wrap_content"
+            android:hint="kavin - 8667562921"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/contact" />
+
+        <TextView
+            android:id="@+id/prize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/montserratbold"
+            android:layout_marginEnd="8dp"
+            android:padding="8dp"
+            android:text="Prize"
+            android:textColor="@color/black"
+            android:textSize="22dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/contact_details" />
+
+        <TextView
+            android:id="@+id/prize_1_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/montserrat"
+            android:hint="Winner\n7000"
+            android:padding="8dp"
+            android:paddingLeft="16dp"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/prize_2_details"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/prize" />
+
+
+        <TextView
+            android:id="@+id/prize_2_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/montserrat"
+            android:hint="Winner\n5000"
+            android:padding="8dp"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/prize_3_details"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/prize_1_details"
+            app:layout_constraintTop_toBottomOf="@+id/prize" />
+
+
+        <TextView
+            android:id="@+id/prize_3_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="3dp"
+            android:hint="Winner\n3000"
+            android:padding="8dp"
+            android:fontFamily="@font/montserrat"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/prize_2_details"
+            app:layout_constraintTop_toBottomOf="@+id/prize" />
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.NestedScrollView>
