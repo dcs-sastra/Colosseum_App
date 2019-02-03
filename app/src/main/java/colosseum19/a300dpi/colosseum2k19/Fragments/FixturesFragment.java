@@ -11,50 +11,62 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 import butterknife.ButterKnife;
 import colosseum19.a300dpi.colosseum2k19.Adapters.FixtureAdapter;
+import colosseum19.a300dpi.colosseum2k19.Adapters.GameListAdapter;
+import colosseum19.a300dpi.colosseum2k19.Interfaces.CallbackInterface;
 import colosseum19.a300dpi.colosseum2k19.Model.Fixture;
+import colosseum19.a300dpi.colosseum2k19.Model.QueryData;
 import colosseum19.a300dpi.colosseum2k19.R;
 
-public class FixturesFragment extends Fragment {
+public class FixturesFragment extends Fragment{
 
     private static final String TAG = FixturesFragment.class.getSimpleName();
 
     private Context context;
-    private RecyclerView recyclerView;
-    private List<Fixture> fixtureArrayList = new ArrayList<>();
+    private RecyclerView gameList;
     private FixtureAdapter fixtureAdapter = new FixtureAdapter();
-
+    private GameListAdapter gameListAdapter;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference collection_events = db.collection("current_events");
 
+    public ArrayList<Fixture> fixtureArrayList = new ArrayList<>();
+
+    private static FixturesFragment instance;
+
+    public static FixturesFragment getInstance(){
+        if(instance == null){
+            instance = new FixturesFragment();
+        }
+        return instance;
+    }
     public FixturesFragment() {
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.frag_fixtures,container,false);
-        ButterKnife.bind(this,view);
+        View view = inflater.inflate(R.layout.frag_fixtures, container, false);
+        ButterKnife.bind(this, view);
         context = view.getContext();
 
-        recyclerView = view.findViewById(R.id.recyclerView);
+        //recycler adapter for game names
+        gameList = view.findViewById(R.id.game_names_list);
+        gameListAdapter = new GameListAdapter(getActivity());
+        gameList.setAdapter(gameListAdapter);
+        gameList.setLayoutManager(new LinearLayoutManager(getActivity()));
+
 
         db.collection("current_events")
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -64,8 +76,8 @@ public class FixturesFragment extends Fragment {
                             Log.w(TAG, "listen:error", e);
                             return;
                         }
-                        for(DocumentChange dc: queryDocumentSnapshots.getDocumentChanges()){
-                            switch (dc.getType()){
+                        for (DocumentChange dc : queryDocumentSnapshots.getDocumentChanges()) {
+                            switch (dc.getType()) {
                                 case ADDED:
                                     fixtureAdapter.addEvent(dc.getDocument().toObject(Fixture.class));
                                     fixtureAdapter.notifyItemInserted(fixtureAdapter.numberOfevents());
@@ -78,28 +90,7 @@ public class FixturesFragment extends Fragment {
                     }
                 });
 
-        collection_events
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot snapshot: Objects.requireNonNull(task.getResult())){
-                                Fixture fixture = snapshot.toObject(Fixture.class);
-                                Toast.makeText(context, fixture.getEvent_name(), Toast.LENGTH_SHORT).show();
-                                fixtureArrayList.add(fixture);
-                            }
-                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
-                            fixtureAdapter.setFixture(fixtureArrayList);
-                            recyclerView.setLayoutManager(linearLayoutManager);
-                            recyclerView.setHasFixedSize(true);
-                            recyclerView.setAdapter(fixtureAdapter);
 
-                        }else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
         return view;
     }
 
@@ -118,5 +109,31 @@ public class FixturesFragment extends Fragment {
 
         super.onCreate(savedInstanceState);
     }
+
+    //to get the results for particular game
+    //send the data back toadapter using interface
+    public  void getGameFixtures(String query, final CallbackInterface callbackInterface, final GameListAdapter.GameHolder gameHolder){
+        Log.d(TAG,query);
+        Query gameQuery = db.collection("current_events").whereEqualTo("game_name", query);
+        gameQuery.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                fixtureArrayList.clear();
+                Log.d(TAG,"TASK SUCCESSFULL");
+                for (DocumentSnapshot doc : queryDocumentSnapshots) {
+                    Fixture singleFixture = doc.toObject(Fixture.class);
+                    Log.d(TAG,singleFixture.getEvent_name());
+                    Log.d(TAG,singleFixture.getEvent_time());
+                    Log.d(TAG,singleFixture.getGame_name());
+                    Log.d(TAG,singleFixture.getTeamA());
+                    Log.d(TAG,singleFixture.getTeamB());
+                    fixtureArrayList.add(singleFixture);
+                }
+                //QueryData.setData(fixtureArrayList);
+                callbackInterface.setData(fixtureArrayList,gameHolder);
+            }
+        });
+    }
+
 }
 
