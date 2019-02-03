@@ -14,4 +14,24 @@
 
     <string name="vs">vs</string>
     <string name="win">wins!!!</string>
+
+
+    <!--game names-->
+    <string name="basketball">Basket Ball</string>
+    <string name="badminton">Badminton</string>
+    <string name="best_physique">Best Physique</string>
+    <string name="chess">Chess</string>
+    <string name="football">FootBall</string>
+    <string name="handball">Hand Ball</string>
+    <string name="table_tennis">Table Tennis</string>
+    <string name="tennis">Tennis</string>
+    <string name="volleyball">VolleyBall</string>
+
+    <!-- query names-->
+    <string name="basketball_query">Basketball</string>
+    <string name="football_query">Football</string>
+    <string name="handball_query">Handball</string>
+    <string name="volleyball_query">Volleyball</string>
+
+
 </resources>
