@@ -15,7 +15,10 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:padding="4dp"
-            android:src="@drawable/badminton_men_women" />
+            android:src="@drawable/badminton_men_women"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/rule_tv"
