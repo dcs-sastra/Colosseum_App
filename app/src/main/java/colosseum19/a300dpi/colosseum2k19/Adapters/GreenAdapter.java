@@ -12,6 +12,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+
 import colosseum19.a300dpi.colosseum2k19.EventRules;
 import colosseum19.a300dpi.colosseum2k19.R;
 
@@ -59,7 +64,7 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
         LayoutInflater inflater = LayoutInflater.from(context);
         int layoutIdForListItem;
         if(rules)
-            layoutIdForListItem =R.layout.recycler_rule  ;
+            layoutIdForListItem =R.layout.recycler_rule;
         else
             layoutIdForListItem = R.layout.recycler_event;
         View view = inflater.inflate(layoutIdForListItem, viewGroup, shouldAttachToParentImmediately);
@@ -84,13 +89,14 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
 
     class NumberViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        private ImageView img;
+        private ImageView img, icon_img;
         private TextView rule;
 
         public NumberViewHolder(View itemView) {
             super(itemView);
             if(!rules){
                 img = itemView.findViewById(R.id.event_img);
+                icon_img = itemView.findViewById(R.id.event_icon_img);
                 img.setOnClickListener(this);
             }
         }
@@ -104,33 +110,52 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
 
             }else {
                 img=(ImageView)itemView.findViewById(R.id.event_img);
+                icon_img = itemView.findViewById(R.id.event_icon_img);
                 switch (position) {
                     case 0:
-                        img.setImageDrawable(context.getResources().getDrawable(R.drawable.badminton_men_women));
+                        loadImage(R.drawable.badminton_men_women,img);
+                        loadImage(R.drawable.icon_badminton, icon_img);
+                        //img.setImageDrawable(context.getResources().getDrawable(R.drawable.badminton_men_women));
                         break;
                     case 1:
-                        img.setImageDrawable(context.getResources().getDrawable(R.drawable.basketball_men_and_women));
+                        loadImage(R.drawable.basketball_men_and_women,img);
+                        loadImage(R.drawable.icon_basketball, icon_img);
+                        //img.setImageDrawable(context.getResources().getDrawable(R.drawable.basketball_men_and_women));
                         break;
                     case 2:
-                        img.setImageDrawable(context.getResources().getDrawable(R.drawable.best_physique_men));
+                        loadImage(R.drawable.best_physique_men,img);
+                        loadImage(R.drawable.icon_best_phy, icon_img);
+                        //img.setImageDrawable(context.getResources().getDrawable(R.drawable.best_physique_men));
                         break;
                     case 3:
-                        img.setImageDrawable(context.getResources().getDrawable(R.drawable.chess_men_and_women));
+                        loadImage(R.drawable.chess_men_and_women,img);
+                        loadImage(R.drawable.icon_chess, icon_img);
+                        //img.setImageDrawable(context.getResources().getDrawable(R.drawable.chess_men_and_women));
                         break;
                     case 4:
-                        img.setImageDrawable(context.getResources().getDrawable(R.drawable.football_men));
+                        loadImage(R.drawable.football_men,img);
+                        loadImage(R.drawable.icon_football, icon_img);
+                        //img.setImageDrawable(context.getResources().getDrawable(R.drawable.football_men));
                         break;
                     case 5:
-                        img.setImageDrawable(context.getResources().getDrawable(R.drawable.handball_men));
+                        loadImage(R.drawable.handball_men,img);
+                        loadImage(R.drawable.icon_handball, icon_img);
+                        //img.setImageDrawable(context.getResources().getDrawable(R.drawable.handball_men));
                         break;
                     case 6:
-                        img.setImageDrawable(context.getResources().getDrawable(R.drawable.table_tennis_men_women));
+                        loadImage(R.drawable.table_tennis_men_women, img);
+                        loadImage(R.drawable.icon_table_tennis, icon_img);
+                        //img.setImageDrawable(context.getResources().getDrawable(R.drawable.table_tennis_men_women));
                         break;
                     case 7:
-                        img.setImageDrawable(context.getResources().getDrawable(R.drawable.tennis_men_women));
+                        loadImage(R.drawable.tennis_men_women,img);
+                        loadImage(R.drawable.icon_tennis, icon_img);
+                        //img.setImageDrawable(context.getResources().getDrawable(R.drawable.tennis_men_women));
                         break;
                     case 8:
-                        img.setImageDrawable(context.getResources().getDrawable(R.drawable.volleyball_men_women));
+                        loadImage(R.drawable.volleyball_men_women,img);
+                        loadImage(R.drawable.icon_volleyball, icon_img);
+                        //img.setImageDrawable(context.getResources().getDrawable(R.drawable.volleyball_men_women));
                         break;
 
                 }
@@ -146,6 +171,19 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
             Log.d(TAG, "onClick: id is="+ position);
             context.startActivity(i);
         }
+    }
+
+    private void loadImage(int id, ImageView imageView){
+        RequestOptions options = new RequestOptions()
+                .error(R.drawable.logo)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .priority(Priority.HIGH);
+
+        Glide.with(context)
+                .load(id)
+                .apply(options)
+                .into(imageView);
+
     }
 
 }
