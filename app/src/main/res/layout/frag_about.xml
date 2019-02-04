@@ -93,6 +93,23 @@
             android:layout_height="60dp"
             app:srcCompat="@drawable/dpi" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:text="APP DEVELOPERS"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="@font/montserratbold"
+            android:textSize="24sp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:fontFamily="@font/montserrat"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:text="\nKavin Raju (3rd year EIE)\nSibi (2nd year CSE)\nArun Balaji TSR (2nd year EIE)\nTanvir Ahmad (3rd year ECE)\nKarthikeyan (1st year CSE)"
+            android:layout_height="wrap_content" />
+
 
     </LinearLayout>
 </ScrollView>
