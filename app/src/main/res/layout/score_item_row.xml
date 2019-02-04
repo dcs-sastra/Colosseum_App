@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/score_root_layout"
     app:cardCornerRadius="6dp"
     app:cardElevation="6dp"
     app:cardUseCompatPadding="true"
@@ -13,7 +14,8 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_margin="8dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/ripple_fixture">
 
         <ImageView
             android:id="@+id/score_game_image"
@@ -33,7 +35,7 @@
             android:layout_marginEnd="8dp"
             android:text="TextView"
             android:textColor="@android:color/white"
-            android:textAlignment="center"
+            android:gravity="center"
             android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="@+id/score_game_image"
             app:layout_constraintEnd_toEndOf="parent"
