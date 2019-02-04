@@ -4,15 +4,20 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import colosseum19.a300dpi.colosseum2k19.Fragments.ScoresFragment;
 import colosseum19.a300dpi.colosseum2k19.Interfaces.CallbackInterface;
 import colosseum19.a300dpi.colosseum2k19.Model.Fixture;
 import colosseum19.a300dpi.colosseum2k19.Model.Score;
@@ -27,9 +32,12 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
     private ScoreGameListAdapter callback;
 
     public ScoreGameListAdapter(Context ctx){
+        this.ctx = ctx;
         progressDialog = new ProgressDialog(ctx);
         progressDialog.setMessage("Loading...");
         progressDialog.setCancelable(false);
+
+        callback = this;
 
         gameNames.add(ctx.getString(R.string.basketball));
         gameNames.add(ctx.getString(R.string.badminton));
@@ -60,15 +68,22 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ScoreGameHolder scoreGameHolder, int i) {
+    public void onBindViewHolder(@NonNull final ScoreGameHolder scoreGameHolder, final int i) {
         scoreGameHolder.gameIcon.setImageDrawable(gameIcons.get(i));
         scoreGameHolder.gameName.setText(gameNames.get(i));
-        scoreGameHolder.gameIcon.setOnClickListener(new View.OnClickListener() {
+        scoreGameHolder.rootLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                progressDialog.show();
+                ScoresFragment.getInstance().getGameScores(getQueryWord(gameNames.get(i)),callback,scoreGameHolder);
             }
         });
+    }
+
+    @Override
+    public void onViewDetachedFromWindow(@NonNull ScoreGameHolder holder) {
+        super.onViewDetachedFromWindow(holder);
+        holder.hideRecyclerView();
     }
 
     @Override
@@ -76,19 +91,28 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
         return gameIcons.size();
     }
 
+    private String getQueryWord(String gameName){
+        if(gameName.equals(ctx.getString(R.string.basketball))){
+            return ctx.getString(R.string.basketball_query);
+        }else if(gameName.equals(ctx.getString(R.string.volleyball))){
+            return ctx.getString(R.string.volleyball_query);
+        }else if(gameName.equals(ctx.getString(R.string.handball))){
+            return ctx.getString(R.string.handball_query);
+        }else if(gameName.equals(ctx.getString(R.string.football))){
+            return ctx.getString(R.string.football_query);
+        }else{
+            return gameName;
+        }
+    }
+
     //callback containing score of specific game
     @Override
-    public void callback(String queryGame) {
-
-    }
-
-    @Override
-    public void setFixtureData(ArrayList<Fixture> data, FixtureGameListAdapter.GameHolder gameHolder) {
-
-    }
-
-    @Override
     public void setScoreData(ArrayList<Score> data, ScoreGameHolder gameHolder) {
+        if(data == null){
+            Toast.makeText(ctx,"Scores not updated",Toast.LENGTH_SHORT).show();
+        }else{
+            gameHolder.setRecyclerView(data);
+        }
 
     }
 
@@ -97,21 +121,38 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
         ImageView gameIcon,gameDropDown;
         TextView gameName;
         RecyclerView gameScoreList;
-
+        ScoreAdapter adapter;
+        CardView rootLayout;
         public ScoreGameHolder(@NonNull View itemView) {
             super(itemView);
             gameIcon = itemView.findViewById(R.id.score_game_image);
             gameDropDown = itemView.findViewById(R.id.score_drop_down);
             gameName = itemView.findViewById(R.id.score_game_name);
             gameScoreList = itemView.findViewById(R.id.score_game_specific_score_list);
+            rootLayout = itemView.findViewById(R.id.score_root_layout);
+            adapter = new ScoreAdapter();
+            gameScoreList.setAdapter(adapter);
+            gameScoreList.setLayoutManager(new LinearLayoutManager(ctx));
         }
 
-        public void setRecyclerView(){
-
+        public void setRecyclerView(ArrayList<Score>data){
+            gameScoreList.setVisibility(View.VISIBLE);
+            adapter.setScores(data);
+            progressDialog.cancel();
         }
 
         public void hideRecyclerView(){
-
+            gameScoreList.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public void callback(String queryGame) {
+
+    }
+
+    @Override
+    public void setFixtureData(ArrayList<Fixture> data, FixtureGameListAdapter.GameHolder gameHolder) {
+
     }
 }

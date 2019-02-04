@@ -8,10 +8,10 @@
     android:layout_marginBottom="16dp">
 
     <TextView
-        android:id="@+id/sub_name"
+        android:id="@+id/score_sub_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="textView"
         android:textColor="@android:color/white"
@@ -23,33 +23,32 @@
         android:id="@+id/winner_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="10dp"
         android:text="textView"
         android:textColor="@android:color/white"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/team_a" />
+        app:layout_constraintTop_toBottomOf="@+id/score_chess_round" />
 
     <TextView
-        android:id="@+id/team_a"
+        android:id="@+id/score_team_a"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:text="TextView"
-        android:textSize="18sp"
         android:textColor="@android:color/white"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/vs_text"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sub_name" />
+        app:layout_constraintTop_toBottomOf="@+id/score_sub_name" />
 
     <TextView
-        android:id="@+id/team_b"
+        android:id="@+id/score_team_b"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -59,7 +58,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/vs_text"
-        app:layout_constraintTop_toTopOf="@+id/team_a" />
+        app:layout_constraintTop_toTopOf="@+id/score_team_a" />
 
     <TextView
         android:id="@+id/vs_text"
@@ -68,36 +67,98 @@
         android:text="VS"
         android:textSize="18sp"
         android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/team_a"
-        app:layout_constraintEnd_toStartOf="@+id/team_b"
+        app:layout_constraintBottom_toBottomOf="@+id/score_team_a"
+        app:layout_constraintEnd_toStartOf="@+id/score_team_b"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/team_a"
-        app:layout_constraintTop_toTopOf="@+id/team_b" />
+        app:layout_constraintStart_toEndOf="@+id/score_team_a"
+        app:layout_constraintTop_toTopOf="@+id/score_team_b" />
+
+    <TextView
+        android:id="@+id/score_physique_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="physique Categoty:"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/score_team_a" />
+
+    <TextView
+        android:id="@+id/score_chess_round"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Round:"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/score_physique_category" />
+
+    <TextView
+        android:id="@+id/team_a_score_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="4dp"
+        android:text="team_a_score:"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/score_header" />
+
+    <TextView
+        android:id="@+id/team_a_score_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="TextView"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/team_a_score_header"
+        app:layout_constraintTop_toTopOf="@+id/team_a_score_header" />
+
+    <TextView
+        android:id="@+id/team_b_score_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="team_b_score:"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/team_a_score_header" />
+
+    <TextView
+        android:id="@+id/team_b_score_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="TextView"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/team_b_score_header"
+        app:layout_constraintTop_toTopOf="@+id/team_b_score_header" />
 
     <TextView
         android:id="@+id/score_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="72dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:text="TextView"
+        android:text="@string/score"
         android:textColor="@android:color/white"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/score_value"
-        app:layout_constraintTop_toTopOf="@+id/winner_text"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintBottom_toTopOf="@id/team_a_score_header"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/score_team_a" />
 
-    <TextView
-        android:id="@+id/score_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="8dp"
-        android:text="TextView"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/score_header" />
 </android.support.constraint.ConstraintLayout>

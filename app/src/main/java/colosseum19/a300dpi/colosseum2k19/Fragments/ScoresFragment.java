@@ -11,30 +11,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import butterknife.ButterKnife;
-import colosseum19.a300dpi.colosseum2k19.Adapters.PointsAdapter;
 import colosseum19.a300dpi.colosseum2k19.Adapters.ScoreGameListAdapter;
 import colosseum19.a300dpi.colosseum2k19.Interfaces.CallbackInterface;
-import colosseum19.a300dpi.colosseum2k19.Model.Fixture;
 import colosseum19.a300dpi.colosseum2k19.Model.Score;
 import colosseum19.a300dpi.colosseum2k19.R;
 
@@ -49,8 +38,14 @@ public class ScoresFragment extends Fragment {
     private ArrayList<Score>scoreArrayList = new ArrayList<>();
 
     private Context context;
+    private static ScoresFragment instance;
 
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    public static ScoresFragment getInstance(){
+        if(instance == null){
+            instance = new ScoresFragment();
+        }
+        return instance;
+    }
 
     public ScoresFragment() {
     }
@@ -82,10 +77,10 @@ public class ScoresFragment extends Fragment {
 
     //get list of  scores fora particular game
     //use callback to send the data back to recyclerview adaptar
-    public void getGameScores(String query, final CallbackInterface callbackInterface,final ScoreGameListAdapter.ScoreGameHolder scoreHolder){
+    public  void getGameScores(String query, final CallbackInterface callbackInterface,final ScoreGameListAdapter.ScoreGameHolder scoreHolder){
 
-        Log.d(TAG,query);
-        Query gameQuery = db.collection("scores").whereEqualTo("game_name", query);
+        Log.d("TEST_QUERY",query);
+        Query gameQuery = FirebaseFirestore.getInstance().collection("scores").whereEqualTo("game_name", query);
         gameQuery.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
