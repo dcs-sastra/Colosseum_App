@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import colosseum19.a300dpi.colosseum2k19.Fragments.AboutFragment;
@@ -163,6 +165,9 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         if (id == R.id.action_notifications) {
             startActivity(new Intent(this, NotificationActivity.class));
             return true;
+        }else if (id == R.id.action_sign_out) {
+            FirebaseAuth.getInstance().signOut();
+            finish();
         }
 
         return super.onOptionsItemSelected(item);
