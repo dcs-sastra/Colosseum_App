@@ -46,16 +46,16 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreHolder>
 
     //view holder for score
     public class ScoreHolder extends RecyclerView.ViewHolder {
-        TextView gameName, teamA, teamB, winnerText;
+        TextView gameName, teamA, teamB;
         TextView teamaScoreHeader, teambScoreHeader, teamaScoreValue, teambScoreValue;
         TextView physiqueText, chessRound,scoreHeader;
+        TextView bestPhysiquePos,versusText,bestPhysiqueName;
 
         ScoreHolder(View itemView) {
             super(itemView);
             gameName = itemView.findViewById(R.id.score_sub_name);
             teamA = itemView.findViewById(R.id.score_team_a);
             teamB = itemView.findViewById(R.id.score_team_b);
-            winnerText = itemView.findViewById(R.id.winner_text);
             teamaScoreHeader = itemView.findViewById(R.id.team_a_score_header);
             teambScoreHeader = itemView.findViewById(R.id.team_b_score_header);
             teamaScoreValue = itemView.findViewById(R.id.team_a_score_value);
@@ -63,13 +63,15 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreHolder>
             physiqueText = itemView.findViewById(R.id.score_physique_category);
             chessRound = itemView.findViewById(R.id.score_chess_round);
             scoreHeader = itemView.findViewById(R.id.score_header);
+            bestPhysiquePos = itemView.findViewById(R.id.best_physique_position);
+            versusText = itemView.findViewById(R.id.vs_text);
+            bestPhysiqueName = itemView.findViewById(R.id.best_physique_name);
         }
 
         public void setDetails(Score score) {
             gameName.setText(score.getEvent_name());
             teamA.setText(score.getTeamA());
             teamB.setText(score.getTeamB());
-            winnerText.setText(score.getWinner());
             teamaScoreHeader.setText(score.getTeamA());
             teambScoreHeader.setText(score.getTeamB());
             teamaScoreValue.setText(String.valueOf(score.getScore_teamA()));
@@ -84,13 +86,26 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreHolder>
                 scoreHeader.setText(ctx.getString(R.string.score));
             }
 
-            if (score.getRoundNumChess() != null) {
+            //for chess game
+            if (score.getGame_name().equals(ctx.getString(R.string.chess))) {
                 chessRound.setVisibility(View.VISIBLE);
                 chessRound.setText(score.getRoundNumChess());
             }
-            if (score.getBestPhysiqueCategory() != null) {
+            //for best physique
+            if(score.getGame_name().equals(ctx.getString(R.string.best_physique))){
                 physiqueText.setVisibility(View.VISIBLE);
                 physiqueText.setText(score.getBestPhysiqueCategory());
+                bestPhysiquePos.setVisibility(View.VISIBLE);
+                bestPhysiquePos.setText(score.getBestPhysiquePositioin());
+                teamA.setText(score.getBestPhysiqueCollgeName());
+                bestPhysiqueName.setText(score.getBestPhysiqueParticipantName());
+                bestPhysiqueName.setVisibility(View.VISIBLE);
+                scoreHeader.setVisibility(View.GONE);
+                teamaScoreHeader.setVisibility(View.GONE);
+                teambScoreHeader.setVisibility(View.GONE);
+                teamaScoreValue.setVisibility(View.GONE);
+                teambScoreValue.setVisibility(View.GONE);
+                versusText.setVisibility(View.GONE);
             }
         }
     }

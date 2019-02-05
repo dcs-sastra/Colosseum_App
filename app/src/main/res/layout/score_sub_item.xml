@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="16dp"
+    android:paddingBottom="10dp"
     android:background="@drawable/white_border_rounded">
 
     <TextView
@@ -16,30 +17,16 @@
         android:fontFamily="@font/montserratbold"
         android:text="textView"
         android:textColor="@android:color/white"
-        android:textSize="18sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/winner_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/montserrat"
-        android:text="textView"
-        android:textColor="@android:color/white"
-        android:textSize="16sp"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/score_chess_round" />
 
     <TextView
         android:id="@+id/score_team_a"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/montserrat"
         android:text="TextView"
@@ -48,7 +35,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/score_sub_name" />
+        app:layout_constraintTop_toBottomOf="@+id/best_physique_name" />
 
     <TextView
         android:id="@+id/score_team_b"
@@ -68,7 +55,7 @@
         android:id="@+id/vs_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat"
+        android:fontFamily="@font/montserratbold"
         android:text="VS"
         android:textColor="@android:color/white"
         android:textSize="14sp"
@@ -100,7 +87,7 @@
         android:fontFamily="@font/montserratbold"
         android:text="Round:"
         android:textColor="@android:color/white"
-        android:textSize="12sp"
+        android:textSize="18sp"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/score_physique_category" />
@@ -111,6 +98,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="4dp"
+        android:gravity="center"
         android:fontFamily="@font/montserratbold"
         android:text="team_a_score:"
         android:textColor="@android:color/white"
@@ -136,6 +124,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
+        android:gravity="center"
         android:fontFamily="@font/montserratbold"
         android:text="team_b_score:"
         android:textColor="@android:color/white"
@@ -149,10 +138,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:fontFamily="@font/montserrat"
+        android:layout_marginBottom="10dp"
         android:text="TextView"
         android:textColor="@android:color/white"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/team_b_score_header"
         app:layout_constraintTop_toTopOf="@+id/team_b_score_header" />
 
@@ -162,15 +151,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:fontFamily="@font/montserratbold"
-        android:paddingTop="25dp"
         android:text="@string/score"
         android:textColor="@android:color/white"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@id/team_a_score_header"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/score_team_a" />
+        app:layout_constraintTop_toBottomOf="@+id/score_chess_round" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
@@ -184,16 +170,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:fontFamily="@font/montserratbold"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:text="TextView"
         android:textColor="@android:color/white"
         android:textSize="18sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/team_b_score_value" />
+
+    <TextView
+        android:id="@+id/best_physique_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/montserrat"
+        android:layout_marginTop="8dp"
+        android:text="best phy name"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/score_sub_name" />
 
 
 </android.support.constraint.ConstraintLayout>
