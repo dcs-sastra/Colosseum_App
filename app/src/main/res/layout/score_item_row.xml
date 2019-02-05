@@ -37,6 +37,7 @@
             android:textColor="@android:color/white"
             android:gravity="center"
             android:textSize="20dp"
+            android:fontFamily="@font/montserratbold"
             app:layout_constraintBottom_toBottomOf="@+id/score_game_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/score_game_image"

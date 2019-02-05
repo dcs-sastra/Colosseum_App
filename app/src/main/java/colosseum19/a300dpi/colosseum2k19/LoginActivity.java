@@ -69,11 +69,7 @@ public class LoginActivity extends AppCompatActivity {
         mSignInClient = GoogleSignIn.getClient(this,signInOptions);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
-        if (mFirebaseAuth == null){
-            Toast.makeText(this, "null", Toast.LENGTH_SHORT).show();
-        }else {
-            Toast.makeText(this, "!null", Toast.LENGTH_SHORT).show();
-        }
+
 
         btnLogin.setSize(SignInButton.SIZE_STANDARD);
     }
