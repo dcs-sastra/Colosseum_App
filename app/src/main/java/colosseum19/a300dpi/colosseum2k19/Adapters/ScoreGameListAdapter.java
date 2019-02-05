@@ -130,7 +130,7 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
             gameName = itemView.findViewById(R.id.score_game_name);
             gameScoreList = itemView.findViewById(R.id.score_game_specific_score_list);
             rootLayout = itemView.findViewById(R.id.score_root_layout);
-            adapter = new ScoreAdapter();
+            adapter = new ScoreAdapter(ctx);
             gameScoreList.setAdapter(adapter);
             gameScoreList.setLayoutManager(new LinearLayoutManager(ctx));
         }

@@ -113,7 +113,7 @@
             android:layout_marginBottom="20dp"
             android:textColor="@color/black"
             android:textSize="14sp"
-            android:text="\nKavin Raju\n\nSibi\n\nArun Balaji TSR\n\nTanvir Ahmad\n\nKarthikeyan"
+            android:text="\nKavin Raju S\n\nSibi N\n\nArun Balaji TSR\n\nTanvir Ahmad H\n\nKarthikeyan"
             android:layout_height="wrap_content" />
 
             <TextView
