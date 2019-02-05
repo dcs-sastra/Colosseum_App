@@ -15,11 +15,11 @@ import colosseum19.a300dpi.colosseum2k19.R;
 
 public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreHolder> {
 
-    private Context mContext;
+    private Context ctx;
     private ArrayList<Score> points = new ArrayList<>();
 
-    public ScoreAdapter() {
-
+    public ScoreAdapter(Context ctx) {
+        this.ctx = ctx;
     }
 
     @Override
@@ -35,8 +35,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreHolder>
 
     @Override
     public ScoreHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        mContext = parent.getContext();
-        View view = LayoutInflater.from(mContext).inflate(R.layout.score_sub_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.score_sub_item, parent, false);
         return new ScoreHolder(view);
     }
 
@@ -49,7 +48,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreHolder>
     public class ScoreHolder extends RecyclerView.ViewHolder {
         TextView gameName, teamA, teamB, winnerText;
         TextView teamaScoreHeader, teambScoreHeader, teamaScoreValue, teambScoreValue;
-        TextView physiqueText, chessRound;
+        TextView physiqueText, chessRound,scoreHeader;
 
         ScoreHolder(View itemView) {
             super(itemView);
@@ -63,6 +62,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreHolder>
             teambScoreValue = itemView.findViewById(R.id.team_b_score_value);
             physiqueText = itemView.findViewById(R.id.score_physique_category);
             chessRound = itemView.findViewById(R.id.score_chess_round);
+            scoreHeader = itemView.findViewById(R.id.score_header);
         }
 
         public void setDetails(Score score) {
@@ -74,6 +74,16 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreHolder>
             teambScoreHeader.setText(score.getTeamB());
             teamaScoreValue.setText(String.valueOf(score.getScore_teamA()));
             teambScoreValue.setText(String.valueOf(score.getScore_teamB()));
+
+            if(score.getGame_name().equals(ctx.getString(R.string.handball_query)) ||
+                    score.getGame_name().equals(ctx.getString(R.string.volleyball_query)) ||
+                    score.getGame_name().equals(ctx.getString(R.string.tennis)) ||
+                    score.getGame_name().equals(ctx.getString(R.string.table_tennis))){
+                scoreHeader.setText(ctx.getString(R.string.set));
+            }else{
+                scoreHeader.setText(ctx.getString(R.string.score));
+            }
+
             if (score.getRoundNumChess() != null) {
                 chessRound.setVisibility(View.VISIBLE);
                 chessRound.setText(score.getRoundNumChess());
