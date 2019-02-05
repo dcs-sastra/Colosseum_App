@@ -77,7 +77,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreHolder>
             teamaScoreValue.setText(String.valueOf(score.getScore_teamA()));
             teambScoreValue.setText(String.valueOf(score.getScore_teamB()));
 
-            if(score.getGame_name().equals(ctx.getString(R.string.handball_query)) ||
+            if(score.getGame_name().equals(ctx.getString(R.string.badminton)) ||
                     score.getGame_name().equals(ctx.getString(R.string.volleyball_query)) ||
                     score.getGame_name().equals(ctx.getString(R.string.tennis)) ||
                     score.getGame_name().equals(ctx.getString(R.string.table_tennis))){
