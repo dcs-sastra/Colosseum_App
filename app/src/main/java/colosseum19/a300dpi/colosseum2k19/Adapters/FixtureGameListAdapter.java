@@ -138,7 +138,7 @@ public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameList
             gameIcon = itemView.findViewById(R.id.game_image);
             dropDown = itemView.findViewById(R.id.drop_down);
             specificGameList = itemView.findViewById(R.id.game_specific_fixture_list);
-            adapter = new FixtureAdapter();
+            adapter = new FixtureAdapter(ctx);
             specificGameList.setLayoutManager(new LinearLayoutManager(itemView.getContext()));
             specificGameList.setAdapter(adapter);
 
