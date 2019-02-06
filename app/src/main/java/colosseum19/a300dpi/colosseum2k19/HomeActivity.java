@@ -7,6 +7,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -66,7 +67,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         FirebaseMessaging.getInstance().subscribeToTopic("participants").addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_LONG).show();
+                Log.d("subscribeToTopic: ", "Success");
             }
         });
 
