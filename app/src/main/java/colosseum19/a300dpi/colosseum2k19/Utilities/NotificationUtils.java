@@ -1,4 +1,4 @@
-package com.example.angrybirdraju.easycopyadmin.utils;
+package colosseum19.a300dpi.colosseum2k19.Utilities;
 
 import android.app.ActivityManager;
 import android.app.Notification;
@@ -20,8 +20,6 @@ import android.text.TextUtils;
 import android.util.Patterns;
 import android.widget.Toast;
 
-import com.example.angrybirdraju.easycopyadmin.R;
-import com.example.angrybirdraju.easycopyadmin.app.Constants_For_FCM;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -30,6 +28,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import colosseum19.a300dpi.colosseum2k19.R;
 
 /**
  * Created by AngryBird Raju on 12/6/2017.
@@ -51,7 +51,7 @@ public class NotificationUtils {
         showNotificationMessage(title, message ,intent, null);
     }
 
-    public void showNotificationMessage(final String title, final String message,Intent intent, String imageUrl) {
+    public void showNotificationMessage(final String title, final String message, Intent intent, String imageUrl) {
         // Check for empty push message
         if (TextUtils.isEmpty(message))
             return;

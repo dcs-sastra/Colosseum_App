@@ -1,4 +1,4 @@
-package com.example.angrybirdraju.easycopyadmin.app;
+package colosseum19.a300dpi.colosseum2k19.Utilities;
 
 /**
  * Created by AngryBird Raju on 12/6/2017.

@@ -1,4 +1,4 @@
-package com.example.angrybirdraju.easycopyadmin.service;
+package colosseum19.a300dpi.colosseum2k19.service;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,15 +6,15 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.example.angrybirdraju.easycopyadmin.MainActivity_ADMIN_HOME;
-import com.example.angrybirdraju.easycopyadmin.ScrollingActivity_orders;
-import com.example.angrybirdraju.easycopyadmin.app.Constants_For_FCM;
-import com.example.angrybirdraju.easycopyadmin.utils.NotificationUtils;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import colosseum19.a300dpi.colosseum2k19.HomeActivity;
+import colosseum19.a300dpi.colosseum2k19.Utilities.Constants_For_FCM;
+import colosseum19.a300dpi.colosseum2k19.Utilities.NotificationUtils;
 
 /**
  * Created by  Raju on 12/7/2017.
@@ -104,7 +104,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             } else {
 
                 // app is in background, show the notification in notification tray
-                Intent resultIntent = new Intent(getApplicationContext(), MainActivity_ADMIN_HOME.class);
+                Intent resultIntent = new Intent(getApplicationContext(), HomeActivity.class);
                 resultIntent.putExtra("message", message);
 
                 // check for image attachment
