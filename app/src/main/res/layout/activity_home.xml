@@ -27,7 +27,7 @@
                 android:fontFamily="@font/montserratbold"
                 style="@style/TextAppearance.AppCompat.Headline"
                 android:gravity="center"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
 
                 android:layout_marginStart="36dp"/>
         </android.support.v7.widget.Toolbar>
