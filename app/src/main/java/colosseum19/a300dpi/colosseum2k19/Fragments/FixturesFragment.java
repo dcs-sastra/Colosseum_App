@@ -36,7 +36,7 @@ public class FixturesFragment extends Fragment{
 
     private Context context;
     private RecyclerView gameList;
-    private FixtureAdapter fixtureAdapter = new FixtureAdapter();
+    private FixtureAdapter fixtureAdapter = new FixtureAdapter(getActivity());
     private FixtureGameListAdapter fixtureGameListAdapter;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 

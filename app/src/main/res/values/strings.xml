@@ -36,4 +36,6 @@
     <string name="score">Score</string>
     <string name="set">Set</string>
     <string name="sign_out">Sign Out</string>
+
+    <string name="to_be_updated">Yet to be updated</string>
 </resources>
