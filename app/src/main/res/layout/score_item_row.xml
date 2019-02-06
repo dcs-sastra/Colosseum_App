@@ -8,7 +8,7 @@
     app:cardCornerRadius="6dp"
     app:cardElevation="6dp"
     app:cardUseCompatPadding="true"
-    app:cardBackgroundColor="@color/black">
+    app:cardBackgroundColor="@color/colorPrimaryDark">
 
 
     <android.support.constraint.ConstraintLayout
