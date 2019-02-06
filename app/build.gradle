@@ -7,7 +7,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
-        versionName "1.0"
+        versionName "0.0001"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -40,6 +40,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:18.0.0'
     implementation 'com.google.firebase:firebase-auth:16.1.0'
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
+    compile 'com.google.firebase:firebase-messaging:17.3.4'
     //progress dialog
     implementation 'com.github.d-max:spots-dialog:1.1@aar'
 

@@ -1,14 +1,14 @@
-package com.example.angrybirdraju.easycopyadmin.service;
+package colosseum19.a300dpi.colosseum2k19.service;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
-import com.example.angrybirdraju.easycopyadmin.app.Constants_For_FCM;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 
+import colosseum19.a300dpi.colosseum2k19.Utilities.Constants_For_FCM;
 
 
 /**
