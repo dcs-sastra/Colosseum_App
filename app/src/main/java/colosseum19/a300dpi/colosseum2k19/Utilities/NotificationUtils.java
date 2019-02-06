@@ -1,22 +1,17 @@
 package colosseum19.a300dpi.colosseum2k19.Utilities;
 
 import android.app.ActivityManager;
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ComponentName;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
-import android.text.TextUtils;
 import java.util.List;
 
 import colosseum19.a300dpi.colosseum2k19.HomeActivity;

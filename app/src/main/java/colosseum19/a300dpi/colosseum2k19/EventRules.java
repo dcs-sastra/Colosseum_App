@@ -111,7 +111,7 @@ public class EventRules extends AppCompatActivity {
                         "Maximum of 12 players per team (7+5)" ,
                         "Each half will be 20 minutes (20-5-20)" ,
                         "Registration on first - come - first serve basis"};
-                contact= "Mithun\n" +
+                contact= "Mithun - " +
                         "9566819616";
                 prize=new int[]{7000,4000,2000};
                 break;

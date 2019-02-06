@@ -32,25 +32,16 @@
             android:theme="@style/AppTheme.NoActionBar"/>
 
 
-        <service
-            android:name=".Service.NotificationService">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
-            </intent-filter>
-        </service>
-
-
-
         <!-- Firebase Notifications -->
         <service
-            android:name=".Service.MyFirebaseMessagingService"
+            android:name=".service.MyFirebaseMessagingService"
             tools:ignore="ExportedService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
         <service
-            android:name=".Service.MyFirebaseInstanceIDService"
+            android:name=".service.MyFirebaseInstanceIDService"
             tools:ignore="ExportedService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
