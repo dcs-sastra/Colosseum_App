@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import colosseum19.a300dpi.colosseum2k19.Model.Score;
 import colosseum19.a300dpi.colosseum2k19.R;

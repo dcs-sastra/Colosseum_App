@@ -13,12 +13,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.messaging.FirebaseMessaging;
+
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -75,6 +81,13 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         fragmentManager = getSupportFragmentManager();
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         bottomNavigationView.setOnNavigationItemReselectedListener(this);
+
+        FirebaseMessaging.getInstance().subscribeToTopic("participants").addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_LONG).show();
+            }
+        });
 
         if (savedInstanceState == null){
 
@@ -176,7 +189,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_notifications) {
-            startActivity(new Intent(this, NotificationActivity.class));
+            //startActivity(new Intent(this, NotificationActivity.class));
             return true;
         }else if (id == R.id.action_sign_out) {
             FirebaseAuth.getInstance().signOut();
