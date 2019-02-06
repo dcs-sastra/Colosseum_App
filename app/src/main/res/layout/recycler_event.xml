@@ -38,10 +38,11 @@
         <ImageView
             android:id="@+id/event_icon_img"
             android:scaleType="fitCenter"
-            android:background="@color/colorPrimaryExtraDark"
+            android:background="@color/colorPrimary"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:padding="16dp"
+            android:elevation="@dimen/margin_16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>

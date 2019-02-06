@@ -68,6 +68,7 @@ public class FixturesFragment extends Fragment{
 
 
         db.collection("current_events")
+                .orderBy("timestamp")
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@javax.annotation.Nullable QuerySnapshot queryDocumentSnapshots, @javax.annotation.Nullable FirebaseFirestoreException e) {

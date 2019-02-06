@@ -80,7 +80,10 @@ public class ScoresFragment extends Fragment {
     public  void getGameScores(String query, final CallbackInterface callbackInterface,final ScoreGameListAdapter.ScoreGameHolder scoreHolder){
 
         Log.d("TEST_QUERY",query);
-        Query gameQuery = FirebaseFirestore.getInstance().collection("scores").whereEqualTo("game_name", query);
+        Query gameQuery = FirebaseFirestore.getInstance()
+                .collection("scores")
+                .whereEqualTo("game_name", query)
+                .orderBy("timestamp");
         gameQuery.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
