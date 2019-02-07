@@ -106,9 +106,10 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
 
     //callback containing score of specific game
     @Override
-    public void setScoreData(ArrayList<Score> data, ScoreGameHolder gameHolder) {
-        if(data == null){
-            Toast.makeText(ctx,"Scores not updated",Toast.LENGTH_SHORT).show();
+    public void setScoreData(ArrayList<Score> data, ScoreGameHolder gameHolder,boolean isEmpty) {
+        if(isEmpty){
+            progressDialog.cancel();
+            Toast.makeText(ctx,ctx.getString(R.string.not_updated),Toast.LENGTH_SHORT).show();
         }else{
             gameHolder.setRecyclerView(data);
         }
@@ -151,7 +152,7 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
     }
 
     @Override
-    public void setFixtureData(ArrayList<Fixture> data, FixtureGameListAdapter.GameHolder gameHolder) {
+    public void setFixtureData(ArrayList<Fixture> data, FixtureGameListAdapter.GameHolder gameHolder,boolean isEmpty) {
 
     }
 }

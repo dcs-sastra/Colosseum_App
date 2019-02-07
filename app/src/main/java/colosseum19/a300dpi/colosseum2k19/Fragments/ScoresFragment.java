@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -87,14 +88,20 @@ public class ScoresFragment extends Fragment {
         gameQuery.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                scoreArrayList.clear();
-                Log.d(TAG,"TASK SUCCESSFULL");
-                for (DocumentSnapshot doc : queryDocumentSnapshots) {
-                    Score singleScore = doc.toObject(Score.class);
-                    scoreArrayList.add(singleScore);
+                if(queryDocumentSnapshots.size() > 0){
+                    scoreArrayList.clear();
+                    Log.d(TAG,"TASK SUCCESSFULL");
+                    for (DocumentSnapshot doc : queryDocumentSnapshots) {
+                        Score singleScore = doc.toObject(Score.class);
+                        scoreArrayList.add(singleScore);
+                    }
+                    //QueryData.setData(fixtureArrayList);
+                    callbackInterface.setScoreData(scoreArrayList,scoreHolder,false);
+                }else{
+                    callbackInterface.setScoreData(null,null,true);
+                    Log.d("NULL","NULL");
+
                 }
-                //QueryData.setData(fixtureArrayList);
-                callbackInterface.setScoreData(scoreArrayList,scoreHolder);
             }
         });
     }

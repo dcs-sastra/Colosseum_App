@@ -86,13 +86,19 @@
 
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="60dp"
-            android:layout_marginBottom="10dp"
-            android:layout_gravity="center"
-            android:layout_height="60dp"
-            app:srcCompat="@drawable/dpi" />
+
+
+
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                app:srcCompat="@drawable/dpi" />
+
+
 
         <TextView
             android:layout_width="match_parent"
@@ -114,7 +120,7 @@
             android:layout_marginBottom="20dp"
             android:textColor="@color/black"
             android:textSize="14sp"
-            android:text="\nKavin Raju S\n\nSibi N\n\nArun Balaji TSR\n\nTanveer Ahmad H\n\nKarthikeyan"
+            android:text="\nAswin N\n\nKavin Raju S\n\nSibi N\n\nArun Balaji TSR\n\nTanveer Ahmad H\n\nKarthikeyan"
             android:layout_height="wrap_content" />
 
             <TextView
@@ -124,7 +130,79 @@
                 android:layout_marginBottom="20dp"
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                android:text="\n(3rd year EIE)\n\n(2nd year CSE)\n\n(2nd year EIE)\n\n(3rd year ECE)\n\n(1st year CSE)"
+                android:text="\n(4th year CSE)\n\n(3rd year EIE)\n\n(2nd year CSE)\n\n(2nd year EIE)\n\n(3rd year ECE)\n\n(1st year CSE)"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:text="GRAPHIC DESIGNERS"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="@font/montserratbold"
+            android:textSize="24sp"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/montserratbold"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:text="\nAniruth R\n\nGowtham K\n\nManickavel M\n\nArun Vignesh B\n\nSruthi Bharadwaj\n\nHaretha\n\nAdithya Narayanan S\n\nNaveen\n\nSanjay Vasanth\n\nYagaa Gowtham"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/montserrat"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:text="\n(4rd year ICT)\n\n(2nd year IT)\n\n(3rd year Mech)\n\n(3rd year Mech)\n\n(4th year IT)\n\n\n(4th year Communication Systems)\n\n(3rd year BioTech)\n\n(4th year Mech)\n\n(4th year Aero)\n\n(3rd year IT)"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:text="WEB DEVELOPERS"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="@font/montserratbold"
+            android:textSize="24sp"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/montserratbold"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:text="\nJaswanth Y\n\nKaranam Vamsi Krishna   "
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/montserrat"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:text="\n(3rd year ICT)\n\n(3rd year IT)"
                 android:layout_height="wrap_content" />
 
 
