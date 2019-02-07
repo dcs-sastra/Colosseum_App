@@ -117,7 +117,6 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
                     case 0:
                         loadImage(R.drawable.badminton_men_women,img);
                         loadImage(R.drawable.icon_badminton, icon_img);
-                        //img.setImageDrawable(context.getResources().getDrawable(R.drawable.badminton_men_women));
                         break;
                     case 1:
                         loadImage(R.drawable.basketball_men_and_women,img);
