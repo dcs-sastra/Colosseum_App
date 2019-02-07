@@ -155,7 +155,7 @@
                 android:layout_marginBottom="20dp"
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                android:text="\nAniruth R\n\nGowtham K\n\nManickavel M\n\nArun Vignesh B\n\nSruthi Bharadwaj\n\nHaretha\n\nAdithya Narayanan A\n\nNaveen\n\nSanjay Vasanth\n\nYagaa Gowtham"
+                android:text="\nAniruth R\n\nGowtham K\n\nManickavel M\n\nArun Vignesh B\n\nSruthi Bharadwaj\n\nHaretha\n\nAdithya Narayanan S\n\nNaveen\n\nSanjay Vasanth\n\nYagaa Gowtham"
                 android:layout_height="wrap_content" />
 
             <TextView
@@ -165,7 +165,7 @@
                 android:layout_marginBottom="20dp"
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                android:text="\n(3rd year ICT)\n\n(2nd year IT)\n\n(3rd year Mech)\n\n(3rd year Mech)\n\n(4th year IT)\n\n\n(4th year Communication Systems)\n\n(3rd year BioTech)\n\n(4th year Mech)\n\n(4th year Aero)\n\n(3rd year IT)"
+                android:text="\n(4rd year ICT)\n\n(2nd year IT)\n\n(3rd year Mech)\n\n(3rd year Mech)\n\n(4th year IT)\n\n\n(4th year Communication Systems)\n\n(3rd year BioTech)\n\n(4th year Mech)\n\n(4th year Aero)\n\n(3rd year IT)"
                 android:layout_height="wrap_content" />
 
 
