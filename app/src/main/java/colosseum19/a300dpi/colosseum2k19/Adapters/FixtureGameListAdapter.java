@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -112,12 +113,18 @@ public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameList
     }
 
     @Override
-    public void setFixtureData(ArrayList<Fixture> data, GameHolder gameHolder) {
-        gameHolder.setRecyclerView(data);
+    public void setFixtureData(ArrayList<Fixture> data, GameHolder gameHolder,boolean isempty) {
+        if(isempty){
+            progressDialog.cancel();
+            Toast.makeText(ctx,ctx.getString(R.string.not_updated),Toast.LENGTH_SHORT).show();
+        }else{
+            gameHolder.setRecyclerView(data);
+        }
+
     }
 
     @Override
-    public void setScoreData(ArrayList<Score> data, ScoreGameListAdapter.ScoreGameHolder gameHolder) {
+    public void setScoreData(ArrayList<Score> data, ScoreGameListAdapter.ScoreGameHolder gameHolder, boolean isEmpty) {
 
     }
 

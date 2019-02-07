@@ -245,7 +245,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
     }
 
-    //subscribe to notification channell
+
 
 
 }
