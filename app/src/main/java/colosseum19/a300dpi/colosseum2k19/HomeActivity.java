@@ -239,6 +239,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         isBackDoubledPressed = true;
         Toast.makeText(this, "Please click again to exit", Toast.LENGTH_SHORT).show();
 
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

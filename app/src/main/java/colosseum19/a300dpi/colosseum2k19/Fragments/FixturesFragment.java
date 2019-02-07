@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentChange;
@@ -39,6 +42,7 @@ public class FixturesFragment extends Fragment{
     private FixtureAdapter fixtureAdapter = new FixtureAdapter(getActivity());
     private FixtureGameListAdapter fixtureGameListAdapter;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private ConstraintLayout rootLayout;
 
     public ArrayList<Fixture> fixtureArrayList = new ArrayList<>();
 
@@ -59,6 +63,8 @@ public class FixturesFragment extends Fragment{
         View view = inflater.inflate(R.layout.frag_fixtures, container, false);
         ButterKnife.bind(this, view);
         context = view.getContext();
+
+        rootLayout = view.findViewById(R.id.fixture_root_layout);
 
         //recycler adapter for game names
         gameList = view.findViewById(R.id.fixtures_game_names_list);
@@ -118,19 +124,26 @@ public class FixturesFragment extends Fragment{
         gameQuery.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                fixtureArrayList.clear();
-                Log.d(TAG,"TASK SUCCESSFULL");
-                for (DocumentSnapshot doc : queryDocumentSnapshots) {
-                    Fixture singleFixture = doc.toObject(Fixture.class);
-                    Log.d(TAG,singleFixture.getEvent_name());
-                    Log.d(TAG,singleFixture.getEvent_time());
-                    Log.d(TAG,singleFixture.getGame_name());
-                    Log.d(TAG,singleFixture.getTeamA());
-                    Log.d(TAG,singleFixture.getTeamB());
-                    fixtureArrayList.add(singleFixture);
+                Log.d("SIZE",queryDocumentSnapshots.size()+"");
+                if(queryDocumentSnapshots.size() > 0){
+                    fixtureArrayList.clear();
+                    Log.d(TAG,"TASK SUCCESSFULL");
+                    for (DocumentSnapshot doc : queryDocumentSnapshots) {
+                        Fixture singleFixture = doc.toObject(Fixture.class);
+                        Log.d(TAG,singleFixture.getEvent_name());
+                        Log.d(TAG,singleFixture.getEvent_time());
+                        Log.d(TAG,singleFixture.getGame_name());
+                        Log.d(TAG,singleFixture.getTeamA());
+                        Log.d(TAG,singleFixture.getTeamB());
+                        fixtureArrayList.add(singleFixture);
+                    }
+                    //QueryData.setData(fixtureArrayList);
+                    callbackInterface.setFixtureData(fixtureArrayList,gameHolder,false);
+                }else{
+                    callbackInterface.setFixtureData(null,null,true);
+                    Log.d("NULL","NULL");
                 }
-                //QueryData.setData(fixtureArrayList);
-                callbackInterface.setFixtureData(fixtureArrayList,gameHolder);
+
             }
         });
     }
