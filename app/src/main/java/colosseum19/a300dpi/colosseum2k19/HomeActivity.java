@@ -2,29 +2,20 @@ package colosseum19.a300dpi.colosseum2k19;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.messaging.FirebaseMessagingService;
-
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.messaging.FirebaseMessaging;
-
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,6 +39,8 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     private static String BUNDLE_KEY_ABOUT_FRAG = "about_frag_bundle";
     private static String BUNDLE_KEY_CURRENTLY_SELECTED_BOTTOM_NAV = "currently_selected_bottom_navigation_view";
 
+    private static boolean isBackDoubledPressed = false;
+
     private FragmentManager fragmentManager;
     private EventsFragment eventsFragment;
     private FixturesFragment fixturesFragment;
@@ -70,14 +63,6 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
 
-        FirebaseMessaging.getInstance().subscribeToTopic(getString(R.string.fixture_channel))
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d("SUBSCRIBE","YES");
-                    }
-                });
-
         fragmentManager = getSupportFragmentManager();
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         bottomNavigationView.setOnNavigationItemReselectedListener(this);
@@ -85,7 +70,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         FirebaseMessaging.getInstance().subscribeToTopic("participants").addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_LONG).show();
+                Log.d("subscribeToTopic: ", "Success");
             }
         });
 
@@ -245,7 +230,28 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
     }
 
+    @Override
+    public void onBackPressed() {
+        if (isBackDoubledPressed){
+            super.onBackPressed();
+            exitFromApplication();
+        }
+        isBackDoubledPressed = true;
+        Toast.makeText(this, "Please click again to exit", Toast.LENGTH_SHORT).show();
 
 
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                isBackDoubledPressed = false;
+            }
+        },2000);
+    }
+    private void exitFromApplication(){
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
 
 }

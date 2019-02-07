@@ -1,4 +1,4 @@
-package colosseum19.a300dpi.colosseum2k19.Service;
+package colosseum19.a300dpi.colosseum2k19.service;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
