@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -183,6 +185,9 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
                 .load(id)
                 .apply(options)
                 .into(imageView);
+
+        Animation a1 = AnimationUtils.loadAnimation(context, R.anim.slide_from_left_items);
+        imageView.setAnimation(a1);
 
     }
 
