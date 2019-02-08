@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -115,7 +117,6 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
                     case 0:
                         loadImage(R.drawable.badminton_men_women,img);
                         loadImage(R.drawable.icon_badminton, icon_img);
-                        //img.setImageDrawable(context.getResources().getDrawable(R.drawable.badminton_men_women));
                         break;
                     case 1:
                         loadImage(R.drawable.basketball_men_and_women,img);
@@ -183,6 +184,9 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
                 .load(id)
                 .apply(options)
                 .into(imageView);
+
+        Animation a1 = AnimationUtils.loadAnimation(context, R.anim.slide_from_left_items);
+        imageView.setAnimation(a1);
 
     }
 
