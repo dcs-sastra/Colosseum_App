@@ -94,15 +94,16 @@
 
     <TextView
         android:id="@+id/team_a_score_header"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="4dp"
-        android:gravity="center"
+        android:layout_marginEnd="8dp"
         android:fontFamily="@font/montserratbold"
         android:text="team_a_score:"
         android:textColor="@android:color/white"
         android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/team_a_score_value"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/score_header" />
 
@@ -110,25 +111,26 @@
         android:id="@+id/team_a_score_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="@font/montserrat"
         android:text="TextView"
         android:textColor="@android:color/white"
         android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/team_a_score_header"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/team_a_score_header" />
 
     <TextView
         android:id="@+id/team_b_score_header"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
-        android:gravity="center"
+        android:layout_marginEnd="8dp"
         android:fontFamily="@font/montserratbold"
         android:text="team_b_score:"
         android:textColor="@android:color/white"
         android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/team_b_score_value"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/team_a_score_header" />
 
@@ -136,13 +138,12 @@
         android:id="@+id/team_b_score_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="@font/montserrat"
-        android:layout_marginBottom="10dp"
         android:text="TextView"
         android:textColor="@android:color/white"
         android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/team_b_score_header"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/team_b_score_header" />
 
     <TextView

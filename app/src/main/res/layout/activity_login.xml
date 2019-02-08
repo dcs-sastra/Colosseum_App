@@ -51,13 +51,15 @@
         android:id="@+id/imageView4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:src="@drawable/pic"
+        android:adjustViewBounds="true"
+        android:scaleType="centerInside"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="400dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/pic" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>
