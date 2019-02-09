@@ -92,7 +92,7 @@ public class FixtureAdapter extends RecyclerView.Adapter<FixtureAdapter.FixtureH
             fixtureList.add(fixture);
     }
 
-    public void setData(ArrayList<Fixture> data){
+    public void setData(List<Fixture> data){
         this.fixtureList = data;
         notifyDataSetChanged();
     }

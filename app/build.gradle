@@ -6,8 +6,8 @@ android {
         applicationId "colosseum19.a300dpi.colosseum2k19"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 4
-        versionName "1.11"
+        versionCode 6
+        versionName "1.13"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -46,7 +46,14 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:17.3.4'
     //in app messaging
     implementation 'com.google.firebase:firebase-inappmessaging-display:17.0.5'
-    implementation 'com.google.firebase:firebase-core:16.0.6'
+    implementation 'com.google.firebase:firebase-core:16.0.7'
+
+    //Room arch
+    def lifecycle_version = "1.1.1"
+    implementation "android.arch.persistence.room:runtime:$lifecycle_version"
+    annotationProcessor "android.arch.persistence.room:compiler:$lifecycle_version"
+    implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+    annotationProcessor "android.arch.lifecycle:compiler:$lifecycle_version"
 
 }
 apply plugin: 'com.google.gms.google-services'
