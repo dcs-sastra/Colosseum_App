@@ -13,6 +13,7 @@ public class Fixture {
     private String teamB;
 
 
+
     public Fixture() {
     }
 

@@ -36,7 +36,7 @@ public class HelperClass {
             fixture.setBestPhysiqueCategory(entry.getBestPhysiqueCategory());
             fixture.setRoundNumChess(entry.getRoundNumChess());
             fixture.setTeamA(entry.getTeamA());
-            fixture.setTeamB(entry.getTeamA());
+            fixture.setTeamB(entry.getTeamB());
             fixtures.add(fixture);
         }
         return fixtures;

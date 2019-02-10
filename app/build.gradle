@@ -6,8 +6,8 @@ android {
         applicationId "colosseum19.a300dpi.colosseum2k19"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 6
-        versionName "1.13"
+        versionCode 7
+        versionName "1.14"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
