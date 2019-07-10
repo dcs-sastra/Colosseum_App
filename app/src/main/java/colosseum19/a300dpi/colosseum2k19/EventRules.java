@@ -37,15 +37,7 @@ public class EventRules extends AppCompatActivity {
         TextView prize1=findViewById(R.id.prize_1_details);
         TextView prize2=findViewById(R.id.prize_2_details);
         TextView prize3=findViewById(R.id.prize_3_details);
-//        "badminton_men_women.png",
-//                "basketball_men_and_women.png",
-//                "best_physique_men.png",
-//                "chess_men_and_women.png",
-//                "football_men.png",
-//                "handball_men.png",
-//                "table_tennis_men_women.png",
-//                "tennis_men_women.png",
-//                "volleyball_men_women.png"
+
         switch (position){
             case 0:     //Badmitton
                 img.setImageDrawable(getApplicationContext().getResources().getDrawable(R.drawable.badminton_men_women));
