@@ -1,5 +1,12 @@
 package colosseum19.a300dpi.colosseum2k19.Model;
 
+import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 public class Score {
 
         private String event_name;
@@ -14,6 +21,7 @@ public class Score {
         private String winner;
         private int score_teamA;
         private int score_teamB;
+        private int day;
 
         public Score() {
         }
@@ -129,5 +137,35 @@ public class Score {
 
         public void setScore_teamB(int score_teamB) {
             this.score_teamB = score_teamB;
+        }
+
+
+        public static ArrayList<Score> parseIntoList(JSONArray jsonArray){
+            ArrayList<Score> scoreList = new ArrayList<>();
+
+            try{
+                for(int i =0; i <jsonArray.length(); i++){
+                    Score scoreObj = new Score();
+                    JSONObject jsonObj = jsonArray.getJSONObject(i);
+
+                    scoreObj.bestPhysiqueCategory = jsonObj.getString("bestPhysiqueCategory");
+                    scoreObj.bestPhysiqueCollgeName = jsonObj.getString("bestPhysiqueCollegeName");
+                    scoreObj.bestPhysiqueParticipantName = jsonObj.getString("bestPhysiqueParticipantName");
+                    scoreObj.event_name = jsonObj.getString("event_name");
+                    scoreObj.game_name = jsonObj.getString("game_name");
+                    scoreObj.roundNumChess = jsonObj.getString("roundNumChess");
+                    scoreObj.teamA = jsonObj.getString("teamA");
+                    scoreObj.teamB = jsonObj.getString("teamB");
+                    scoreObj.score_teamA = jsonObj.getInt("score_teamA");
+                    scoreObj.score_teamB = jsonObj.getInt("score_teamB");
+                    scoreObj.winner = jsonObj.getString("winner");
+                    scoreObj.day = jsonObj.getInt("day");
+
+                    scoreList.add(scoreObj);
+                }
+            }catch (Exception e){
+                Log.d("Fixture", "PARSE ERROR: "+e.toString());
+            }
+            return scoreList;
         }
     }

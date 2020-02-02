@@ -37,15 +37,8 @@ public class FixturesFragment extends Fragment{
 
     private static final String TAG = FixturesFragment.class.getSimpleName();
 
-    private Context context;
     private RecyclerView gameList;
-    private FixtureAdapter fixtureAdapter = new FixtureAdapter(getActivity());
     private FixtureGameListAdapter fixtureGameListAdapter;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private ConstraintLayout rootLayout;
-
-    public ArrayList<Fixture> fixtureArrayList = new ArrayList<>();
-
     private static FixturesFragment instance;
 
     public static FixturesFragment getInstance(){
@@ -62,41 +55,12 @@ public class FixturesFragment extends Fragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_fixtures, container, false);
         ButterKnife.bind(this, view);
-        context = view.getContext();
-
-        rootLayout = view.findViewById(R.id.fixture_root_layout);
 
         //recycler adapter for game names
         gameList = view.findViewById(R.id.fixtures_game_names_list);
         fixtureGameListAdapter = new FixtureGameListAdapter(getActivity());
         gameList.setAdapter(fixtureGameListAdapter);
         gameList.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-
-        db.collection("current_events")
-                .orderBy("timestamp")
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@javax.annotation.Nullable QuerySnapshot queryDocumentSnapshots, @javax.annotation.Nullable FirebaseFirestoreException e) {
-                        if (e != null) {
-                            Log.w(TAG, "listen:error", e);
-                            return;
-                        }
-                        for (DocumentChange dc : queryDocumentSnapshots.getDocumentChanges()) {
-                            switch (dc.getType()) {
-                                case ADDED:
-                                    fixtureAdapter.addEvent(dc.getDocument().toObject(Fixture.class));
-                                    fixtureAdapter.notifyItemInserted(fixtureAdapter.numberOfevents());
-                                    break;
-                                case REMOVED:
-                                    break;
-                            }
-                        }
-
-                    }
-                });
-
-
         return view;
     }
 
@@ -116,37 +80,6 @@ public class FixturesFragment extends Fragment{
         super.onCreate(savedInstanceState);
     }
 
-    //to get the results for particular game
-    //send the data back toadapter using interface
-    public  void getGameFixtures(String query, final CallbackInterface callbackInterface, final FixtureGameListAdapter.GameHolder gameHolder){
-        Log.d(TAG,query);
-        Query gameQuery = db.collection("current_events").whereEqualTo("game_name", query);
-        gameQuery.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                Log.d("SIZE",queryDocumentSnapshots.size()+"");
-                if(queryDocumentSnapshots.size() > 0){
-                    fixtureArrayList.clear();
-                    Log.d(TAG,"TASK SUCCESSFULL");
-                    for (DocumentSnapshot doc : queryDocumentSnapshots) {
-                        Fixture singleFixture = doc.toObject(Fixture.class);
-                        Log.d(TAG,singleFixture.getEvent_name());
-                        Log.d(TAG,singleFixture.getEvent_time());
-                        Log.d(TAG,singleFixture.getGame_name());
-                        Log.d(TAG,singleFixture.getTeamA());
-                        Log.d(TAG,singleFixture.getTeamB());
-                        fixtureArrayList.add(singleFixture);
-                    }
-                    //QueryData.setData(fixtureArrayList);
-                    callbackInterface.setFixtureData(fixtureArrayList,gameHolder,false);
-                }else{
-                    callbackInterface.setFixtureData(null,null,true);
-                    Log.d("NULL","NULL");
-                }
-
-            }
-        });
-    }
 
 }
 

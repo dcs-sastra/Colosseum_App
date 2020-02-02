@@ -9,6 +9,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.VideoView;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -31,7 +32,6 @@ import butterknife.OnClick;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private VideoView mVideoView;
 
     private static final int RC_SIGN_IN = 100;
     private static final String TAG = LoginActivity.class.getSimpleName();
@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mFirebaseAuth;
 
     @BindView(R.id.btn_login)
-    SignInButton btnLogin;
+    Button btnLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,19 +47,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
-        mVideoView = (VideoView) findViewById(R.id.bgVideoView);
-
-        Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.bg_video);
-
-        mVideoView.setVideoURI(uri);
-        mVideoView.start();
-
-        mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mediaPlayer) {
-                mediaPlayer.setLooping(true);
-            }
-        });
 
         GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -70,7 +57,6 @@ public class LoginActivity extends AppCompatActivity {
         mFirebaseAuth = FirebaseAuth.getInstance();
 
 
-        btnLogin.setSize(SignInButton.SIZE_STANDARD);
     }
 
     @Override
@@ -97,7 +83,6 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()){
-                                    FirebaseUser user = mFirebaseAuth.getCurrentUser();
                                     startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                                 }else {
                                     // If sign in fails, display a message to the user.
@@ -119,39 +104,4 @@ public class LoginActivity extends AppCompatActivity {
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mVideoView = (VideoView) findViewById(R.id.bgVideoView);
-
-        Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.bg_video);
-
-        mVideoView.setVideoURI(uri);
-        mVideoView.start();
-
-        mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mediaPlayer) {
-                mediaPlayer.setLooping(true);
-            }
-        });
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        mVideoView = (VideoView) findViewById(R.id.bgVideoView);
-
-        Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.bg_video);
-
-        mVideoView.setVideoURI(uri);
-        mVideoView.start();
-
-        mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mediaPlayer) {
-                mediaPlayer.setLooping(true);
-            }
-        });
-    }
 }

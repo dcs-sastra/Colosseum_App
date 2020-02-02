@@ -47,6 +47,8 @@ dependencies {
     //in app messaging
     implementation 'com.google.firebase:firebase-inappmessaging-display:17.0.5'
     implementation 'com.google.firebase:firebase-core:16.0.6'
+    //http library
+    implementation 'com.android.volley:volley:1.1.1'
 
 }
 apply plugin: 'com.google.gms.google-services'

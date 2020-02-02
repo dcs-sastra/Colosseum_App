@@ -35,8 +35,6 @@ public class ScoresFragment extends Fragment {
 
     private RecyclerView gameNameList;
     private ScoreGameListAdapter gameListAdapter;
-    private List<Score> scoreList = new ArrayList<>();
-    private ArrayList<Score>scoreArrayList = new ArrayList<>();
 
     private Context context;
     private static ScoresFragment instance;
@@ -76,33 +74,4 @@ public class ScoresFragment extends Fragment {
         super.onSaveInstanceState(outState);
     }
 
-    //get list of  scores fora particular game
-    //use callback to send the data back to recyclerview adaptar
-    public  void getGameScores(String query, final CallbackInterface callbackInterface,final ScoreGameListAdapter.ScoreGameHolder scoreHolder){
-
-        Log.d("TEST_QUERY",query);
-        Query gameQuery = FirebaseFirestore.getInstance()
-                .collection("scores")
-                .whereEqualTo("game_name", query)
-                .orderBy("timestamp");
-        gameQuery.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                if(queryDocumentSnapshots.size() > 0){
-                    scoreArrayList.clear();
-                    Log.d(TAG,"TASK SUCCESSFULL");
-                    for (DocumentSnapshot doc : queryDocumentSnapshots) {
-                        Score singleScore = doc.toObject(Score.class);
-                        scoreArrayList.add(singleScore);
-                    }
-                    //QueryData.setData(fixtureArrayList);
-                    callbackInterface.setScoreData(scoreArrayList,scoreHolder,false);
-                }else{
-                    callbackInterface.setScoreData(null,null,true);
-                    Log.d("NULL","NULL");
-
-                }
-            }
-        });
-    }
 }
