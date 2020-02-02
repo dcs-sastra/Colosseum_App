@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import colosseum19.a300dpi.colosseum2k19.Fragments.FixturesFragment;
 import colosseum19.a300dpi.colosseum2k19.Interfaces.CallbackInterface;
@@ -113,7 +114,7 @@ public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameList
     }
 
     @Override
-    public void setFixtureData(ArrayList<Fixture> data, GameHolder gameHolder,boolean isempty) {
+    public void setFixtureData(List<Fixture> data, GameHolder gameHolder, boolean isempty) {
         if(isempty){
             progressDialog.cancel();
             Toast.makeText(ctx,ctx.getString(R.string.not_updated),Toast.LENGTH_SHORT).show();
@@ -124,7 +125,7 @@ public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameList
     }
 
     @Override
-    public void setScoreData(ArrayList<Score> data, ScoreGameListAdapter.ScoreGameHolder gameHolder, boolean isEmpty) {
+    public void setScoreData(List<Score> data, ScoreGameListAdapter.ScoreGameHolder gameHolder, boolean isEmpty) {
 
     }
 
@@ -151,7 +152,7 @@ public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameList
 
         }
 
-        public void setRecyclerView(ArrayList<Fixture>data){
+        public void setRecyclerView(List<Fixture> data) {
             specificGameList.setVisibility(View.VISIBLE);
             adapter.setData(data);
             progressDialog.cancel();

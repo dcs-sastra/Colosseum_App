@@ -13,19 +13,34 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.messaging.FirebaseMessaging;
+
+import java.util.ArrayList;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import colosseum19.a300dpi.colosseum2k19.Database.ColosseumDatabase;
 import colosseum19.a300dpi.colosseum2k19.Fragments.AboutFragment;
 import colosseum19.a300dpi.colosseum2k19.Fragments.EventsFragment;
 import colosseum19.a300dpi.colosseum2k19.Fragments.FixturesFragment;
 import colosseum19.a300dpi.colosseum2k19.Fragments.ScoresFragment;
+import colosseum19.a300dpi.colosseum2k19.Model.Fixture;
+import colosseum19.a300dpi.colosseum2k19.Model.Score;
+import colosseum19.a300dpi.colosseum2k19.Utilities.AppExecutors;
+import colosseum19.a300dpi.colosseum2k19.Utilities.HelperClass;
 
 public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemReselectedListener {
 
+    private static final String TAG = HomeActivity.class.getSimpleName();
     //Keys for Fragments
     private static String EVENTS_FRAG = "events_frag";
     private static String FIXTURES_FRAG = "fixtures_frag";
@@ -49,7 +64,15 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
     private String currentlySelected = EVENTS_FRAG;
 
+    private ColosseumDatabase colosseumDatabase;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference collection_events = db.collection("current_events");
+    private CollectionReference collection_scores = db.collection("scores");
 
+    private ArrayList<Fixture> fixtureArrayList = new ArrayList<>();
+    private ArrayList<Score> scoreArrayList = new ArrayList<>();
+
+    private HelperClass helperClass = new HelperClass();
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -63,6 +86,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
 
+        colosseumDatabase = ColosseumDatabase.getInstance(this);
         fragmentManager = getSupportFragmentManager();
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         bottomNavigationView.setOnNavigationItemReselectedListener(this);
@@ -254,4 +278,72 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         startActivity(intent);
     }
 
+    private void loadEventsFromFirestore() {
+        collection_events
+                .orderBy("timestamp")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "addOnCompleteListener");
+                            for (QueryDocumentSnapshot snapshot : Objects.requireNonNull(task.getResult())) {
+                                Fixture fixture = snapshot.toObject(Fixture.class);
+                                fixture.setId(snapshot.getId());
+                                Log.d(TAG, snapshot.getId());
+                                fixtureArrayList.add(fixture);
+                            }
+
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+        if (fixtureArrayList != null) {
+
+            AppExecutors.getInstance().executorForDatabase().execute(new Runnable() {
+                @Override
+                public void run() {
+                    colosseumDatabase.colosseumDao().deleteFixtureTable();
+                    colosseumDatabase.colosseumDao().insertFixtures(
+                            helperClass.convertFixtureIntoFixtureEntry(fixtureArrayList));
+                }
+            });
+        }
+
+    }
+
+    /*private void loadScoresFromFirestore(){
+        collection_scores
+                .orderBy("timestamp")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG,"addOnCompleteListener");
+                            for (QueryDocumentSnapshot snapshot: Objects.requireNonNull(task.getResult())){
+                                Score score = snapshot.toObject(Score.class);
+                                Log.d(TAG,snapshot.getId());
+                                scoreArrayList.add(score);
+                            }
+
+                        }else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+        if(scoreArrayList != null){
+
+            AppExecutors.getInstance().executorForDatabase().execute(new Runnable() {
+                @Override
+                public void run() {
+                    colosseumDatabase.colosseumDao().deleteScoreTable();
+                    colosseumDatabase.colosseumDao().insertScores(
+                            helperClass.convertFixtureIntoFixtureEntry(scoreArrayList));
+                }
+            });
+        }
+
+    }*/
 }

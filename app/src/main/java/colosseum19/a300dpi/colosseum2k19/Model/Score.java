@@ -1,5 +1,6 @@
 package colosseum19.a300dpi.colosseum2k19.Model;
 
+
 public class Score {
 
         private String event_name;

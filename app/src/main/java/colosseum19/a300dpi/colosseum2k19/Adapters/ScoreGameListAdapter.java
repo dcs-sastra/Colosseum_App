@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import colosseum19.a300dpi.colosseum2k19.Fragments.ScoresFragment;
 import colosseum19.a300dpi.colosseum2k19.Interfaces.CallbackInterface;
@@ -106,7 +107,7 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
 
     //callback containing score of specific game
     @Override
-    public void setScoreData(ArrayList<Score> data, ScoreGameHolder gameHolder,boolean isEmpty) {
+    public void setScoreData(List<Score> data, ScoreGameHolder gameHolder, boolean isEmpty) {
         if(isEmpty){
             progressDialog.cancel();
             Toast.makeText(ctx,ctx.getString(R.string.not_updated),Toast.LENGTH_SHORT).show();
@@ -135,7 +136,7 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
             gameScoreList.setLayoutManager(new LinearLayoutManager(ctx));
         }
 
-        public void setRecyclerView(ArrayList<Score>data){
+        public void setRecyclerView(List<Score> data) {
             gameScoreList.setVisibility(View.VISIBLE);
             adapter.setScores(data);
             progressDialog.cancel();
@@ -152,7 +153,7 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
     }
 
     @Override
-    public void setFixtureData(ArrayList<Fixture> data, FixtureGameListAdapter.GameHolder gameHolder,boolean isEmpty) {
+    public void setFixtureData(List<Fixture> data, FixtureGameListAdapter.GameHolder gameHolder, boolean isEmpty) {
 
     }
 }
