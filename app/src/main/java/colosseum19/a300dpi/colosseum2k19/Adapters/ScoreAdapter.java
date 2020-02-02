@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import colosseum19.a300dpi.colosseum2k19.Model.Score;
 import colosseum19.a300dpi.colosseum2k19.R;
@@ -15,7 +16,7 @@ import colosseum19.a300dpi.colosseum2k19.R;
 public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreHolder> {
 
     private Context ctx;
-    private ArrayList<Score> points = new ArrayList<>();
+    private List<Score> points = new ArrayList<>();
 
     public ScoreAdapter(Context ctx) {
         this.ctx = ctx;
@@ -38,7 +39,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreHolder>
         return new ScoreHolder(view);
     }
 
-    public void setScores(ArrayList<Score> scoresList) {
+    public void setScores(List<Score> scoresList) {
         this.points = scoresList;
         notifyDataSetChanged();
     }

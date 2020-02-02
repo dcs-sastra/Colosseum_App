@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import colosseum19.a300dpi.colosseum2k19.Fragments.ScoresFragment;
 import colosseum19.a300dpi.colosseum2k19.Interfaces.CallbackInterface;
@@ -24,14 +25,20 @@ import colosseum19.a300dpi.colosseum2k19.R;
 
 public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdapter.ScoreGameHolder> implements CallbackInterface {
 
-    private ArrayList<String> gameNames = new ArrayList<>();
-    private ArrayList<Drawable> gameIcons = new ArrayList<>();
+    private List<String> gameNames = new ArrayList<>();
+    private List<Drawable> gameIcons = new ArrayList<>();
     private Context ctx;
     private ProgressDialog progressDialog;
     private ScoreGameListAdapter callback;
 
-    public ScoreGameListAdapter(Context ctx){
+    private ScoresItemClickListener scoresItemClickListener;
+    public interface ScoresItemClickListener{
+        void onScoreClick(String game_name, CallbackInterface callbackInterface, ScoreGameListAdapter.ScoreGameHolder scoreGameHolder);
+    }
+
+    public ScoreGameListAdapter(Context ctx, ScoresItemClickListener scoresItemClickListener){
         this.ctx = ctx;
+        this.scoresItemClickListener = scoresItemClickListener;
         progressDialog = new ProgressDialog(ctx);
         progressDialog.setMessage("Loading...");
         progressDialog.setCancelable(false);
@@ -74,7 +81,8 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
             @Override
             public void onClick(View v) {
                 progressDialog.show();
-                ScoresFragment.getInstance().getGameScores(getQueryWord(gameNames.get(i)),callback,scoreGameHolder);
+                //ScoresFragment.getInstance().getGameScores(getQueryWord(gameNames.get(i)),callback,scoreGameHolder);
+                scoresItemClickListener.onScoreClick(getQueryWord(gameNames.get(i)),callback,scoreGameHolder);
             }
         });
     }
@@ -106,7 +114,7 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
 
     //callback containing score of specific game
     @Override
-    public void setScoreData(ArrayList<Score> data, ScoreGameHolder gameHolder,boolean isEmpty) {
+    public void setScoreData(List<Score> data, ScoreGameHolder gameHolder,boolean isEmpty) {
         if(isEmpty){
             progressDialog.cancel();
             Toast.makeText(ctx,ctx.getString(R.string.not_updated),Toast.LENGTH_SHORT).show();
@@ -135,7 +143,7 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
             gameScoreList.setLayoutManager(new LinearLayoutManager(ctx));
         }
 
-        public void setRecyclerView(ArrayList<Score>data){
+        public void setRecyclerView(List<Score> data){
             gameScoreList.setVisibility(View.VISIBLE);
             adapter.setScores(data);
             progressDialog.cancel();
@@ -152,7 +160,7 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
     }
 
     @Override
-    public void setFixtureData(ArrayList<Fixture> data, FixtureGameListAdapter.GameHolder gameHolder,boolean isEmpty) {
+    public void setFixtureData(List<Fixture> data, FixtureGameListAdapter.GameHolder gameHolder,boolean isEmpty) {
 
     }
 }

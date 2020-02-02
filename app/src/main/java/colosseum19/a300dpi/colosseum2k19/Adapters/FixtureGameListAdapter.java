@@ -15,8 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import colosseum19.a300dpi.colosseum2k19.Fragments.FixturesFragment;
 import colosseum19.a300dpi.colosseum2k19.Interfaces.CallbackInterface;
 import colosseum19.a300dpi.colosseum2k19.Model.Fixture;
 import colosseum19.a300dpi.colosseum2k19.Model.Score;
@@ -29,10 +29,15 @@ public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameList
     private Context ctx;
     private ProgressDialog progressDialog;
     private FixtureGameListAdapter callBack;
+    private FixturesItemClickListener fixturesItemClickListener;
+    public interface FixturesItemClickListener{
+        void onFixtureClick(String game_name, CallbackInterface callbackInterface, FixtureGameListAdapter.GameHolder gameHolder);
+    }
 
-    public FixtureGameListAdapter(Context ctx){
+    public FixtureGameListAdapter(Context ctx, FixturesItemClickListener fixturesItemClickListener){
         this.ctx = ctx;
         this.callBack = this;
+        this.fixturesItemClickListener = fixturesItemClickListener;
 
         progressDialog = new ProgressDialog(ctx);
         progressDialog.setMessage("Loading...");
@@ -76,7 +81,8 @@ public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameList
             @Override
             public void onClick(View v) {
                 progressDialog.show();
-                FixturesFragment.getInstance().getGameFixtures(getQueryWord(gameName),callBack,gameHolder);
+                fixturesItemClickListener.onFixtureClick(getQueryWord(gameName),callBack,gameHolder);
+                //FixturesFragment.getInstance().getGameFixtures(getQueryWord(gameName),callBack,gameHolder);
             }
         });
     }
@@ -113,7 +119,7 @@ public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameList
     }
 
     @Override
-    public void setFixtureData(ArrayList<Fixture> data, GameHolder gameHolder,boolean isempty) {
+    public void setFixtureData(List<Fixture> data, GameHolder gameHolder,boolean isempty) {
         if(isempty){
             progressDialog.cancel();
             Toast.makeText(ctx,ctx.getString(R.string.not_updated),Toast.LENGTH_SHORT).show();
@@ -124,7 +130,7 @@ public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameList
     }
 
     @Override
-    public void setScoreData(ArrayList<Score> data, ScoreGameListAdapter.ScoreGameHolder gameHolder, boolean isEmpty) {
+    public void setScoreData(List<Score> data, ScoreGameListAdapter.ScoreGameHolder gameHolder, boolean isEmpty) {
 
     }
 
@@ -151,7 +157,7 @@ public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameList
 
         }
 
-        public void setRecyclerView(ArrayList<Fixture>data){
+        public void setRecyclerView(List<Fixture> data){
             specificGameList.setVisibility(View.VISIBLE);
             adapter.setData(data);
             progressDialog.cancel();
