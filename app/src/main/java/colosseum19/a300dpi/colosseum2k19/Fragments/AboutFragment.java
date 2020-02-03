@@ -31,7 +31,7 @@ public class AboutFragment extends Fragment {
         ButterKnife.bind(this,view);
         context = view.getContext();
         dscLogo = view.findViewById(R.id.dsc_logo);
-        Glide.with(context).load(ConstantsStorage.DSC_URL).into(dscLogo);
+        dscLogo.setImageResource(R.drawable.dsc_logo);
         return view;
     }
 

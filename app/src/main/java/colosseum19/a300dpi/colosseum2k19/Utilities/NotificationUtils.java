@@ -60,7 +60,7 @@ public class NotificationUtils {
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(mContext,"participant")
                 .setAutoCancel(true)   //Automatically delete the notification
-                .setSmallIcon(R.drawable.logo) //Notification icon
+                .setSmallIcon(R.drawable.logo_12) //Notification icon
                 .setStyle(new NotificationCompat.BigTextStyle()
                         .bigText(message))
                 .setContentIntent(pendingIntent)
@@ -113,10 +113,10 @@ public class NotificationUtils {
         //In many Lollipop and above devices there is an issue displaying an icon with colored background
 
         if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            notificationBuilder.setSmallIcon(R.drawable.logo);
+            notificationBuilder.setSmallIcon(R.drawable.logo_12);
             notificationBuilder.setColor(ContextCompat.getColor(mContext, R.color.colorPrimaryDark));
         }else{
-            notificationBuilder.setSmallIcon(R.drawable.logo);
+            notificationBuilder.setSmallIcon(R.drawable.logo_12);
         }
         return notificationBuilder;
     }

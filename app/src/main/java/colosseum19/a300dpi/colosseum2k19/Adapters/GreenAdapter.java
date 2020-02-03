@@ -112,46 +112,46 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
                 switch (position) {
                     case 0:
                         //loadImage(R.drawable.badminton_men_women,img);
-                        loadImage(R.drawable.badminton_new, icon_img);
+                        //loadImage(R.drawable.badminton_new, icon_img);
                         break;
                     case 1:
                         //loadImage(R.drawable.basketball_men_and_women,img);
-                        loadImage(R.drawable.basketball_new, icon_img);
+                        //loadImage(R.drawable.basketball_new, icon_img);
                         //img.setImageDrawable(context.getResources().getDrawable(R.drawable.basketball_men_and_women));
                         break;
                     case 2:
                         //loadImage(R.drawable.best_physique_men,img);
-                        loadImage(R.drawable.physique_new, icon_img);
+                        //loadImage(R.drawable.physique_new, icon_img);
                         //img.setImageDrawable(context.getResources().getDrawable(R.drawable.best_physique_men));
                         break;
                     case 3:
                         //loadImage(R.drawable.chess_men_and_women,img);
-                        loadImage(R.drawable.chess_new, icon_img);
+                        //loadImage(R.drawable.chess_new, icon_img);
                         //img.setImageDrawable(context.getResources().getDrawable(R.drawable.chess_men_and_women));
                         break;
                     case 4:
                         //loadImage(R.drawable.football_men,img);
-                        loadImage(R.drawable.football_new, icon_img);
+                        //loadImage(R.drawable.football_new, icon_img);
                         //img.setImageDrawable(context.getResources().getDrawable(R.drawable.football_men));
                         break;
                     case 5:
                         //loadImage(R.drawable.handball_men,img);
-                        loadImage(R.drawable.handball_new, icon_img);
+                        //loadImage(R.drawable.handball_new, icon_img);
                         //img.setImageDrawable(context.getResources().getDrawable(R.drawable.handball_men));
                         break;
                     case 6:
                         //loadImage(R.drawable.table_tennis_men_women, img);
-                        loadImage(R.drawable.table_tennis_new, icon_img);
+                        //loadImage(R.drawable.table_tennis_new, icon_img);
                         //img.setImageDrawable(context.getResources().getDrawable(R.drawable.table_tennis_men_women));
                         break;
                     case 7:
                         //loadImage(R.drawable.tennis_men_women,img);
-                        loadImage(R.drawable.tennis_new, icon_img);
+                        //loadImage(R.drawable.tennis_new, icon_img);
                         //img.setImageDrawable(context.getResources().getDrawable(R.drawable.tennis_men_women));
                         break;
                     case 8:
                         //loadImage(R.drawable.volleyball_men_women,img);
-                        loadImage(R.drawable.volleyball_new, icon_img);
+                        //loadImage(R.drawable.volleyball_new, icon_img);
                         //img.setImageDrawable(context.getResources().getDrawable(R.drawable.volleyball_men_women));
                         break;
 
@@ -172,7 +172,7 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
 
     private void loadImage(int id, ImageView imageView){
         RequestOptions options = new RequestOptions()
-                .error(R.drawable.logo)
+                .error(R.drawable.logo_12)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .priority(Priority.HIGH);
 
