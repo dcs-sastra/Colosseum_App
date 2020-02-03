@@ -1,21 +1,17 @@
 package colosseum19.a300dpi.colosseum2k19.Adapters;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,10 +19,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-import colosseum19.a300dpi.colosseum2k19.Fragments.ScoresFragment;
-import colosseum19.a300dpi.colosseum2k19.Interfaces.CallbackInterface;
-import colosseum19.a300dpi.colosseum2k19.Model.Fixture;
-import colosseum19.a300dpi.colosseum2k19.Model.Score;
 import colosseum19.a300dpi.colosseum2k19.R;
 import colosseum19.a300dpi.colosseum2k19.ScoreListActivity;
 

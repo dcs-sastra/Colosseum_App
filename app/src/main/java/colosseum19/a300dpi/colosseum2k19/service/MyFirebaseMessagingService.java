@@ -1,17 +1,13 @@
 package colosseum19.a300dpi.colosseum2k19.service;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Build;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.LocalBroadcastManager;
-import android.text.TextUtils;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
 import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -20,8 +16,6 @@ import com.google.firebase.messaging.RemoteMessage;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import colosseum19.a300dpi.colosseum2k19.HomeActivity;
-import colosseum19.a300dpi.colosseum2k19.R;
 import colosseum19.a300dpi.colosseum2k19.Utilities.Constants_For_FCM;
 import colosseum19.a300dpi.colosseum2k19.Utilities.NotificationUtils;
 
@@ -37,16 +31,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 
     @Override
-    public void onMessageReceived(RemoteMessage remoteMessage) {
+    public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
 
-        if (remoteMessage == null)
-            return;
-
-        Log.e(TAG, "From: " + remoteMessage.getFrom());
+        Log.d(TAG, "From: " + remoteMessage.getFrom());
 
         // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
-            Log.e(TAG, "Data Payload: " + remoteMessage.getData().toString());
+            Log.d(TAG, "Data Payload: " + remoteMessage.getData().toString());
 
             try {
                 JSONObject json = new JSONObject( remoteMessage.getData());
@@ -61,7 +52,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private void handleDataMessage(JSONObject json) {
 
         notificationUtils = new NotificationUtils(this);
-        Log.e(TAG, "push json: " + json.toString());
+        Log.d(TAG, "push json: " + json.toString());
 
         try {
 
@@ -70,10 +61,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             String title = data.getString("title");
             String message = data.getString("message");
 
-            Log.e(TAG, "title: " + title);
-            Log.e(TAG, "message: " + message);
+            Log.d(TAG, "title: " + title);
+            Log.d(TAG, "message: " + message);
 
-            if (!NotificationUtils.isAppIsInBackground(getApplicationContext())) {
+            if (NotificationUtils.isAppIsInBackground(getApplicationContext(), "colosseum19.a300dpi.colosseum2k19")) {
                 Log.d(TAG, "App in foreground");
                 // app is in foreground, broadcast the push message
                 Intent pushNotification = new Intent(Constants_For_FCM.PUSH_NOTIFICATION);

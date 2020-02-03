@@ -2,13 +2,12 @@ package colosseum19.a300dpi.colosseum2k19.Adapters;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -21,7 +20,7 @@ import colosseum19.a300dpi.colosseum2k19.Model.Fixture;
 import colosseum19.a300dpi.colosseum2k19.Model.Score;
 import colosseum19.a300dpi.colosseum2k19.R;
 
-import static android.support.constraint.Constraints.TAG;
+import static com.google.firebase.inappmessaging.internal.Logging.TAG;
 
 
 public class FixtureAdapter extends RecyclerView.Adapter<FixtureAdapter.FixtureHolder> implements CallbackInterface {
@@ -31,6 +30,7 @@ public class FixtureAdapter extends RecyclerView.Adapter<FixtureAdapter.FixtureH
     private String gameName;
     private int day;
     ProgressDialog progressDialog;
+    private static String TAG = FixtureAdapter.class.getSimpleName();
 
     public FixtureAdapter(Context ctx, String gameName, int day, boolean isbackup){
         this.ctx = ctx;

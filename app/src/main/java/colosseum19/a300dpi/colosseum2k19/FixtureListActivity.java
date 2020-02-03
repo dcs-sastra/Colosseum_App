@@ -1,11 +1,11 @@
 package colosseum19.a300dpi.colosseum2k19;
 
 import android.app.ProgressDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -19,7 +19,6 @@ import java.util.ArrayList;
 
 import colosseum19.a300dpi.colosseum2k19.API.BackupApi;
 import colosseum19.a300dpi.colosseum2k19.Adapters.FixtureAdapter;
-import colosseum19.a300dpi.colosseum2k19.Adapters.FixtureGameListAdapter;
 import colosseum19.a300dpi.colosseum2k19.Interfaces.ApiCallback;
 import colosseum19.a300dpi.colosseum2k19.Interfaces.CallbackInterface;
 import colosseum19.a300dpi.colosseum2k19.Model.Fixture;
