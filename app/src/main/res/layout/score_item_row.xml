@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/score_root_layout"
     app:cardCornerRadius="6dp"
     app:cardElevation="6dp"
     app:cardUseCompatPadding="true"
@@ -12,12 +12,13 @@
 
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/root_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/ripple_fixture">
 
         <ImageView
-            android:id="@+id/score_game_image"
+            android:id="@+id/game_image"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginStart="8dp"
@@ -27,77 +28,39 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/score_game_name"
+            android:id="@+id/game_name"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:fontFamily="@font/montserratbold"
+            android:gravity="center"
             android:text="TextView"
             android:textColor="@android:color/white"
-            android:gravity="center"
-            android:textSize="20dp"
-            android:fontFamily="@font/montserratbold"
-            app:layout_constraintBottom_toBottomOf="@+id/score_game_image"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/game_image"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/score_game_image"
-            app:layout_constraintTop_toTopOf="@+id/score_game_image" />
+            app:layout_constraintStart_toEndOf="@+id/game_image"
+            app:layout_constraintTop_toTopOf="@+id/game_image" />
 
         <ImageView
-            android:id="@+id/score_drop_down"
+            android:id="@+id/drop_down"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/score_game_name"
+            app:layout_constraintTop_toBottomOf="@+id/game_name"
             app:srcCompat="@android:drawable/arrow_down_float" />
 
         <TextView
-            android:id="@+id/day_one_score"
+            android:id="@+id/day_three"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="32dp"
-            android:layout_marginEnd="64dp"
-            android:background="@drawable/white_border_rounded"
-            android:fontFamily="@font/montserratbold"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="@string/day_one"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@+id/score_game_name"
-            app:layout_constraintStart_toStartOf="@+id/score_game_image"
-            app:layout_constraintTop_toBottomOf="@+id/score_game_name" />
-
-        <TextView
-            android:id="@+id/day_two_score"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="64dp"
-            android:background="@drawable/white_border_rounded"
-            android:fontFamily="@font/montserratbold"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="@string/day_two"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/day_one_score" />
-
-        <TextView
-            android:id="@+id/day_three_score"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="64dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/white_border_rounded"
             android:fontFamily="@font/montserratbold"
             android:gravity="center"
@@ -108,25 +71,55 @@
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/day_two_score" />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/day_two"
+            app:layout_constraintTop_toBottomOf="@+id/game_name" />
 
-        <!--recycler view to show the all fixtures of specific game-->
-        <!--<android.support.v7.widget.RecyclerView
-            android:id="@+id/score_game_specific_score_list"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/day_one"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:visibility="visible"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/white_border_rounded"
+            android:fontFamily="@font/montserratbold"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/day_one"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintEnd_toStartOf="@+id/day_two"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/score_game_image">-->
+            app:layout_constraintTop_toBottomOf="@+id/game_name" />
 
+        <TextView
+            android:id="@+id/day_two"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/white_border_rounded"
+            android:fontFamily="@font/montserratbold"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/day_two"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/day_three"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/day_one"
+            app:layout_constraintTop_toBottomOf="@+id/game_name" />
 
     </android.support.constraint.ConstraintLayout>
+
+
 </android.support.v7.widget.CardView>

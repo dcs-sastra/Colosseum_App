@@ -85,7 +85,7 @@ public class FixtureListActivity extends AppCompatActivity implements ApiCallbac
 
     public void getGameFixturesFirebase(String query, int day, final CallbackInterface callbackInterface) {
         Log.d(TAG, query);
-        String collectionPath = "current_events_day"+day;
+        String collectionPath = "current_events_day_"+day;
         Query gameQuery = db.collection(collectionPath).whereEqualTo("game_name", query);
 
         gameQuery.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {

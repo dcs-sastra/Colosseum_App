@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -69,13 +70,13 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
 
     @Override
     public void onBindViewHolder(@NonNull final ScoreGameHolder scoreGameHolder, final int i) {
-        selectedGame = gameNames.get(i);
+
         scoreGameHolder.gameIcon.setImageDrawable(gameIcons.get(i));
         scoreGameHolder.gameName.setText(gameNames.get(i));
         scoreGameHolder.rootLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectedGame = getQueryWord(selectedGame);
+                selectedGame = getQueryWord(scoreGameHolder.gameName.getText().toString());
                 scoreGameHolder.displayDays();
             }
         });
@@ -97,10 +98,13 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
             return ctx.getString(R.string.basketball_query);
         }else if(gameName.equals(ctx.getString(R.string.volleyball))){
             return ctx.getString(R.string.volleyball_query);
+
         }else if(gameName.equals(ctx.getString(R.string.handball))){
             return ctx.getString(R.string.handball_query);
+
         }else if(gameName.equals(ctx.getString(R.string.football))){
             return ctx.getString(R.string.football_query);
+
         }else{
             return gameName;
         }
@@ -110,20 +114,20 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
     public class ScoreGameHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView gameIcon,gameDropDown;
         TextView gameName, dayOne, dayTwo, dayThree;
-        CardView rootLayout;
+        ConstraintLayout rootLayout;
 
         public ScoreGameHolder(@NonNull View itemView) {
             super(itemView);
-            gameIcon = itemView.findViewById(R.id.score_game_image);
-            gameDropDown = itemView.findViewById(R.id.score_drop_down);
-            gameName = itemView.findViewById(R.id.score_game_name);
-            dayOne = itemView.findViewById(R.id.day_one_score);
+            gameIcon = itemView.findViewById(R.id.game_image);
+            gameDropDown = itemView.findViewById(R.id.drop_down);
+            gameName = itemView.findViewById(R.id.game_name);
+            dayOne = itemView.findViewById(R.id.day_one);
             dayOne.setOnClickListener(this);
-            dayTwo = itemView.findViewById(R.id.day_two_score);
+            dayTwo = itemView.findViewById(R.id.day_two);
             dayTwo.setOnClickListener(this);
-            dayThree = itemView.findViewById(R.id.day_three_score);
+            dayThree = itemView.findViewById(R.id.day_three);
             dayThree.setOnClickListener(this);
-            rootLayout = itemView.findViewById(R.id.score_root_layout);
+            rootLayout = itemView.findViewById(R.id.root_layout);
         }
 
         private boolean isNextDay(String date){
@@ -172,7 +176,7 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
             Intent i = new Intent(ctx, ScoreListActivity.class);
             i.putExtra(ctx.getString(R.string.game_name), selectedGame);
             switch(v.getId()){
-                case R.id.day_one_score:
+                case R.id.day_one:
                     i.putExtra(ctx.getString(R.string.day_key), 1);
                     break;
                 case R.id.day_two:

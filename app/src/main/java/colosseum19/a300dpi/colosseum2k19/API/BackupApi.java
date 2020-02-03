@@ -62,7 +62,9 @@ public class BackupApi {
 
 
     public void getFixtures(Context ctx, final String gameName, final int day, final CallbackInterface callback){
-        String URL = BASE_URL + "currentEvents/getAll.php?gameName="+gameName+"&day="+day;
+        String URL = BASE_URL + "currentEvents/get.php?game_name="+gameName+"&day="+day;
+        Log.d(TAG, "getFixtures, gamename "+gameName);
+        Log.d(TAG, "getFixtures, day "+day);
 
         StringRequest fixtureRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>(){
             @Override
@@ -89,8 +91,9 @@ public class BackupApi {
 
 
     public void getScores(Context ctx, final String gameName, final int day, final CallbackInterface callback){
-
-        String URL = BASE_URL + "score/getAll.php?gameName="+gameName+"&day="+day;
+        Log.d(TAG, "getScores, gamename "+gameName);
+        Log.d(TAG, "getScores, day "+day);
+        String URL = BASE_URL + "score/get.php?game_name="+gameName+"&day="+day;
 
         StringRequest fixtureRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>(){
             @Override

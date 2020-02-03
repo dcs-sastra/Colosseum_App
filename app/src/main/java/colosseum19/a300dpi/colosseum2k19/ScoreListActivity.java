@@ -75,7 +75,7 @@ public class ScoreListActivity extends AppCompatActivity implements ApiCallback 
     }
 
     public  void getGameScores(String query, int day, final CallbackInterface callbackInterface){
-        String collectionPath = "scores_day"+day;
+        String collectionPath = "scores_day_"+day;
         Log.d("TEST_QUERY",query);
         Query gameQuery = FirebaseFirestore.getInstance()
                 .collection(collectionPath)

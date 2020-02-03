@@ -99,12 +99,16 @@ public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameList
     private String getQueryWord(String gameName){
         if(gameName.equals(ctx.getString(R.string.basketball))){
             return ctx.getString(R.string.basketball_query);
+
         }else if(gameName.equals(ctx.getString(R.string.volleyball))){
             return ctx.getString(R.string.volleyball_query);
+
         }else if(gameName.equals(ctx.getString(R.string.handball))){
             return ctx.getString(R.string.handball_query);
+
         }else if(gameName.equals(ctx.getString(R.string.football))){
             return ctx.getString(R.string.football_query);
+
         }else{
             return gameName;
         }

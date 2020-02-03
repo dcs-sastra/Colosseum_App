@@ -68,16 +68,12 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
         if(rules)
             layoutIdForListItem =R.layout.recycler_rule;
         else
-            layoutIdForListItem = R.layout.recycler_event;
+            layoutIdForListItem = R.layout.new_event_item;
         View view = inflater.inflate(layoutIdForListItem, viewGroup, shouldAttachToParentImmediately);
         viewHolder = new GreenAdapter.NumberViewHolder(view);
         return viewHolder;
     }
 
-    public NumberViewHolder returnViewHolder(View view)
-    {
-        return new GreenAdapter.NumberViewHolder(view);
-    }
 
     @Override
     public void onBindViewHolder(@NonNull NumberViewHolder numberViewHolder, int position) {
@@ -98,8 +94,8 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
             super(itemView);
             if(!rules){
                 img = itemView.findViewById(R.id.event_img);
-                icon_img = itemView.findViewById(R.id.event_icon_img);
-                img.setOnClickListener(this);
+                icon_img = itemView.findViewById(R.id.game_image);
+                icon_img.setOnClickListener(this);
             }
         }
 
@@ -115,47 +111,47 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
                 icon_img = itemView.findViewById(R.id.event_icon_img);
                 switch (position) {
                     case 0:
-                        loadImage(R.drawable.badminton_men_women,img);
-                        loadImage(R.drawable.icon_badminton, icon_img);
+                        //loadImage(R.drawable.badminton_men_women,img);
+                        loadImage(R.drawable.badminton_new, icon_img);
                         break;
                     case 1:
-                        loadImage(R.drawable.basketball_men_and_women,img);
-                        loadImage(R.drawable.icon_basketball, icon_img);
+                        //loadImage(R.drawable.basketball_men_and_women,img);
+                        loadImage(R.drawable.basketball_new, icon_img);
                         //img.setImageDrawable(context.getResources().getDrawable(R.drawable.basketball_men_and_women));
                         break;
                     case 2:
-                        loadImage(R.drawable.best_physique_men,img);
-                        loadImage(R.drawable.icon_best_phy, icon_img);
+                        //loadImage(R.drawable.best_physique_men,img);
+                        loadImage(R.drawable.physique_new, icon_img);
                         //img.setImageDrawable(context.getResources().getDrawable(R.drawable.best_physique_men));
                         break;
                     case 3:
-                        loadImage(R.drawable.chess_men_and_women,img);
-                        loadImage(R.drawable.icon_chess, icon_img);
+                        //loadImage(R.drawable.chess_men_and_women,img);
+                        loadImage(R.drawable.chess_new, icon_img);
                         //img.setImageDrawable(context.getResources().getDrawable(R.drawable.chess_men_and_women));
                         break;
                     case 4:
-                        loadImage(R.drawable.football_men,img);
-                        loadImage(R.drawable.icon_football, icon_img);
+                        //loadImage(R.drawable.football_men,img);
+                        loadImage(R.drawable.football_new, icon_img);
                         //img.setImageDrawable(context.getResources().getDrawable(R.drawable.football_men));
                         break;
                     case 5:
-                        loadImage(R.drawable.handball_men,img);
-                        loadImage(R.drawable.icon_handball, icon_img);
+                        //loadImage(R.drawable.handball_men,img);
+                        loadImage(R.drawable.handball_new, icon_img);
                         //img.setImageDrawable(context.getResources().getDrawable(R.drawable.handball_men));
                         break;
                     case 6:
-                        loadImage(R.drawable.table_tennis_men_women, img);
-                        loadImage(R.drawable.icon_table_tennis, icon_img);
+                        //loadImage(R.drawable.table_tennis_men_women, img);
+                        loadImage(R.drawable.table_tennis_new, icon_img);
                         //img.setImageDrawable(context.getResources().getDrawable(R.drawable.table_tennis_men_women));
                         break;
                     case 7:
-                        loadImage(R.drawable.tennis_men_women,img);
-                        loadImage(R.drawable.icon_tennis, icon_img);
+                        //loadImage(R.drawable.tennis_men_women,img);
+                        loadImage(R.drawable.tennis_new, icon_img);
                         //img.setImageDrawable(context.getResources().getDrawable(R.drawable.tennis_men_women));
                         break;
                     case 8:
-                        loadImage(R.drawable.volleyball_men_women,img);
-                        loadImage(R.drawable.icon_volleyball, icon_img);
+                        //loadImage(R.drawable.volleyball_men_women,img);
+                        loadImage(R.drawable.volleyball_new, icon_img);
                         //img.setImageDrawable(context.getResources().getDrawable(R.drawable.volleyball_men_women));
                         break;
 

@@ -54,51 +54,13 @@
             app:srcCompat="@android:drawable/arrow_down_float" />
 
         <TextView
-            android:id="@+id/day_one"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="64dp"
-            android:background="@drawable/white_border_rounded"
-            android:fontFamily="@font/montserratbold"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="@string/day_one"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/game_name" />
-
-        <TextView
-            android:id="@+id/day_two"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="64dp"
-            android:background="@drawable/white_border_rounded"
-            android:fontFamily="@font/montserratbold"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="@string/day_two"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/day_one" />
-
-        <TextView
             android:id="@+id/day_three"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="64dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/white_border_rounded"
             android:fontFamily="@font/montserratbold"
             android:gravity="center"
@@ -109,8 +71,53 @@
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/day_two"
+            app:layout_constraintTop_toBottomOf="@+id/game_name" />
+
+        <TextView
+            android:id="@+id/day_one"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/white_border_rounded"
+            android:fontFamily="@font/montserratbold"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/day_one"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/day_two"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/day_two" />
+            app:layout_constraintTop_toBottomOf="@+id/game_name" />
+
+        <TextView
+            android:id="@+id/day_two"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/white_border_rounded"
+            android:fontFamily="@font/montserratbold"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/day_two"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/day_three"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/day_one"
+            app:layout_constraintTop_toBottomOf="@+id/game_name" />
 
     </android.support.constraint.ConstraintLayout>
 

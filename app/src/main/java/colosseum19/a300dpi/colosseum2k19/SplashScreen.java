@@ -25,11 +25,9 @@ public class SplashScreen extends AppCompatActivity {
 
         setContentView(R.layout.activity_splash_screen);
         iv_logo  = findViewById(R.id.iv_logo);
-        iv_text = findViewById(R.id.iv_txt);
 
         Animation a = AnimationUtils.loadAnimation(this, R.anim.anim_textview);
         iv_logo.startAnimation(a);
-        iv_text.startAnimation(a);
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
