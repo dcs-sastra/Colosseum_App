@@ -151,18 +151,25 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
         }
 
         private void displayDays(){
-            if(isNextDay("2020-01-06")){
+            //show only current day
+            /*if(isNextDay("2020-02-06")){
                 dayOne.setVisibility(View.VISIBLE);
             }
-            if(isNextDay("2020-01-07")){
+            if(isNextDay("2020-02-07")){
                 dayOne.setVisibility(View.VISIBLE);
                 dayTwo.setVisibility(View.VISIBLE);
             }
-            if(isNextDay("2020-01-08")){
+            if(isNextDay("2020-02-08")){
                 dayOne.setVisibility(View.VISIBLE);
                 dayTwo.setVisibility(View.VISIBLE);
                 dayThree.setVisibility(View.VISIBLE);
-            }
+            }*/
+
+            //show all days
+            dayOne.setVisibility(View.VISIBLE);
+            dayTwo.setVisibility(View.VISIBLE);
+            dayThree.setVisibility(View.VISIBLE);
+
         }
 
         private void hideAll(){

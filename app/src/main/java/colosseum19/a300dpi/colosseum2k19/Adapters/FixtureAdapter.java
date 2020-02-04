@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,6 +83,8 @@ public class FixtureAdapter extends RecyclerView.Adapter<FixtureAdapter.FixtureH
             Log.d("DATA TEST", data.toString());
             this.fixtureList = data;
             notifyDataSetChanged();
+        }else{
+            Toast.makeText(ctx, "Fixtures not posted.", Toast.LENGTH_SHORT).show();
         }
     }
 
