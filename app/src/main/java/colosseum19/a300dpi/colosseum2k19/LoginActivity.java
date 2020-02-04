@@ -1,6 +1,8 @@
 package colosseum19.a300dpi.colosseum2k19;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import com.google.android.material.snackbar.Snackbar;
@@ -8,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -25,14 +28,17 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import colosseum19.a300dpi.colosseum2k19.API.BackupApi;
+import colosseum19.a300dpi.colosseum2k19.Interfaces.DateInterface;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements DateInterface {
 
 
     private static final int RC_SIGN_IN = 100;
     private static final String TAG = LoginActivity.class.getSimpleName();
     private GoogleSignInClient mSignInClient;
     private FirebaseAuth mFirebaseAuth;
+    private BackupApi backupApi;
 
     @BindView(R.id.btn_login)
     Button btnLogin;
@@ -43,6 +49,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
+        backupApi = new BackupApi();
+        backupApi.getDate(getApplicationContext(), this);
 
         GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -53,6 +61,18 @@ public class LoginActivity extends AppCompatActivity {
         mFirebaseAuth = FirebaseAuth.getInstance();
 
 
+    }
+
+    @Override
+    public void setDate(String date, boolean isSuccess) {
+        if(isSuccess){
+            SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.shared_pref_name), Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString(getString(R.string.day_key), date);
+            editor.apply();
+        }else{
+            Toast.makeText(getApplicationContext(), "Failed to get current date", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

@@ -3,6 +3,7 @@ package colosseum19.a300dpi.colosseum2k19.Adapters;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -31,6 +32,7 @@ public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameList
     private ProgressDialog progressDialog;
     private FixtureGameListAdapter callBack;
     private String selectedGameName = "";
+    private String day;
 
     public FixtureGameListAdapter(Context ctx){
         this.ctx = ctx;
@@ -59,6 +61,11 @@ public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameList
         gameIcons.add(ctx.getDrawable(R.drawable.icon_table_tennis));
         gameIcons.add(ctx.getDrawable(R.drawable.icon_tennis));
         gameIcons.add(ctx.getDrawable(R.drawable.icon_volleyball));
+
+        //get current day from shared preference
+        SharedPreferences sharedPreferences = ctx.getSharedPreferences(ctx.getString(R.string.shared_pref_name), Context.MODE_PRIVATE);
+        day = sharedPreferences.getString(ctx.getString(R.string.day_key), "1");
+
     }
 
     @NonNull
@@ -157,23 +164,24 @@ public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameList
 
         private void displayDays(){
             //show only current day
-            /*if(isNextDay("2020-02-06")){
-                dayOne.setVisibility(View.VISIBLE);
-            }
-            if(isNextDay("2020-02-07")){
-                dayOne.setVisibility(View.VISIBLE);
-                dayTwo.setVisibility(View.VISIBLE);
-            }
-            if(isNextDay("2020-02-08")){
-                dayOne.setVisibility(View.VISIBLE);
-                dayTwo.setVisibility(View.VISIBLE);
-                dayThree.setVisibility(View.VISIBLE);
-            }*/
+            switch(day){
+                case "1":
+                    dayOne.setVisibility(View.VISIBLE);
+                    dayTwo.setVisibility(View.GONE);
+                    dayThree.setVisibility(View.GONE);
+                    break;
+                case "2":
+                    dayOne.setVisibility(View.VISIBLE);
+                    dayTwo.setVisibility(View.VISIBLE);
+                    dayThree.setVisibility(View.GONE);
+                    break;
+                case "3":
+                    dayOne.setVisibility(View.VISIBLE);
+                    dayTwo.setVisibility(View.VISIBLE);
+                    dayThree.setVisibility(View.VISIBLE);
+                    break;
 
-            //show all days
-            dayOne.setVisibility(View.VISIBLE);
-            dayTwo.setVisibility(View.VISIBLE);
-            dayThree.setVisibility(View.VISIBLE);
+            }
         }
 
         private void hideAll(){
