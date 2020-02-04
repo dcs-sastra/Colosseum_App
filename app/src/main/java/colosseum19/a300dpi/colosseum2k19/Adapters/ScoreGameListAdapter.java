@@ -2,6 +2,7 @@ package colosseum19.a300dpi.colosseum2k19.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -25,9 +26,21 @@ import colosseum19.a300dpi.colosseum2k19.ScoreListActivity;
 public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdapter.ScoreGameHolder>{
 
     private ArrayList<String> gameNames = new ArrayList<>();
-    private ArrayList<Drawable> gameIcons = new ArrayList<>();
+    //private ArrayList<Drawable> gameIcons = new ArrayList<>();
+    int[] gameIcons = {
+            R.drawable.icon_basketball,
+            R.drawable.icon_badminton,
+            R.drawable.icon_best_phy,
+            R.drawable.icon_chess,
+            R.drawable.icon_football,
+            R.drawable.icon_handball,
+            R.drawable.icon_table_tennis,
+            R.drawable.icon_tennis,
+            R.drawable.icon_volleyball
+    };
     private Context ctx;
     private String selectedGame;
+    private String day;
 
     public ScoreGameListAdapter(Context ctx){
         this.ctx = ctx;
@@ -42,15 +55,10 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
         gameNames.add(ctx.getString(R.string.tennis));
         gameNames.add(ctx.getString(R.string.volleyball));
 
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_basketball));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_badminton));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_best_phy));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_chess));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_football));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_handball));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_table_tennis));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_tennis));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_volleyball));
+
+        //get current day from shared preference
+        SharedPreferences sharedPreferences = ctx.getSharedPreferences(ctx.getString(R.string.shared_pref_name), Context.MODE_PRIVATE);
+        day = sharedPreferences.getString(ctx.getString(R.string.day_key), "1");
     }
 
     @NonNull
@@ -63,7 +71,8 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
     @Override
     public void onBindViewHolder(@NonNull final ScoreGameHolder scoreGameHolder, final int i) {
 
-        scoreGameHolder.gameIcon.setImageDrawable(gameIcons.get(i));
+        //scoreGameHolder.gameIcon.setImageDrawable(gameIcons.get(i));
+        scoreGameHolder.gameIcon.setImageResource(gameIcons[i]);
         scoreGameHolder.gameName.setText(gameNames.get(i));
         scoreGameHolder.rootLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,7 +91,7 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
 
     @Override
     public int getItemCount() {
-        return gameIcons.size();
+        return gameIcons.length;
     }
 
     private String getQueryWord(String gameName){
@@ -143,18 +152,27 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
         }
 
         private void displayDays(){
-            if(isNextDay("2020-01-06")){
-                dayOne.setVisibility(View.VISIBLE);
+            //show only current day
+            //show only current day
+            switch(day){
+                case "1":
+                    dayOne.setVisibility(View.VISIBLE);
+                    dayTwo.setVisibility(View.GONE);
+                    dayThree.setVisibility(View.GONE);
+                    break;
+                case "2":
+                    dayOne.setVisibility(View.VISIBLE);
+                    dayTwo.setVisibility(View.VISIBLE);
+                    dayThree.setVisibility(View.GONE);
+                    break;
+                case "3":
+                    dayOne.setVisibility(View.VISIBLE);
+                    dayTwo.setVisibility(View.VISIBLE);
+                    dayThree.setVisibility(View.VISIBLE);
+                    break;
+
             }
-            if(isNextDay("2020-01-07")){
-                dayOne.setVisibility(View.VISIBLE);
-                dayTwo.setVisibility(View.VISIBLE);
-            }
-            if(isNextDay("2020-01-08")){
-                dayOne.setVisibility(View.VISIBLE);
-                dayTwo.setVisibility(View.VISIBLE);
-                dayThree.setVisibility(View.VISIBLE);
-            }
+
         }
 
         private void hideAll(){

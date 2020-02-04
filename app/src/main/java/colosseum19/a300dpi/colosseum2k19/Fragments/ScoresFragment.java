@@ -1,6 +1,7 @@
 package colosseum19.a300dpi.colosseum2k19.Fragments;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,12 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import butterknife.ButterKnife;
+import colosseum19.a300dpi.colosseum2k19.API.BackupApi;
 import colosseum19.a300dpi.colosseum2k19.Adapters.ScoreGameListAdapter;
+import colosseum19.a300dpi.colosseum2k19.Interfaces.DateInterface;
 import colosseum19.a300dpi.colosseum2k19.R;
 
-public class ScoresFragment extends Fragment {
+public class ScoresFragment extends Fragment{
 
 
     private String TAG = ScoresFragment.class.getSimpleName();
@@ -24,7 +28,7 @@ public class ScoresFragment extends Fragment {
     private RecyclerView gameNameList;
     private ScoreGameListAdapter gameListAdapter;
 
-    private Context context;
+    private Context ctx;
     private static ScoresFragment instance;
 
     public static ScoresFragment getInstance(){
@@ -42,7 +46,7 @@ public class ScoresFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_scores,container,false);
         ButterKnife.bind(this,view);
-        context = view.getContext();
+        ctx = view.getContext();
 
         gameNameList = view.findViewById(R.id.score_game_name_list);
         gameListAdapter = new ScoreGameListAdapter(getActivity());

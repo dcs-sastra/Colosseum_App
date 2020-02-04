@@ -3,6 +3,7 @@ package colosseum19.a300dpi.colosseum2k19.Adapters;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -26,11 +27,22 @@ import colosseum19.a300dpi.colosseum2k19.R;
 public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameListAdapter.GameHolder>{
 
     private ArrayList<String> gameNames = new ArrayList<>();
-    private ArrayList<Drawable> gameIcons = new ArrayList<>();
+    int[] gameIcons = {
+            R.drawable.icon_basketball,
+            R.drawable.icon_badminton,
+            R.drawable.icon_best_phy,
+            R.drawable.icon_chess,
+            R.drawable.icon_football,
+            R.drawable.icon_handball,
+            R.drawable.icon_table_tennis,
+            R.drawable.icon_tennis,
+            R.drawable.icon_volleyball
+    };
     private Context ctx;
     private ProgressDialog progressDialog;
     private FixtureGameListAdapter callBack;
     private String selectedGameName = "";
+    private String day;
 
     public FixtureGameListAdapter(Context ctx){
         this.ctx = ctx;
@@ -50,15 +62,11 @@ public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameList
         gameNames.add(ctx.getString(R.string.tennis));
         gameNames.add(ctx.getString(R.string.volleyball));
 
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_basketball));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_badminton));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_best_phy));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_chess));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_football));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_handball));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_table_tennis));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_tennis));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_volleyball));
+
+        //get current day from shared preference
+        SharedPreferences sharedPreferences = ctx.getSharedPreferences(ctx.getString(R.string.shared_pref_name), Context.MODE_PRIVATE);
+        day = sharedPreferences.getString(ctx.getString(R.string.day_key), "1");
+
     }
 
     @NonNull
@@ -73,7 +81,7 @@ public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameList
         final String gameName = gameNames.get(i);
 
         gameHolder.gameName.setText(gameName);
-        gameHolder.gameIcon.setImageDrawable(gameIcons.get(i));
+        gameHolder.gameIcon.setImageResource(gameIcons[i]);
         gameHolder.rootLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,7 +118,7 @@ public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameList
 
     @Override
     public int getItemCount() {
-        return gameIcons.size();
+        return gameIcons.length;
     }
 
     //view holder
@@ -156,17 +164,24 @@ public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameList
         }
 
         private void displayDays(){
-            if(isNextDay("2020-01-06")){
-                dayOne.setVisibility(View.VISIBLE);
-            }
-            if(isNextDay("2020-01-07")){
-                dayOne.setVisibility(View.VISIBLE);
-                dayTwo.setVisibility(View.VISIBLE);
-            }
-            if(isNextDay("2020-01-08")){
-                dayOne.setVisibility(View.VISIBLE);
-                dayTwo.setVisibility(View.VISIBLE);
-                dayThree.setVisibility(View.VISIBLE);
+            //show only current day
+            switch(day){
+                case "1":
+                    dayOne.setVisibility(View.VISIBLE);
+                    dayTwo.setVisibility(View.GONE);
+                    dayThree.setVisibility(View.GONE);
+                    break;
+                case "2":
+                    dayOne.setVisibility(View.VISIBLE);
+                    dayTwo.setVisibility(View.VISIBLE);
+                    dayThree.setVisibility(View.GONE);
+                    break;
+                case "3":
+                    dayOne.setVisibility(View.VISIBLE);
+                    dayTwo.setVisibility(View.VISIBLE);
+                    dayThree.setVisibility(View.VISIBLE);
+                    break;
+
             }
         }
 

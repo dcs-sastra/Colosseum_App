@@ -22,6 +22,7 @@ import java.util.Map;
 
 import colosseum19.a300dpi.colosseum2k19.Interfaces.ApiCallback;
 import colosseum19.a300dpi.colosseum2k19.Interfaces.CallbackInterface;
+import colosseum19.a300dpi.colosseum2k19.Interfaces.DateInterface;
 import colosseum19.a300dpi.colosseum2k19.Model.Fixture;
 import colosseum19.a300dpi.colosseum2k19.Model.Score;
 
@@ -34,6 +35,26 @@ public class BackupApi {
         BASE_URL = "https://skylife.tech/api/colosseum/";
     }
 
+    public void getDate(Context ctx, DateInterface dateInterface){
+        String URL = BASE_URL + "backup/getDates.php";
+
+        StringRequest dateRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, "date get: "+response);
+                dateInterface.setDate(response, true);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d(TAG, "date onErrorResponse: "+error.toString());
+                dateInterface.setDate(null, false);
+            }
+        });
+        CustomRequestQueue.getRequestQueue(ctx).add(dateRequest);
+    }
+
+
     public void checkIfBackup(Context ctx, final ApiCallback callback) {
         String URL = BASE_URL + "backup/get.php";
 
@@ -44,6 +65,7 @@ public class BackupApi {
                     public void onResponse(JSONObject response) {
                         try {
                             boolean isBackup = response.getBoolean("is_backup");
+                            Log.d(TAG, "onResponse backup: " +isBackup);
                             callback.shouldUseBackup(true, isBackup);
                         }catch (Exception e){
                             callback.shouldUseBackup(false, false);
