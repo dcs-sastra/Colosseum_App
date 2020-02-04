@@ -17,6 +17,7 @@
 
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
+    <color name="grey">#F1F1F1</color>
     <color name="bg">#707070</color>
     <color name="login_bg">#FDB900</color>
     <color name="dark_new">#12184A</color>
