@@ -1,5 +1,6 @@
 package colosseum19.a300dpi.colosseum2k19;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -39,6 +40,7 @@ public class LoginActivity extends AppCompatActivity{
     private GoogleSignInClient mSignInClient;
     private FirebaseAuth mFirebaseAuth;
     private BackupApi backupApi;
+    private ProgressDialog progressDialog;
 
     @BindView(R.id.btn_login)
     Button btnLogin;
@@ -48,6 +50,10 @@ public class LoginActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Hold tight...");
+        progressDialog.setCancelable(false);
 
         GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -65,6 +71,7 @@ public class LoginActivity extends AppCompatActivity{
         super.onStart();
         FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
         if (firebaseUser != null){
+            progressDialog.cancel();
             startActivity(new Intent(getApplicationContext(), HomeActivity.class));
         }
     }
@@ -83,6 +90,7 @@ public class LoginActivity extends AppCompatActivity{
                         .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
+                                progressDialog.cancel();
                                 if (task.isSuccessful()){
                                     startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                                 }else {
@@ -93,6 +101,8 @@ public class LoginActivity extends AppCompatActivity{
                             }
                         });
             } catch (ApiException e) {
+                progressDialog.cancel();
+                Snackbar.make(findViewById(R.id.btn_login), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
                 e.printStackTrace();
                 Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
             }
@@ -102,6 +112,7 @@ public class LoginActivity extends AppCompatActivity{
     @OnClick(R.id.btn_login)
     public void onClickSignIn(View view){
         Intent signInIntent = mSignInClient.getSignInIntent();
+        progressDialog.show();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
