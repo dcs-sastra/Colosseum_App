@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Colosseum 20</string>
-    <string name="action_notifications">Notifications</string>
+    <string name="action_share">Share</string>
+    <string name="action_feedback">Feedback</string>
     <string name="events">Events</string>
     <string name="fixtures">Fixtures</string>
     <string name="scores">Scores</string>

@@ -2,7 +2,7 @@ package colosseum19.a300dpi.colosseum2k19.Adapters;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,14 +13,12 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import colosseum19.a300dpi.colosseum2k19.API.BackupApi;
-import colosseum19.a300dpi.colosseum2k19.FixtureListActivity;
 import colosseum19.a300dpi.colosseum2k19.Interfaces.CallbackInterface;
 import colosseum19.a300dpi.colosseum2k19.Model.Fixture;
 import colosseum19.a300dpi.colosseum2k19.Model.Score;
 import colosseum19.a300dpi.colosseum2k19.R;
 import colosseum19.a300dpi.colosseum2k19.ScoreListActivity;
 
-import static android.support.constraint.Constraints.TAG;
 
 public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreHolder> implements CallbackInterface {
 
@@ -29,6 +27,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreHolder>
     String gameName;
     int day;
     ProgressDialog progressDialog;
+    private static String TAG = ScoreAdapter.class.getSimpleName();
 
     public ScoreAdapter(Context ctx, String gameName, int day, boolean isBackup) {
         this.ctx = ctx;

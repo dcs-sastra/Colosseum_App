@@ -10,15 +10,19 @@ import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.content.ContextCompat;
+
+import androidx.annotation.RequiresApi;
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
+
+import java.util.Date;
 import java.util.List;
 
 import colosseum19.a300dpi.colosseum2k19.HomeActivity;
 import colosseum19.a300dpi.colosseum2k19.R;
 
 /**
- * Created by AngryBird Raju on 12/6/2017.
+ * Created by  Raju on 12/6/2017.
  */
 
 public class NotificationUtils {
@@ -36,18 +40,18 @@ public class NotificationUtils {
     /**
      * Method checks if the app is in background or not
      */
-    public static boolean isAppIsInBackground(Context context) {
-
-        boolean isInBackground = true;
-        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-
-            List<ActivityManager.RunningTaskInfo> taskInfo = am.getRunningTasks(1);
-            ComponentName componentInfo = taskInfo.get(0).topActivity;
-            if (componentInfo.getPackageName().equals(context.getPackageName())) {
-                isInBackground = false;
+    public static boolean isAppIsInBackground(final Context context, final String packageName) {
+        final ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        final List<ActivityManager.RunningAppProcessInfo> procInfos = activityManager.getRunningAppProcesses();
+        if (procInfos != null)
+        {
+            for (final ActivityManager.RunningAppProcessInfo processInfo : procInfos) {
+                if (processInfo.processName.equals(packageName)) {
+                    return true;
+                }
+            }
         }
-
-        return isInBackground;
+        return false;
     }
 
     //used to send notification
@@ -55,10 +59,10 @@ public class NotificationUtils {
         Intent intent = new Intent(mContext, HomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, intent,
-                PendingIntent.FLAG_ONE_SHOT);
+                PendingIntent.FLAG_IMMUTABLE);
 
-        Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder notificationBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(mContext,"participant")
+        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(mContext, "participant")
                 .setAutoCancel(true)   //Automatically delete the notification
                 .setSmallIcon(R.drawable.logo_12) //Notification icon
                 .setStyle(new NotificationCompat.BigTextStyle()
@@ -69,37 +73,42 @@ public class NotificationUtils {
                 .setSound(defaultSoundUri);
 
 
-        NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager notificationManager = (NotificationManager)
+                mContext.getSystemService(Context.NOTIFICATION_SERVICE);
 
         assert notificationManager != null;
-        notificationManager.notify(0, notificationBuilder.build());
+        notificationManager.notify(getRandomID(), notificationBuilder.build());
     }
 
+    private int getRandomID() {
+        return (int) ((new Date().getTime() / 1000L) % Integer.MAX_VALUE);
+    }
 
-    public void sendNotificationOreo(String title, String message,String channelID) {
+    public void sendNotificationOreo(String title, String message, String channelID) {
 
         String channelId = channelID; // your notification channel id here
-        String messageBody=message; // your notification message here
+        String messageBody = message; // your notification message here
 
-        NotificationCompat.Builder notificationBuilder=buildNotification(messageBody,channelId);
+        NotificationCompat.Builder notificationBuilder = buildNotification(messageBody, channelId);
         NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
 
         // From Android Oreo onwards notification channel is needed.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(channelId, title, NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationChannel channel = new NotificationChannel(channelId, title, NotificationManager.IMPORTANCE_HIGH);
+            assert notificationManager != null;
             notificationManager.createNotificationChannel(channel);
         }
 
-        if(notificationManager!=null) notificationManager.notify(0 , notificationBuilder.build());
+        if (notificationManager != null) notificationManager.notify(getRandomID(), notificationBuilder.build());
     }
 
-    private NotificationCompat.Builder buildNotification(String messageBody,String channelId) {
+    private NotificationCompat.Builder buildNotification(String messageBody, String channelId) {
 
         Intent intent = new Intent(mContext, HomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, intent, PendingIntent.FLAG_ONE_SHOT);
 
-        Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(mContext, channelId)
                         .setContentTitle(mContext.getString(R.string.app_name))
@@ -112,12 +121,8 @@ public class NotificationUtils {
 
         //In many Lollipop and above devices there is an issue displaying an icon with colored background
 
-        if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            notificationBuilder.setSmallIcon(R.drawable.logo_12);
-            notificationBuilder.setColor(ContextCompat.getColor(mContext, R.color.colorPrimaryDark));
-        }else{
-            notificationBuilder.setSmallIcon(R.drawable.logo_12);
-        }
+        notificationBuilder.setSmallIcon(R.drawable.logo_12);
+        notificationBuilder.setColor(ContextCompat.getColor(mContext, R.color.colorPrimaryDark));
         return notificationBuilder;
     }
 }

@@ -3,10 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="colosseum19.a300dpi.colosseum2k19.HomeActivity">
     <item
-        android:id="@+id/action_notifications"
-        android:title="@string/action_notifications"
-        android:visible="false"
-        app:showAsAction="always" />
+        android:id="@+id/action_share"
+        android:title="@string/action_share"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_feedback"
+        android:title="@string/action_feedback"
+        app:showAsAction="never" />
+
     <item
         android:id="@+id/action_sign_out"
         android:title="@string/sign_out"
