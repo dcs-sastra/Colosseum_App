@@ -80,7 +80,6 @@ public class FixtureAdapter extends RecyclerView.Adapter<FixtureAdapter.FixtureH
     public void setFixtureData(ArrayList<Fixture> data, boolean isEmpty) {
         progressDialog.cancel();
         if(!isEmpty){
-            Log.d("DATA TEST", data.toString());
             this.fixtureList = data;
             notifyDataSetChanged();
         }else{

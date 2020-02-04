@@ -20,7 +20,7 @@ import colosseum19.a300dpi.colosseum2k19.Adapters.FixtureGameListAdapter;
 import colosseum19.a300dpi.colosseum2k19.Interfaces.DateInterface;
 import colosseum19.a300dpi.colosseum2k19.R;
 
-public class FixturesFragment extends Fragment implements DateInterface {
+public class FixturesFragment extends Fragment{
 
     private static final String TAG = FixturesFragment.class.getSimpleName();
 
@@ -46,27 +46,12 @@ public class FixturesFragment extends Fragment implements DateInterface {
         ButterKnife.bind(this, view);
         ctx = view.getContext();
 
-        backupApi = new BackupApi();
-        backupApi.getDate(view.getContext(), this);
-
         //recycler adapter for game names
         gameList = view.findViewById(R.id.fixtures_game_names_list);
         fixtureGameListAdapter = new FixtureGameListAdapter(getActivity());
         gameList.setAdapter(fixtureGameListAdapter);
         gameList.setLayoutManager(new LinearLayoutManager(getActivity()));
         return view;
-    }
-
-    @Override
-    public void setDate(String date, boolean isSuccess) {
-        if(isSuccess){
-            SharedPreferences sharedPreferences = ctx.getSharedPreferences(getString(R.string.shared_pref_name), Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString(getString(R.string.day_key), date);
-            editor.apply();
-        }else{
-            Toast.makeText(ctx, "Failed to get current date", Toast.LENGTH_SHORT).show();
-        }
     }
 
     @Override

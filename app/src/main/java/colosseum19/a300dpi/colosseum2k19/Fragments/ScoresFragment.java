@@ -20,14 +20,13 @@ import colosseum19.a300dpi.colosseum2k19.Adapters.ScoreGameListAdapter;
 import colosseum19.a300dpi.colosseum2k19.Interfaces.DateInterface;
 import colosseum19.a300dpi.colosseum2k19.R;
 
-public class ScoresFragment extends Fragment implements DateInterface {
+public class ScoresFragment extends Fragment{
 
 
     private String TAG = ScoresFragment.class.getSimpleName();
 
     private RecyclerView gameNameList;
     private ScoreGameListAdapter gameListAdapter;
-    private BackupApi backupApi;
 
     private Context ctx;
     private static ScoresFragment instance;
@@ -49,27 +48,12 @@ public class ScoresFragment extends Fragment implements DateInterface {
         ButterKnife.bind(this,view);
         ctx = view.getContext();
 
-        backupApi = new BackupApi();
-        backupApi.getDate(view.getContext(), this);
-
         gameNameList = view.findViewById(R.id.score_game_name_list);
         gameListAdapter = new ScoreGameListAdapter(getActivity());
         gameNameList.setAdapter(gameListAdapter);
         gameNameList.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         return view;
-    }
-
-    @Override
-    public void setDate(String date, boolean isSuccess) {
-        if(isSuccess){
-            SharedPreferences sharedPreferences = ctx.getSharedPreferences(getString(R.string.shared_pref_name), Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString(getString(R.string.day_key), date);
-            editor.apply();
-        }else{
-            Toast.makeText(ctx, "Failed to get current date", Toast.LENGTH_SHORT).show();
-        }
     }
 
     @Override

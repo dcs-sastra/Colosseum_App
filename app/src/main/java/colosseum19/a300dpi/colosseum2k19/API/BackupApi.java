@@ -65,6 +65,7 @@ public class BackupApi {
                     public void onResponse(JSONObject response) {
                         try {
                             boolean isBackup = response.getBoolean("is_backup");
+                            Log.d(TAG, "onResponse backup: " +isBackup);
                             callback.shouldUseBackup(true, isBackup);
                         }catch (Exception e){
                             callback.shouldUseBackup(false, false);
