@@ -27,7 +27,17 @@ import colosseum19.a300dpi.colosseum2k19.R;
 public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameListAdapter.GameHolder>{
 
     private ArrayList<String> gameNames = new ArrayList<>();
-    private ArrayList<Drawable> gameIcons = new ArrayList<>();
+    int[] gameIcons = {
+            R.drawable.icon_basketball,
+            R.drawable.icon_badminton,
+            R.drawable.icon_best_phy,
+            R.drawable.icon_chess,
+            R.drawable.icon_football,
+            R.drawable.icon_handball,
+            R.drawable.icon_table_tennis,
+            R.drawable.icon_tennis,
+            R.drawable.icon_volleyball
+    };
     private Context ctx;
     private ProgressDialog progressDialog;
     private FixtureGameListAdapter callBack;
@@ -52,15 +62,6 @@ public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameList
         gameNames.add(ctx.getString(R.string.tennis));
         gameNames.add(ctx.getString(R.string.volleyball));
 
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_basketball));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_badminton));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_best_phy));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_chess));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_football));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_handball));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_table_tennis));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_tennis));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_volleyball));
 
         //get current day from shared preference
         SharedPreferences sharedPreferences = ctx.getSharedPreferences(ctx.getString(R.string.shared_pref_name), Context.MODE_PRIVATE);
@@ -80,7 +81,7 @@ public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameList
         final String gameName = gameNames.get(i);
 
         gameHolder.gameName.setText(gameName);
-        gameHolder.gameIcon.setImageDrawable(gameIcons.get(i));
+        gameHolder.gameIcon.setImageResource(gameIcons[i]);
         gameHolder.rootLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,7 +118,7 @@ public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameList
 
     @Override
     public int getItemCount() {
-        return gameIcons.size();
+        return gameIcons.length;
     }
 
     //view holder

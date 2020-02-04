@@ -31,7 +31,7 @@ import butterknife.OnClick;
 import colosseum19.a300dpi.colosseum2k19.API.BackupApi;
 import colosseum19.a300dpi.colosseum2k19.Interfaces.DateInterface;
 
-public class LoginActivity extends AppCompatActivity implements DateInterface {
+public class LoginActivity extends AppCompatActivity{
 
 
     private static final int RC_SIGN_IN = 100;
@@ -49,9 +49,6 @@ public class LoginActivity extends AppCompatActivity implements DateInterface {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
-        backupApi = new BackupApi();
-        backupApi.getDate(getApplicationContext(), this);
-
         GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -61,18 +58,6 @@ public class LoginActivity extends AppCompatActivity implements DateInterface {
         mFirebaseAuth = FirebaseAuth.getInstance();
 
 
-    }
-
-    @Override
-    public void setDate(String date, boolean isSuccess) {
-        if(isSuccess){
-            SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.shared_pref_name), Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString(getString(R.string.day_key), date);
-            editor.apply();
-        }else{
-            Toast.makeText(getApplicationContext(), "Failed to get current date", Toast.LENGTH_SHORT).show();
-        }
     }
 
     @Override

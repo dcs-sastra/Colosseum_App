@@ -20,7 +20,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewhol
     String TAG = EventAdapter.class.getSimpleName();
 
     Context ctx;
-    /*int[] imageList = {R.drawable.badminton_new,
+    int[] imageList = {R.drawable.badminton_new,
                         R.drawable.basketball_new,
                         R.drawable.physique_new,
                         R.drawable.chess_new,
@@ -28,8 +28,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewhol
                         R.drawable.handball_new,
                         R.drawable.table_tennis_new,
                         R.drawable.tennis_new,
-                        R.drawable.volleyball_new};*/
-    String[] imageList = {
+                        R.drawable.volleyball_new};
+    /*String[] imageList = {
             ConstantsStorage.BADMINTON_URL,
             ConstantsStorage.BASKETBALL_URL,
             ConstantsStorage.BESTPHYSIQUE_URL,
@@ -39,7 +39,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewhol
             ConstantsStorage.TABLETENNIS_URL,
             ConstantsStorage.TENNIS_URL,
             ConstantsStorage.VOLLEYBALL_URL
-    };
+    };*/
 
     public EventAdapter(Context ctx){
         this.ctx = ctx;
