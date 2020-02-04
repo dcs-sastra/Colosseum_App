@@ -11,6 +11,8 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
+        android:largeHeap="true"
         android:icon="@mipmap/app_icon_rect"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/app_icon_round"

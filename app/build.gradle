@@ -4,10 +4,10 @@ android {
     compileSdkVersion 29
     defaultConfig {
         applicationId "colosseum19.a300dpi.colosseum2k19"
-        minSdkVersion 24
+        minSdkVersion 21
         targetSdkVersion 29
-        versionCode 4
-        versionName "1.11"
+        versionCode 8
+        versionName "1.6"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

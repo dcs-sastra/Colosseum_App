@@ -11,5 +11,5 @@ public class ConstantsStorage {
     public static String TABLETENNIS_URL = "https://firebasestorage.googleapis.com/v0/b/colosseum19-49ebd.appspot.com/o/Colosseum%2020%2FTable%20Tennis%20Logo.png?alt=media&token=a595efa0-1985-40e9-814d-1cf01fac470b";
     public static String TENNIS_URL = "https://firebasestorage.googleapis.com/v0/b/colosseum19-49ebd.appspot.com/o/Colosseum%2020%2FTennis%20logo.png?alt=media&token=ac285637-ae3c-47cd-869e-e4e1b852dc7e";
     public static String VOLLEYBALL_URL = "https://firebasestorage.googleapis.com/v0/b/colosseum19-49ebd.appspot.com/o/Colosseum%2020%2FVolleyball%20Logo.png?alt=media&token=249799d9-3eda-4716-ac66-1513b46fe32c";
-    public static String DSC_URL = "https://firebasestorage.googleapis.com/v0/b/colosseum19-49ebd.appspot.com/o/Colosseum%2020%2Fgd_dsc_lockup_vertical_color.png?alt=media&token=8bc0aec2-634e-47b4-b28e-a3cc40558efb";
+    public static String APP_URL = "https://play.google.com/store/apps/details?id=colosseum19.a300dpi.colosseum2k19";
 }
