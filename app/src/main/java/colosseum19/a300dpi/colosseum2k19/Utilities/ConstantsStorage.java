@@ -12,4 +12,9 @@ public class ConstantsStorage {
     public static String TENNIS_URL = "https://firebasestorage.googleapis.com/v0/b/colosseum19-49ebd.appspot.com/o/Colosseum%2020%2FTennis%20logo.png?alt=media&token=ac285637-ae3c-47cd-869e-e4e1b852dc7e";
     public static String VOLLEYBALL_URL = "https://firebasestorage.googleapis.com/v0/b/colosseum19-49ebd.appspot.com/o/Colosseum%2020%2FVolleyball%20Logo.png?alt=media&token=249799d9-3eda-4716-ac66-1513b46fe32c";
     public static String APP_URL = "https://play.google.com/store/apps/details?id=colosseum19.a300dpi.colosseum2k19";
+    public static String DSC_APP_URL = "https://play.google.com/store/apps/details?id=dsc.sastra.dsc_sastra_university";
+    public static String DSC_INSTA_URL = "https://www.instagram.com/dsc.sastra.university/";
+    public static String DSC_LINKEDIN_URL = "https://www.linkedin.com/company/19033740/admin/";
+    public static String DSC_TWITTER_URL = "https://twitter.com/dsc_sastra";
+    public static String DPI_LINKEDIN_URL = "https://www.linkedin.com/company/31182127/admin/";
 }
