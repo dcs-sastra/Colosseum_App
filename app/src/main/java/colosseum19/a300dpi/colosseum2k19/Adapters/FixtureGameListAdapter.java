@@ -106,7 +106,7 @@ public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameList
             public void onClick(View view) {
                 Log.d("DAY TWO", "onClick: "+getQueryWord(gameName));
                 intent.putExtra(ctx.getString(R.string.game_name), getQueryWord(gameName));
-                intent.putExtra(ctx.getString(R.string.day_key), 3);
+                intent.putExtra(ctx.getString(R.string.day_key), 2);
                 ctx.startActivity(intent);
             }
         });

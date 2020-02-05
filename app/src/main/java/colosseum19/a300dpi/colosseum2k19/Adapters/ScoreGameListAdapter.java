@@ -39,6 +39,7 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
             R.drawable.icon_volleyball
     };
     private Context ctx;
+    Intent intent;
     private String selectedGame;
     private String day;
 
@@ -55,7 +56,7 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
         gameNames.add(ctx.getString(R.string.tennis));
         gameNames.add(ctx.getString(R.string.volleyball));
 
-
+        intent = new Intent(ctx, ScoreListActivity.class);
         //get current day from shared preference
         SharedPreferences sharedPreferences = ctx.getSharedPreferences(ctx.getString(R.string.shared_pref_name), Context.MODE_PRIVATE);
         day = sharedPreferences.getString(ctx.getString(R.string.day_key), "1");
@@ -70,15 +71,43 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
 
     @Override
     public void onBindViewHolder(@NonNull final ScoreGameHolder scoreGameHolder, final int i) {
+        final String gameName = gameNames.get(i);
 
-        //scoreGameHolder.gameIcon.setImageDrawable(gameIcons.get(i));
         scoreGameHolder.gameIcon.setImageResource(gameIcons[i]);
-        scoreGameHolder.gameName.setText(gameNames.get(i));
+        scoreGameHolder.gameName.setText(gameName);
         scoreGameHolder.rootLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 selectedGame = getQueryWord(scoreGameHolder.gameName.getText().toString());
                 scoreGameHolder.displayDays();
+            }
+        });
+
+        scoreGameHolder.dayOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("DAY ONE", "onClick: "+getQueryWord(gameName));
+                intent.putExtra(ctx.getString(R.string.game_name), getQueryWord(gameName));
+                intent.putExtra(ctx.getString(R.string.day_key), 1);
+                ctx.startActivity(intent);
+            }
+        });
+        scoreGameHolder.dayTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("DAY TWO", "onClick: "+getQueryWord(gameName));
+                intent.putExtra(ctx.getString(R.string.game_name), getQueryWord(gameName));
+                intent.putExtra(ctx.getString(R.string.day_key), 2);
+                ctx.startActivity(intent);
+            }
+        });
+        scoreGameHolder.dayThree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("DAY THREE", "onClick: "+getQueryWord(gameName));
+                intent.putExtra(ctx.getString(R.string.game_name), getQueryWord(gameName));
+                intent.putExtra(ctx.getString(R.string.day_key), 3);
+                ctx.startActivity(intent);
             }
         });
     }
@@ -112,7 +141,7 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
     }
 
 
-    public class ScoreGameHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ScoreGameHolder extends RecyclerView.ViewHolder{
         ImageView gameIcon,gameDropDown;
         TextView gameName, dayOne, dayTwo, dayThree;
         ConstraintLayout rootLayout;
@@ -123,11 +152,8 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
             gameDropDown = itemView.findViewById(R.id.drop_down);
             gameName = itemView.findViewById(R.id.game_name);
             dayOne = itemView.findViewById(R.id.day_one);
-            dayOne.setOnClickListener(this);
             dayTwo = itemView.findViewById(R.id.day_two);
-            dayTwo.setOnClickListener(this);
             dayThree = itemView.findViewById(R.id.day_three);
-            dayThree.setOnClickListener(this);
             rootLayout = itemView.findViewById(R.id.root_layout);
         }
 
@@ -181,23 +207,6 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
             dayThree.setVisibility(View.GONE);
         }
 
-        @Override
-        public void onClick(View v) {
-            Intent i = new Intent(ctx, ScoreListActivity.class);
-            i.putExtra(ctx.getString(R.string.game_name), selectedGame);
-            switch(v.getId()){
-                case R.id.day_one:
-                    i.putExtra(ctx.getString(R.string.day_key), 1);
-                    break;
-                case R.id.day_two:
-                    i.putExtra(ctx.getString(R.string.day_key), 2);
-                    break;
-                case R.id.day_three:
-                    i.putExtra(ctx.getString(R.string.day_key), 3);
-                    break;
-            }
-            ctx.startActivity(i);
-        }
     }
 
 
