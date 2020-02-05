@@ -41,6 +41,8 @@ public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameList
     private Context ctx;
     private ProgressDialog progressDialog;
     private FixtureGameListAdapter callBack;
+    Intent intent;
+
     private String selectedGameName = "";
     private String day;
 
@@ -62,7 +64,7 @@ public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameList
         gameNames.add(ctx.getString(R.string.tennis));
         gameNames.add(ctx.getString(R.string.volleyball));
 
-
+        intent = new Intent(ctx, FixtureListActivity.class);
         //get current day from shared preference
         SharedPreferences sharedPreferences = ctx.getSharedPreferences(ctx.getString(R.string.shared_pref_name), Context.MODE_PRIVATE);
         day = sharedPreferences.getString(ctx.getString(R.string.day_key), "1");
@@ -80,13 +82,41 @@ public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameList
     public void onBindViewHolder(@NonNull final GameHolder gameHolder, int i) {
         final String gameName = gameNames.get(i);
 
+
         gameHolder.gameName.setText(gameName);
         gameHolder.gameIcon.setImageResource(gameIcons[i]);
         gameHolder.rootLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectedGameName = getQueryWord(gameName);
                 gameHolder.displayDays();
+            }
+        });
+
+        gameHolder.dayOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("DAY ONE", "onClick: "+getQueryWord(gameName));
+                intent.putExtra(ctx.getString(R.string.game_name), getQueryWord(gameName));
+                intent.putExtra(ctx.getString(R.string.day_key), 1);
+                ctx.startActivity(intent);
+            }
+        });
+        gameHolder.dayTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("DAY TWO", "onClick: "+getQueryWord(gameName));
+                intent.putExtra(ctx.getString(R.string.game_name), getQueryWord(gameName));
+                intent.putExtra(ctx.getString(R.string.day_key), 3);
+                ctx.startActivity(intent);
+            }
+        });
+        gameHolder.dayThree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("DAY THREE", "onClick: "+getQueryWord(gameName));
+                intent.putExtra(ctx.getString(R.string.game_name), getQueryWord(gameName));
+                intent.putExtra(ctx.getString(R.string.day_key), 3);
+                ctx.startActivity(intent);
             }
         });
     }
@@ -122,7 +152,7 @@ public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameList
     }
 
     //view holder
-    public class GameHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class GameHolder extends RecyclerView.ViewHolder{
         ConstraintLayout rootLayout;
         TextView gameName, dayOne, dayTwo, dayThree;
         ImageView gameIcon;
@@ -136,11 +166,8 @@ public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameList
             gameIcon = itemView.findViewById(R.id.game_image);
             dropDown = itemView.findViewById(R.id.drop_down);
             dayOne = itemView.findViewById(R.id.day_one);
-            dayOne.setOnClickListener(this);
             dayTwo = itemView.findViewById(R.id.day_two);
-            dayTwo.setOnClickListener(this);
             dayThree = itemView.findViewById(R.id.day_three);
-            dayThree.setOnClickListener(this);
         }
 
         private boolean isNextDay(String date){
@@ -191,23 +218,6 @@ public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameList
             dayThree.setVisibility(View.GONE);
         }
 
-        @Override
-        public void onClick(View v) {
-            Intent i = new Intent(ctx, FixtureListActivity.class);
-            i.putExtra(ctx.getString(R.string.game_name), selectedGameName);
-            switch(v.getId()){
-                case R.id.day_one:
-                    i.putExtra(ctx.getString(R.string.day_key), 1);
-                    break;
-                case R.id.day_two:
-                    i.putExtra(ctx.getString(R.string.day_key), 2);
-                    break;
-                case R.id.day_three:
-                    i.putExtra(ctx.getString(R.string.day_key), 3);
-                    break;
-            }
-            ctx.startActivity(i);
-        }
     }
 
 }

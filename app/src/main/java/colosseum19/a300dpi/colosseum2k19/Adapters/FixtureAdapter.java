@@ -28,29 +28,27 @@ public class FixtureAdapter extends RecyclerView.Adapter<FixtureAdapter.FixtureH
 
     private Context ctx;
     private List<Fixture> fixtureList = new ArrayList<>();
-    private String gameName;
-    private int day;
+
     ProgressDialog progressDialog;
     private static String TAG = FixtureAdapter.class.getSimpleName();
 
     public FixtureAdapter(Context ctx, String gameName, int day, boolean isbackup){
         this.ctx = ctx;
-        this.gameName = gameName;
-        this.day = day;
+
         progressDialog = new ProgressDialog(ctx);
         progressDialog.setMessage("Loading...");
         progressDialog.setCancelable(false);
         progressDialog.show();
-        Log.d(TAG, "game name: "+this.gameName);
-        Log.d(TAG, "day: "+this.day);
+        Log.d(TAG, "game name: "+gameName);
+        Log.d(TAG, "day: "+day);
 
         if(!isbackup){
             Log.d(TAG, "Getting data from Firebase");
-            ((FixtureListActivity) ctx).getGameFixturesFirebase(this.gameName, this.day, this);
+            ((FixtureListActivity) ctx).getGameFixturesFirebase(gameName, day, this);
         }else{
             Log.d(TAG, "Getting data from backup server");
             BackupApi backupApi = new BackupApi();
-            backupApi.getFixtures(ctx, this.gameName, this.day, this);
+            backupApi.getFixtures(ctx, gameName, day, this);
         }
 
     }
