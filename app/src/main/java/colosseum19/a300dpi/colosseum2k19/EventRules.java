@@ -1,12 +1,16 @@
 package colosseum19.a300dpi.colosseum2k19;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,11 +19,14 @@ import colosseum19.a300dpi.colosseum2k19.Adapters.GreenAdapter;
 public class EventRules extends AppCompatActivity {
 
     private static RecyclerView EventList ;
+    private TextView contactTV, prize1, prize2, prize3;
+    private ImageView img, phoneIcon;
     private GreenAdapter mAdapter;
     private Boolean rules=true;
     private int position;
     private String[] r;
     private String contact="Null";
+    private String phNum = "";
     private int[] prize;
 
     Toolbar toolbar;
@@ -30,11 +37,13 @@ public class EventRules extends AppCompatActivity {
         setSupportActionBar(toolbar);
         setContentView(R.layout.activity_event_rules);
         position=(int)(getIntent().getIntExtra("pos",0));
-        TextView contactact_tv=findViewById(R.id.contact_details);
-        ImageView img=findViewById(R.id.event_title_image);
-        TextView prize1=findViewById(R.id.prize_1_details);
-        TextView prize2=findViewById(R.id.prize_2_details);
-        TextView prize3=findViewById(R.id.prize_3_details);
+         contactTV =findViewById(R.id.contact_num);
+         img=findViewById(R.id.event_title_image);
+         prize1=findViewById(R.id.prize_1_details);
+         prize2=findViewById(R.id.prize_2_details);
+         prize3=findViewById(R.id.prize_3_details);
+         phoneIcon = findViewById(R.id.phone_btn);
+
 
         switch (position){
             case 0:     //Badmitton
@@ -48,6 +57,7 @@ public class EventRules extends AppCompatActivity {
                 contact= "L.Akash - " +
                         "9566196484\n" +
                         "Soundarya";
+                phNum = "9566196484";
                 prize=new int[]{3000,2000,500};
                 break;
             case 1:   //BasketBall
@@ -60,6 +70,7 @@ public class EventRules extends AppCompatActivity {
                 contact= "Arun Manikam - " +
                         "7904392747\n" +
                         "S.Akshaya  Sagarika";
+                phNum = "7904392747";
                 prize=new int[]{7000,4000,2000};
                 break;
             case 2: //Best Physique
@@ -75,6 +86,7 @@ public class EventRules extends AppCompatActivity {
                 contact= "Nishanth - " +
                         "8056804488";
                 prize=new int[]{750,500,250};
+                phNum = "8056804488";
                 break;
             case 3: //chess
                 img.setImageDrawable(getApplicationContext().getResources().getDrawable(R.drawable.chess_men_and_women));
@@ -87,6 +99,7 @@ public class EventRules extends AppCompatActivity {
                 contact= "V.Aravind - " +
                         "8754412839\n" +
                         "Dhirnaa";
+                phNum = "8754412839";
                 prize=new int[]{3000,2000,500};
                 break;
             case 4: //football
@@ -100,6 +113,7 @@ public class EventRules extends AppCompatActivity {
                         "Registration on first - come - first serve basis"};
                 contact= "Karthik - " +
                         "9481194940";
+                phNum = "9481194940";
                 prize=new int[]{7000,4000,2000};
                 break;
             case 5: //handball
@@ -111,6 +125,7 @@ public class EventRules extends AppCompatActivity {
                 contact= "S.Rahulram - " +
                         "8973894488";
                 prize=new int[]{7000,4000,2000};
+                phNum = "8973894488";
                 break;
             case 6: //table tennis
                 img.setImageDrawable(getApplicationContext().getResources().getDrawable(R.drawable.table_tennis_men_women));
@@ -125,6 +140,7 @@ public class EventRules extends AppCompatActivity {
                         "9003298272\n" +
                         "Manasa";
                 prize=new int[]{3000,2000,500};
+                phNum = "9003298272";
                 break;
             case 7: //tennis
                 img.setImageDrawable(getApplicationContext().getResources().getDrawable(R.drawable.tennis_men_women));
@@ -138,6 +154,7 @@ public class EventRules extends AppCompatActivity {
                 contact= "Prem - " +
                         "9381248664\n" +
                         "Divija";
+                phNum = "9381248664";
                 prize=new int[]{3000,2000,500};
                 break;
             case 8: //volleyball
@@ -149,13 +166,25 @@ public class EventRules extends AppCompatActivity {
                         "Registration on first - come - first serve basis"};
                 contact= "Srinivasan - 9786549768\n" +
                         "Karishma";
+                phNum = "9786549768";
                 prize=new int[]{7000,4000,2000};
                 break;
         }
 
 
 
-        contactact_tv.setText(contact);
+        contactTV.setText(contact);
+        //String phNum = contact.substring(contact.lastIndexOf('-')+1, contact.lastIndexOf('\n'));
+        phoneIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("Event rules", "onCreate: "+phNum);
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:"+phNum));
+                startActivity(intent);
+            }
+        });
+
         prize1.setText("Winner\n"+prize[0]);
         prize2.setText("Runner\n"+prize[1]);
         prize3.setText("Third\n"+prize[2]);
