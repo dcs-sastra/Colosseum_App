@@ -79,7 +79,7 @@ public class ScoreListActivity extends AppCompatActivity implements ApiCallback 
         Query gameQuery = FirebaseFirestore.getInstance()
                 .collection(collectionPath)
                 .whereEqualTo("game_name", query)
-                .orderBy("timestamp");
+                .orderBy("timestamp", Query.Direction.ASCENDING);
 
         gameQuery.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
