@@ -112,6 +112,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreHolder>
             teambScoreHeader.setText(score.getTeamB());
             teamaScoreValue.setText(String.valueOf(score.getScore_teamA()));
             teambScoreValue.setText(String.valueOf(score.getScore_teamB()));
+            Log.d(TAG, "setDetails: "+score.getGame_name());
 
             if(score.getGame_name().equals(ctx.getString(R.string.badminton)) ||
                     score.getGame_name().equals(ctx.getString(R.string.volleyball_query)) ||
