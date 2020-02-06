@@ -10,12 +10,16 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import colosseum19.a300dpi.colosseum2k19.API.BackupApi;
 import colosseum19.a300dpi.colosseum2k19.Adapters.FixtureAdapter;
@@ -66,10 +70,18 @@ public class FixtureListActivity extends AppCompatActivity implements ApiCallbac
         progressDialog.setCancelable(false);
         progressDialog.show();
 
-
+        testFunction();
     }
 
+    private void testFunction(){
+        //replace hrs and min from time picker
+        int hrs = 10, min = 40;
+        Calendar cal = Calendar.getInstance();
+        cal.set(2020, 1, 6 + day, hrs, min);
+        Date date = cal.getTime();
+        Log.d(TAG, "testFunction: "+date);
 
+    }
     @Override
     public void shouldUseBackup(boolean isSuccess, boolean isBackup) {
         progressDialog.cancel();

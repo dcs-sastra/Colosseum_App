@@ -31,7 +31,7 @@
         android:fontFamily="@font/montserrat"
         android:text="TextView"
         android:textColor="@android:color/black"
-        android:textSize="14sp"
+        android:textSize="15sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sub_name" />
@@ -45,7 +45,7 @@
         android:fontFamily="@font/montserrat"
         android:text="TextView"
         android:textColor="@android:color/black"
-        android:textSize="14sp"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="@+id/team_a" />
@@ -98,7 +98,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="10dp"
-        android:fontFamily="@font/montserrat"
+        android:fontFamily="@font/montserratbold"
         android:text="textView"
         android:textColor="@android:color/black"
         android:textSize="14sp"
