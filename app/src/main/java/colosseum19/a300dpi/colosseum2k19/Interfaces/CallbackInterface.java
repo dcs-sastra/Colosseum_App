@@ -1,6 +1,7 @@
 package colosseum19.a300dpi.colosseum2k19.Interfaces;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import colosseum19.a300dpi.colosseum2k19.Adapters.FixtureGameListAdapter;
 import colosseum19.a300dpi.colosseum2k19.Adapters.ScoreGameListAdapter;

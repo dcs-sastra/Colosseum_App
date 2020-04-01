@@ -221,3 +221,4 @@ public class FixtureGameListAdapter extends RecyclerView.Adapter<FixtureGameList
     }
 
 }
+

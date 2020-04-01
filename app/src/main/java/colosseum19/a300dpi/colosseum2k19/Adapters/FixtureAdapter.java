@@ -134,3 +134,4 @@ public class FixtureAdapter extends RecyclerView.Adapter<FixtureAdapter.FixtureH
 
 }
 
+

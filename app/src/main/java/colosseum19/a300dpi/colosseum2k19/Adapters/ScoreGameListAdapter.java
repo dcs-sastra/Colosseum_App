@@ -211,3 +211,4 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
 
 
 }
+

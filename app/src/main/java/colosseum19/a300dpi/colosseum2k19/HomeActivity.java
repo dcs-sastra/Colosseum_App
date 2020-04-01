@@ -20,6 +20,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.util.Calendar;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import colosseum19.a300dpi.colosseum2k19.API.BackupApi;
@@ -226,6 +228,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                             .replace(R.id.frame_layout_home_activity, eventsFragment, EVENTS_FRAG)
                             .commit();
                 }
+                Log.d("www ", String.valueOf(Calendar.getInstance().get(Calendar.MINUTE)));
                 return true;
 
             case R.id.bottom_nav_fixtures:
@@ -250,6 +253,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                 fragmentManager.beginTransaction()
                         .replace(R.id.frame_layout_home_activity, aboutFragment, ABOUT_FRAG)
                         .commit();
+                Log.d("www1 ", String.valueOf(Calendar.getInstance().get(Calendar.SECOND)));
                 return true;
         }
         return false;
