@@ -13,23 +13,23 @@ Tech stack used:
 
 # Screenshots:
   # Login 
-  ![Login Screen](https://drive.google.com/uc?id=12Qb9RNG6L06v-90hpjRCrVhZT8hxGceK)
+  ![Login Screen](https://user-images.githubusercontent.com/24537737/78107730-a6365280-7413-11ea-8246-4c9c4af16728.png)
 
   # Home
-  ![Home Screen](https://drive.google.com/uc?id=1u1McM6nBUFbzfQ97WAst5Gpjj1uKxIni)
+  ![Home Screen](https://user-images.githubusercontent.com/24537737/78107738-ab939d00-7413-11ea-875b-ac10f9861084.png)
   
   # Details
-  ![Details Screen](https://drive.google.com/uc?id=1RCswMq0qpqBkwklCsWjaJbGyvbHNsICt)
+  ![Details Screen](https://user-images.githubusercontent.com/24537737/78107821-c6fea800-7413-11ea-852a-12c02d804192.png)
   
   # Fixtures
-  ![Fixtures Screen](https://drive.google.com/uc?id=1WMrddJCz3fScPCXJuFMqv50-K6Q7tD1i)
+  ![Fixtures Screen](https://user-images.githubusercontent.com/24537737/78107841-d2ea6a00-7413-11ea-98a6-ca06f97bf374.png)
   
   # Scores
-  ![Scores Screen](https://drive.google.com/uc?id=1mUhsMETutZDiuG3tF_2NHrUU6X8KtIz0)
+  ![Scores Screen](https://user-images.githubusercontent.com/24537737/78107874-e09fef80-7413-11ea-98cc-3c618f2c089a.png)
   
   # About
-  ![About Screen](https://drive.google.com/uc?id=1ROTX0wbVgdlpYVHDwTuaeaD-8LOxIhop)
+  ![About Screen](https://user-images.githubusercontent.com/24537737/78107887-e990c100-7413-11ea-931c-4125d2347402.png)
   
-  ![About Screen](https://drive.google.com/uc?id=1qNE5jmninaVmJ0BiNGqDSFG7KsK0xWEE)
+  ![About Screen](https://user-images.githubusercontent.com/24537737/78107925-f9a8a080-7413-11ea-8618-37b93ae79eb7.png)
   
   
