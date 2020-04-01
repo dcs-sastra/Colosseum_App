@@ -13,7 +13,7 @@ Tech stack used:
 
 # Screenshots:
   # Login 
-   <img src="https://user-images.githubusercontent.com/24537737/78107730-a6365280-7413-11ea-8246-4c9c4af16728.png" width="50%" height="50%">
+   <img src="https://user-images.githubusercontent.com/24537737/78107730-a6365280-7413-11ea-8246-4c9c4af16728.png" width="30%" height="30%">
 
   # Home
   ![Home Screen](https://user-images.githubusercontent.com/24537737/78107738-ab939d00-7413-11ea-875b-ac10f9861084.png)
