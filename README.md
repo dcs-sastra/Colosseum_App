@@ -16,20 +16,17 @@ Tech stack used:
    <img src="https://user-images.githubusercontent.com/24537737/78107730-a6365280-7413-11ea-8246-4c9c4af16728.png" width="30%" height="30%">
 
   # Home
-  ![Home Screen](https://user-images.githubusercontent.com/24537737/78107738-ab939d00-7413-11ea-875b-ac10f9861084.png)
+  <img src="https://user-images.githubusercontent.com/24537737/78107738-ab939d00-7413-11ea-875b-ac10f9861084.png" width="30%" height="30%">
   
   # Details
-  ![Details Screen](https://user-images.githubusercontent.com/24537737/78107821-c6fea800-7413-11ea-852a-12c02d804192.png)
-  
+  <img src="https://user-images.githubusercontent.com/24537737/78107821-c6fea800-7413-11ea-852a-12c02d804192.png" width="30%" height="30%">
+    
   # Fixtures
-  ![Fixtures Screen](https://user-images.githubusercontent.com/24537737/78107841-d2ea6a00-7413-11ea-98a6-ca06f97bf374.png)
+  <img src="https://user-images.githubusercontent.com/24537737/78107841-d2ea6a00-7413-11ea-98a6-ca06f97bf374.png" width="30%" height="30%">
   
   # Scores
-  ![Scores Screen](https://user-images.githubusercontent.com/24537737/78107874-e09fef80-7413-11ea-98cc-3c618f2c089a.png)
+  <img src="https://user-images.githubusercontent.com/24537737/78107874-e09fef80-7413-11ea-98cc-3c618f2c089a.png" width="30%" height="30%">
   
   # About
-  ![About Screen](https://user-images.githubusercontent.com/24537737/78107887-e990c100-7413-11ea-931c-4125d2347402.png)
-  
-  ![About Screen](https://user-images.githubusercontent.com/24537737/78107925-f9a8a080-7413-11ea-8618-37b93ae79eb7.png)
-  
-  
+  <img src="https://user-images.githubusercontent.com/24537737/78107887-e990c100-7413-11ea-931c-4125d2347402.png" width="30%" height="30%">
+  <img src="https://user-images.githubusercontent.com/24537737/78107925-f9a8a080-7413-11ea-8618-37b93ae79eb7.png" width="30%" height="30%"> 
