@@ -1,17 +1,24 @@
 <resources>
-    <string name="app_name">Colosseum 19</string>
-    <string name="action_notifications">Notifications</string>
+    <string name="app_name">Colosseum 2020</string>
+    <string name="action_share">Share</string>
+    <string name="action_feedback">Feedback</string>
     <string name="events">Events</string>
     <string name="fixtures">Fixtures</string>
     <string name="scores">Scores</string>
     <string name="about">About</string>
+    <string name="day_one">Day 0 &amp; 1</string>
+    <string name="day_two">Day 2</string>
+    <string name="day_three">Day 3</string>
+    <string name="game_name">GAME_NAME</string>
     <string name="title_activity_notification">NotificationActivity</string>
+    <string name="try_again">Please try again</string>
     <string name="about_sastra">Situated on the Trichy-Thanjavur highway flanked by green fields and lush farms,SASTRA Deemed University strives towards excellence in education -academic,moral,socialand cultural.The university is re-accredited with an ‘A’ by the National Assessment and Accreditation Council(NAAC).The students benefit from the amenities like campus Wi-Fi,state-of-the-art laboratory facilities and the TIFAC-CORE.Students are encouraged to take part in co-curricular and extra-curricular activities and this is evident from the numerous technical,literary and sports clubs in the university.The university also hosts cultural,Technical and Sports fests by inviting students from all over the country thereby promoting healthy competition.It is indeed an understatement to say that SASTRA is the epicenter of Technology,Science,Research,Management and Sports.</string>
     <string name="about_sastra_head">ABOUT SASTRA</string>
     <string name="about_colosseum_head">ABOUT COLOSSEUM</string>
+    <string name="follow_us">FOLLOW US</string>
     <string name="about_colosseum1">“All work and no play makes Jack a dull boy”</string>
     <string name="about_colosseum2">Thus came Colosseum into existence.If academics are the daily bread and butter of the college students life,then sports fest are the saturday night parties we all crave for.At no other time will the students of an institution be seen displaying so much enthusiasm,receptiveness and innovation,SASTRA Deemed University proudly entered the tradition of holding annual sports fests with colosseum.Hosting 9 games with more than 1500 participants from different geographies of the country competing over four days of complete gaming and sports,Colosseum had carved a niche for itself in the world of sports fests.Bringing to you -The most awaited Sports fest of the season -Colosseum.\n</string>
-
+    <string name="day_key">DAY_KEY</string>
     <string name="vs">vs</string>
     <string name="win">wins!!!</string>
 
@@ -32,6 +39,11 @@
     <string name="football_query">Football</string>
     <string name="handball_query">Handball</string>
     <string name="volleyball_query">Volleyball</string>
+    <string name="table_tennis_query">Table Tennis</string>
+    <string name="tennis_query">Tennis</string>
+    <string name="chess_query">Chess</string>
+    <string name="badminton_query">Badminton</string>
+    <string name="best_physique_query">Best Physique</string>
 
     <string name="score">Score</string>
     <string name="set">Set</string>
@@ -41,4 +53,10 @@
 
     <string name="fixture_channel">FIXTURE_CHANNEL</string>
     <string name="not_updated">Yet to be updated</string>
+    <string name="loading">Loading...</string>
+    <string name="shared_pref_name">DATE_SHARED_PREF</string>
+    <string name="app_share_title">Share Colosseum Link</string>
+    <string name="app_developers">APP DEVELOPERS</string>
+    <string name="graphic_designers">GRAPHIC DESIGNERS</string>
+    <string name="web_developers">WEB DEVELOPERS</string>
 </resources>

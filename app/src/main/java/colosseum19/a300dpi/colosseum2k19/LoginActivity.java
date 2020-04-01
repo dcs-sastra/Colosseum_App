@@ -1,21 +1,22 @@
 package colosseum19.a300dpi.colosseum2k19;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
-import android.media.MediaPlayer;
-import android.net.Uri;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.VideoView;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,18 +29,21 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import colosseum19.a300dpi.colosseum2k19.API.BackupApi;
+import colosseum19.a300dpi.colosseum2k19.Interfaces.DateInterface;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity{
 
-    private VideoView mVideoView;
 
     private static final int RC_SIGN_IN = 100;
     private static final String TAG = LoginActivity.class.getSimpleName();
     private GoogleSignInClient mSignInClient;
     private FirebaseAuth mFirebaseAuth;
+    private BackupApi backupApi;
+    private ProgressDialog progressDialog;
 
     @BindView(R.id.btn_login)
-    SignInButton btnLogin;
+    Button btnLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,19 +51,9 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
-        mVideoView = (VideoView) findViewById(R.id.bgVideoView);
-
-        Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.bg_video);
-
-        mVideoView.setVideoURI(uri);
-        mVideoView.start();
-
-        mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mediaPlayer) {
-                mediaPlayer.setLooping(true);
-            }
-        });
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Hold tight...");
+        progressDialog.setCancelable(false);
 
         GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -70,7 +64,6 @@ public class LoginActivity extends AppCompatActivity {
         mFirebaseAuth = FirebaseAuth.getInstance();
 
 
-        btnLogin.setSize(SignInButton.SIZE_STANDARD);
     }
 
     @Override
@@ -78,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
         if (firebaseUser != null){
+            progressDialog.cancel();
             startActivity(new Intent(getApplicationContext(), HomeActivity.class));
         }
     }
@@ -96,8 +90,8 @@ public class LoginActivity extends AppCompatActivity {
                         .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
+                                progressDialog.cancel();
                                 if (task.isSuccessful()){
-                                    FirebaseUser user = mFirebaseAuth.getCurrentUser();
                                     startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                                 }else {
                                     // If sign in fails, display a message to the user.
@@ -107,6 +101,8 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         });
             } catch (ApiException e) {
+                progressDialog.cancel();
+                Snackbar.make(findViewById(R.id.btn_login), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
                 e.printStackTrace();
                 Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
             }
@@ -116,42 +112,8 @@ public class LoginActivity extends AppCompatActivity {
     @OnClick(R.id.btn_login)
     public void onClickSignIn(View view){
         Intent signInIntent = mSignInClient.getSignInIntent();
+        progressDialog.show();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mVideoView = (VideoView) findViewById(R.id.bgVideoView);
-
-        Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.bg_video);
-
-        mVideoView.setVideoURI(uri);
-        mVideoView.start();
-
-        mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mediaPlayer) {
-                mediaPlayer.setLooping(true);
-            }
-        });
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        mVideoView = (VideoView) findViewById(R.id.bgVideoView);
-
-        Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.bg_video);
-
-        mVideoView.setVideoURI(uri);
-        mVideoView.start();
-
-        mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mediaPlayer) {
-                mediaPlayer.setLooping(true);
-            }
-        });
-    }
 }

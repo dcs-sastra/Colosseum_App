@@ -1,0 +1,141 @@
+{
+  "project_info": {
+    "project_number": "9037421805",
+    "firebase_url": "https://colosseum19-49ebd.firebaseio.com",
+    "project_id": "colosseum19-49ebd",
+    "storage_bucket": "colosseum19-49ebd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:9037421805:android:49944ca5416ee660",
+        "android_client_info": {
+          "package_name": "colosseum19.a300dpi.colosseum2k19"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "9037421805-24qk3it4mcvtku09bbmch19nsrc79jte.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "colosseum19.a300dpi.colosseum2k19",
+            "certificate_hash": "7a574739ca22cef01fb7d312e583099d00b535ad"
+          }
+        },
+        {
+          "client_id": "9037421805-hecrfu6n1g8m68dr42fuiijr7i4i6et6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "colosseum19.a300dpi.colosseum2k19",
+            "certificate_hash": "778a4431f0ec47115846e2ea5cd45447933e083b"
+          }
+        },
+        {
+          "client_id": "9037421805-adr8h7jnd3rnq5ib9o9okuu1dcumr9nb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "colosseum19.a300dpi.colosseum2k19",
+            "certificate_hash": "c20cde732d4a897600225f1cf50e8a033d38368b"
+          }
+        },
+        {
+          "client_id": "9037421805-mavvc3so6emg6mpls3fubso3af37uevu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "colosseum19.a300dpi.colosseum2k19",
+            "certificate_hash": "b2a7d3c574a4f78264d9af74ee897c5f11d061fd"
+          }
+        },
+        {
+          "client_id": "9037421805-7mic5mhk8cpsg2m8son94v7rd6m9v63g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "colosseum19.a300dpi.colosseum2k19",
+            "certificate_hash": "e5816bffab6ba279a69fe6c078b60c73112a5156"
+          }
+        },
+        {
+          "client_id": "9037421805-qle5f9qbqo948humqqbdk7o2ttcc6tfc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "colosseum19.a300dpi.colosseum2k19",
+            "certificate_hash": "6f29f7ff2bc9de1091309fe2520deca76817e3a9"
+          }
+        },
+        {
+          "client_id": "9037421805-uevpbcnkumlfe7lptnkv3ttua1bkppah.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCd-CYvEBrWX9FDSI-JwiPgmoRCE32sLFA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "9037421805-uevpbcnkumlfe7lptnkv3ttua1bkppah.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:9037421805:android:6b293218dc8cd38e",
+        "android_client_info": {
+          "package_name": "colosseum19.a300dpi.colosseum2k19admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "9037421805-ds9h9m1sf11b2a35o9itq5bcpcg5m9kn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "colosseum19.a300dpi.colosseum2k19admin",
+            "certificate_hash": "7a574739ca22cef01fb7d312e583099d00b535ad"
+          }
+        },
+        {
+          "client_id": "9037421805-jjqvq624vn61acekamvppf17726ohq3e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "colosseum19.a300dpi.colosseum2k19admin",
+            "certificate_hash": "7294b380bfb93db9f9988fcca42c7a90eb07b49e"
+          }
+        },
+        {
+          "client_id": "9037421805-r2k9psc06p41upltiog3vcl2lsa9t03a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "colosseum19.a300dpi.colosseum2k19admin",
+            "certificate_hash": "fc02de8954f725aaede6fd4bb087580be4befff3"
+          }
+        },
+        {
+          "client_id": "9037421805-uevpbcnkumlfe7lptnkv3ttua1bkppah.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCd-CYvEBrWX9FDSI-JwiPgmoRCE32sLFA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "9037421805-uevpbcnkumlfe7lptnkv3ttua1bkppah.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

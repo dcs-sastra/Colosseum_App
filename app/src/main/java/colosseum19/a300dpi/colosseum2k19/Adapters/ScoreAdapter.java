@@ -1,30 +1,57 @@
 package colosseum19.a300dpi.colosseum2k19.Adapters;
 
+import android.app.ProgressDialog;
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
+import colosseum19.a300dpi.colosseum2k19.API.BackupApi;
+import colosseum19.a300dpi.colosseum2k19.Interfaces.CallbackInterface;
+import colosseum19.a300dpi.colosseum2k19.Model.Fixture;
 import colosseum19.a300dpi.colosseum2k19.Model.Score;
 import colosseum19.a300dpi.colosseum2k19.R;
+import colosseum19.a300dpi.colosseum2k19.ScoreListActivity;
 
-public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreHolder> {
+
+public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreHolder> implements CallbackInterface {
 
     private Context ctx;
-    private List<Score> points = new ArrayList<>();
+    private ArrayList<Score> points = new ArrayList<>();
+    String gameName;
+    int day;
+    ProgressDialog progressDialog;
+    private static String TAG = ScoreAdapter.class.getSimpleName();
 
-    public ScoreAdapter(Context ctx) {
+    public ScoreAdapter(Context ctx, String gameName, int day, boolean isBackup) {
         this.ctx = ctx;
+        this.gameName = gameName;
+        this.day = day;
+        progressDialog = new ProgressDialog(ctx);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
+        if(!isBackup){
+            Log.d(TAG, "Getting data from Firebase");
+            ((ScoreListActivity) ctx).getGameScores(this.gameName, this.day, this);
+        }else{
+            Log.d(TAG, "Getting data from backup server");
+            BackupApi backupApi = new BackupApi();
+            backupApi.getScores(ctx, this.gameName, this.day, this);
+        }
     }
 
     @Override
-    public int getItemCount() {
-        return points.size();
+    public ScoreHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.score_sub_item, parent, false);
+        return new ScoreHolder(view);
     }
 
     @Override
@@ -34,14 +61,23 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreHolder>
     }
 
     @Override
-    public ScoreHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.score_sub_item, parent, false);
-        return new ScoreHolder(view);
+    public int getItemCount() {
+        return points.size();
     }
 
-    public void setScores(List<Score> scoresList) {
-        this.points = scoresList;
-        notifyDataSetChanged();
+    //only for fixtures
+    @Override
+    public void setFixtureData(ArrayList<Fixture> data, boolean isEmpty) {}
+
+    @Override
+    public void setScoreData(ArrayList<Score> data, boolean isEmpty) {
+        progressDialog.cancel();
+        if(!isEmpty){
+            points = data;
+            notifyDataSetChanged();
+        }else{
+            Toast.makeText(ctx, "Score data not available.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     //view holder for score
@@ -76,6 +112,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreHolder>
             teambScoreHeader.setText(score.getTeamB());
             teamaScoreValue.setText(String.valueOf(score.getScore_teamA()));
             teambScoreValue.setText(String.valueOf(score.getScore_teamB()));
+            Log.d(TAG, "setDetails: "+score.getGame_name());
 
             if(score.getGame_name().equals(ctx.getString(R.string.badminton)) ||
                     score.getGame_name().equals(ctx.getString(R.string.volleyball_query)) ||
@@ -110,4 +147,5 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreHolder>
         }
     }
 }
+
 

@@ -1,49 +1,50 @@
 package colosseum19.a300dpi.colosseum2k19.Adapters;
 
-import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
-import colosseum19.a300dpi.colosseum2k19.Fragments.ScoresFragment;
-import colosseum19.a300dpi.colosseum2k19.Interfaces.CallbackInterface;
-import colosseum19.a300dpi.colosseum2k19.Model.Fixture;
-import colosseum19.a300dpi.colosseum2k19.Model.Score;
 import colosseum19.a300dpi.colosseum2k19.R;
+import colosseum19.a300dpi.colosseum2k19.ScoreListActivity;
 
-public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdapter.ScoreGameHolder> implements CallbackInterface {
+public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdapter.ScoreGameHolder>{
 
-    private List<String> gameNames = new ArrayList<>();
-    private List<Drawable> gameIcons = new ArrayList<>();
+    private ArrayList<String> gameNames = new ArrayList<>();
+    //private ArrayList<Drawable> gameIcons = new ArrayList<>();
+    int[] gameIcons = {
+            R.drawable.icon_basketball,
+            R.drawable.icon_badminton,
+            R.drawable.icon_best_phy,
+            R.drawable.icon_chess,
+            R.drawable.icon_football,
+            R.drawable.icon_handball,
+            R.drawable.icon_table_tennis,
+            R.drawable.icon_tennis,
+            R.drawable.icon_volleyball
+    };
     private Context ctx;
-    private ProgressDialog progressDialog;
-    private ScoreGameListAdapter callback;
+    Intent intent;
+    private String selectedGame;
+    private String day;
 
-    private ScoresItemClickListener scoresItemClickListener;
-    public interface ScoresItemClickListener{
-        void onScoreClick(String game_name, CallbackInterface callbackInterface, ScoreGameListAdapter.ScoreGameHolder scoreGameHolder);
-    }
-
-    public ScoreGameListAdapter(Context ctx, ScoresItemClickListener scoresItemClickListener){
+    public ScoreGameListAdapter(Context ctx){
         this.ctx = ctx;
-        this.scoresItemClickListener = scoresItemClickListener;
-        progressDialog = new ProgressDialog(ctx);
-        progressDialog.setMessage("Loading...");
-        progressDialog.setCancelable(false);
-
-        callback = this;
 
         gameNames.add(ctx.getString(R.string.basketball));
         gameNames.add(ctx.getString(R.string.badminton));
@@ -55,15 +56,10 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
         gameNames.add(ctx.getString(R.string.tennis));
         gameNames.add(ctx.getString(R.string.volleyball));
 
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_basketball));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_badminton));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_best_phy));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_chess));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_football));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_handball));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_table_tennis));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_tennis));
-        gameIcons.add(ctx.getDrawable(R.drawable.icon_volleyball));
+        intent = new Intent(ctx, ScoreListActivity.class);
+        //get current day from shared preference
+        SharedPreferences sharedPreferences = ctx.getSharedPreferences(ctx.getString(R.string.shared_pref_name), Context.MODE_PRIVATE);
+        day = sharedPreferences.getString(ctx.getString(R.string.day_key), "1");
     }
 
     @NonNull
@@ -75,14 +71,43 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
 
     @Override
     public void onBindViewHolder(@NonNull final ScoreGameHolder scoreGameHolder, final int i) {
-        scoreGameHolder.gameIcon.setImageDrawable(gameIcons.get(i));
-        scoreGameHolder.gameName.setText(gameNames.get(i));
+        final String gameName = gameNames.get(i);
+
+        scoreGameHolder.gameIcon.setImageResource(gameIcons[i]);
+        scoreGameHolder.gameName.setText(gameName);
         scoreGameHolder.rootLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressDialog.show();
-                //ScoresFragment.getInstance().getGameScores(getQueryWord(gameNames.get(i)),callback,scoreGameHolder);
-                scoresItemClickListener.onScoreClick(getQueryWord(gameNames.get(i)),callback,scoreGameHolder);
+                selectedGame = getQueryWord(scoreGameHolder.gameName.getText().toString());
+                scoreGameHolder.displayDays();
+            }
+        });
+
+        scoreGameHolder.dayOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("DAY ONE", "onClick: "+getQueryWord(gameName));
+                intent.putExtra(ctx.getString(R.string.game_name), getQueryWord(gameName));
+                intent.putExtra(ctx.getString(R.string.day_key), 1);
+                ctx.startActivity(intent);
+            }
+        });
+        scoreGameHolder.dayTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("DAY TWO", "onClick: "+getQueryWord(gameName));
+                intent.putExtra(ctx.getString(R.string.game_name), getQueryWord(gameName));
+                intent.putExtra(ctx.getString(R.string.day_key), 2);
+                ctx.startActivity(intent);
+            }
+        });
+        scoreGameHolder.dayThree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("DAY THREE", "onClick: "+getQueryWord(gameName));
+                intent.putExtra(ctx.getString(R.string.game_name), getQueryWord(gameName));
+                intent.putExtra(ctx.getString(R.string.day_key), 3);
+                ctx.startActivity(intent);
             }
         });
     }
@@ -90,12 +115,12 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
     @Override
     public void onViewDetachedFromWindow(@NonNull ScoreGameHolder holder) {
         super.onViewDetachedFromWindow(holder);
-        holder.hideRecyclerView();
+        holder.hideAll();
     }
 
     @Override
     public int getItemCount() {
-        return gameIcons.size();
+        return gameIcons.length;
     }
 
     private String getQueryWord(String gameName){
@@ -103,64 +128,87 @@ public class ScoreGameListAdapter extends RecyclerView.Adapter<ScoreGameListAdap
             return ctx.getString(R.string.basketball_query);
         }else if(gameName.equals(ctx.getString(R.string.volleyball))){
             return ctx.getString(R.string.volleyball_query);
+
         }else if(gameName.equals(ctx.getString(R.string.handball))){
             return ctx.getString(R.string.handball_query);
+
         }else if(gameName.equals(ctx.getString(R.string.football))){
             return ctx.getString(R.string.football_query);
+
         }else{
             return gameName;
         }
     }
 
-    //callback containing score of specific game
-    @Override
-    public void setScoreData(List<Score> data, ScoreGameHolder gameHolder,boolean isEmpty) {
-        if(isEmpty){
-            progressDialog.cancel();
-            Toast.makeText(ctx,ctx.getString(R.string.not_updated),Toast.LENGTH_SHORT).show();
-        }else{
-            gameHolder.setRecyclerView(data);
-        }
 
-    }
-
-
-    public class ScoreGameHolder extends RecyclerView.ViewHolder {
+    public class ScoreGameHolder extends RecyclerView.ViewHolder{
         ImageView gameIcon,gameDropDown;
-        TextView gameName;
-        RecyclerView gameScoreList;
-        ScoreAdapter adapter;
-        CardView rootLayout;
+        TextView gameName, dayOne, dayTwo, dayThree;
+        ConstraintLayout rootLayout;
+
         public ScoreGameHolder(@NonNull View itemView) {
             super(itemView);
-            gameIcon = itemView.findViewById(R.id.score_game_image);
-            gameDropDown = itemView.findViewById(R.id.score_drop_down);
-            gameName = itemView.findViewById(R.id.score_game_name);
-            gameScoreList = itemView.findViewById(R.id.score_game_specific_score_list);
-            rootLayout = itemView.findViewById(R.id.score_root_layout);
-            adapter = new ScoreAdapter(ctx);
-            gameScoreList.setAdapter(adapter);
-            gameScoreList.setLayoutManager(new LinearLayoutManager(ctx));
+            gameIcon = itemView.findViewById(R.id.game_image);
+            gameDropDown = itemView.findViewById(R.id.drop_down);
+            gameName = itemView.findViewById(R.id.game_name);
+            dayOne = itemView.findViewById(R.id.day_one);
+            dayTwo = itemView.findViewById(R.id.day_two);
+            dayThree = itemView.findViewById(R.id.day_three);
+            rootLayout = itemView.findViewById(R.id.root_layout);
         }
 
-        public void setRecyclerView(List<Score> data){
-            gameScoreList.setVisibility(View.VISIBLE);
-            adapter.setScores(data);
-            progressDialog.cancel();
+        private boolean isNextDay(String date){
+            Date currentDateTime = Calendar.getInstance().getTime();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            dateFormat.setTimeZone(TimeZone.getTimeZone("IST"));
+            try {
+                currentDateTime = dateFormat.parse(dateFormat.format(currentDateTime));
+                Date dateObj = dateFormat.parse(date);
+
+                if(currentDateTime.compareTo(dateObj) >= 0){
+                    return true;
+                }else{
+                    return false;
+                }
+            }catch(Exception e){
+                Log.d("DATE_CHECK", "Error: "+e.toString());
+            }
+
+            return false;
         }
 
-        public void hideRecyclerView(){
-            gameScoreList.setVisibility(View.GONE);
+        private void displayDays(){
+            //show only current day
+            //show only current day
+            switch(day){
+                case "1":
+                    dayOne.setVisibility(View.VISIBLE);
+                    dayTwo.setVisibility(View.GONE);
+                    dayThree.setVisibility(View.GONE);
+                    break;
+                case "2":
+                    dayOne.setVisibility(View.VISIBLE);
+                    dayTwo.setVisibility(View.VISIBLE);
+                    dayThree.setVisibility(View.GONE);
+                    break;
+                case "3":
+                    dayOne.setVisibility(View.VISIBLE);
+                    dayTwo.setVisibility(View.VISIBLE);
+                    dayThree.setVisibility(View.VISIBLE);
+                    break;
+
+            }
+
         }
-    }
 
-    @Override
-    public void callback(String queryGame) {
-
-    }
-
-    @Override
-    public void setFixtureData(List<Fixture> data, FixtureGameListAdapter.GameHolder gameHolder,boolean isEmpty) {
+        private void hideAll(){
+            dayOne.setVisibility(View.GONE);
+            dayTwo.setVisibility(View.GONE);
+            dayThree.setVisibility(View.GONE);
+        }
 
     }
+
+
 }
+

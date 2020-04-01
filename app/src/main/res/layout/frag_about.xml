@@ -1,213 +1,350 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="vertical">
+        android:paddingBottom="@dimen/margin_32dp">
 
         <TextView
+            android:id="@+id/tv_about_sastra_head"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserratbold"
             android:text="@string/about_sastra_head"
             android:textColor="@color/colorAccent"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:layout_marginTop="@dimen/margin_16dp"
+            android:layout_marginStart="@dimen/margin_16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_about_sastra"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="0dp"
             android:layout_marginTop="5dp"
-            android:fontFamily="@font/montserrat"
-            android:layout_marginRight="5dp"
-            android:text="@string/about_sastra"
-            android:paddingBottom="5dp"
-            android:textColor="@color/black"
+            android:layout_marginStart="@dimen/margin_16dp"
+            android:layout_marginEnd="@dimen/margin_16dp"
             android:layout_marginBottom="2dp"
-            android:textSize="14sp" />
+            android:fontFamily="@font/montserrat"
+            android:padding="0dp"
+            android:paddingBottom="5dp"
+            android:text="@string/about_sastra"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_about_sastra_head" />
 
         <TextView
+            android:id="@+id/tv_about_colosseum_head"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/montserratbold"
             android:text="@string/about_colosseum_head"
             android:textColor="@color/colorAccent"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:layout_marginStart="@dimen/margin_16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_about_sastra" />
 
         <TextView
+            android:id="@+id/tv_about_colosseum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="5dp"
             android:layout_marginTop="5dp"
+            android:layout_marginStart="@dimen/margin_16dp"
+            android:layout_marginEnd="@dimen/margin_16dp"
+            android:fontFamily="@font/quotes"
+            android:padding="5dp"
             android:text="@string/about_colosseum1"
             android:textColor="@color/black"
-            android:fontFamily="@font/quotes"
             android:textSize="22sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_about_colosseum_head" />
 
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_about_colosseum2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:layout_marginStart="@dimen/margin_16dp"
+            android:layout_marginEnd="@dimen/margin_16dp"
             android:fontFamily="@font/montserrat"
             android:text="@string/about_colosseum2"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_about_colosseum" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_made_by"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8dp"
+            app:cardElevation="@dimen/card_elevation_8dp"
+            app:cardCornerRadius="@dimen/margin_16dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_about_colosseum2" >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:background="@drawable/ripple_effect_events"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/margin_8dp">
+                <TextView
+                    android:id="@+id/tv_made_with_love_by"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Made with 💜 by "
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginTop="@dimen/margin_4dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <ImageView
+                    android:id="@+id/dpi_logo"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="@dimen/margin_8dp"
+                    android:layout_gravity="center"
+                    app:layout_constraintTop_toBottomOf="@id/tv_made_with_love_by"
+                    app:layout_constraintEnd_toStartOf="@+id/and_text"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/dpi"/>
+
+                <TextView
+                    android:id="@+id/and_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="and"
+                    android:textColor="@color/colorAccent"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/dsc_logo"
+                    app:layout_constraintTop_toTopOf="@id/dpi_logo"
+                    app:layout_constraintStart_toEndOf="@+id/dpi_logo"
+                    app:layout_constraintBottom_toBottomOf="@id/dpi_logo"/>
+
+                <ImageView
+                    android:id="@+id/dsc_logo"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/loading"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/and_text"
+                    app:srcCompat="@drawable/dsc_logo"
+                    app:layout_constraintTop_toTopOf="@id/dpi_logo" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+
+
+        <TextView
+            android:id="@+id/tv_app_developers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserratbold"
+            android:text="@string/app_developers"
+            android:textColor="@color/colorAccent"
+            android:textSize="24sp"
+            android:layout_marginTop="@dimen/margin_16dp"
+            android:layout_marginStart="@dimen/margin_16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_view_made_by"/>
 
         <LinearLayout
+            android:id="@+id/app_developers_list"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="20dp"
-            android:layout_height="wrap_content">
+            android:layout_marginStart="@dimen/margin_16dp"
+            android:layout_marginEnd="@dimen/margin_16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_app_developers">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:text="Made with 💜 by "
-                android:layout_height="wrap_content" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/montserratbold"
+                android:text="\nKavin Raju \n\nKathir T\n\nSibi N\n\nKarthikeyan"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:text="300dpi"
-                android:textStyle="bold"
-                android:textColor="@color/colorAccent"
-                android:layout_height="wrap_content" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/montserrat"
+                android:text="\n(4th year EIE)\n\n(4th year EIE)\n\n(3rd year CSE)\n\n(2nd year CSE)"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tv_graphic_designers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserratbold"
+            android:text="@string/graphic_designers"
+            android:textColor="@color/colorAccent"
+            android:textSize="24sp"
+            android:layout_marginStart="@dimen/margin_16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/app_developers_list"/>
+
+        <LinearLayout
+            android:id="@+id/graphic_designers_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/margin_16dp"
+            android:layout_marginEnd="@dimen/margin_16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_graphic_designers">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="1"
+                android:textIsSelectable="true"
+                android:fontFamily="@font/montserratbold"
+                android:text="\nYagaa Gowtham\n\nAkil S"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/montserrat"
+                android:text="\n(4th year IT)\n\n(1st year ECE)"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
 
 
+        </LinearLayout>
 
+        <TextView
+            android:id="@+id/tv_web_developers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserratbold"
+            android:text="@string/web_developers"
+            android:textColor="@color/colorAccent"
+            android:textSize="24sp"
+            android:layout_marginStart="@dimen/margin_16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/graphic_designers_list"/>
+
+        <LinearLayout
+            android:id="@+id/web_developers_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/margin_16dp"
+            android:layout_marginStart="@dimen/margin_16dp"
+            android:layout_marginEnd="@dimen/margin_16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_web_developers">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/montserratbold"
+                android:text="Naimish Balaji"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/montserrat"
+                android:text="\t(2nd year Mechanical)"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_follow_us"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/montserratbold"
+            android:text="@string/follow_us"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_goneMarginTop="@dimen/margin_16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/web_developers_list"
+            />
+
+        <LinearLayout
+            android:id="@+id/follow_us_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/margin_16dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_follow_us">
 
             <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:id="@+id/dsc_insta"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                app:srcCompat="@drawable/dpi" />
+                android:background="@drawable/instagram" />
 
+            <ImageView
+                android:id="@+id/dsc_twitter"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/twitter" />
 
-
-        <TextView
-            android:layout_width="match_parent"
-            android:text="APP DEVELOPERS"
-            android:textColor="@color/colorAccent"
-            android:fontFamily="@font/montserratbold"
-            android:textSize="24sp"
-            android:layout_height="wrap_content" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:orientation="horizontal"
-            android:layout_height="match_parent">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:fontFamily="@font/montserratbold"
-            android:layout_marginBottom="20dp"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:text="\nAswin N\n\nKavin Raju S\n\nSibi N\n\nArun Balaji TSR\n\nTanveer Ahmad H\n\nKarthikeyan"
-            android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:fontFamily="@font/montserrat"
-                android:layout_marginBottom="20dp"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:text="\n(4th year CSE)\n\n(3rd year EIE)\n\n(2nd year CSE)\n\n(2nd year EIE)\n\n(3rd year ECE)\n\n(1st year CSE)"
-                android:layout_height="wrap_content" />
-
-
+            <ImageView
+                android:id="@+id/dsc_linkedin"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:background="@drawable/li" />
         </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:text="GRAPHIC DESIGNERS"
-            android:textColor="@color/colorAccent"
-            android:fontFamily="@font/montserratbold"
-            android:textSize="24sp"
-            android:layout_height="wrap_content" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:orientation="horizontal"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:fontFamily="@font/montserratbold"
-                android:layout_marginBottom="20dp"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:text="\nAniruth R\n\nGowtham K\n\nManickavel M\n\nArun Vignesh B\n\nSruthi Bharadwaj\n\nHaretha\n\nAdithya Narayanan S\n\nNaveen\n\nSanjay Vasanth\n\nYagaa Gowtham"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:fontFamily="@font/montserrat"
-                android:layout_marginBottom="20dp"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:text="\n(4rd year ICT)\n\n(2nd year IT)\n\n(3rd year Mech)\n\n(3rd year Mech)\n\n(4th year IT)\n\n\n(4th year Communication Systems)\n\n(3rd year BioTech)\n\n(4th year Mech)\n\n(4th year Aero)\n\n(3rd year IT)"
-                android:layout_height="wrap_content" />
-
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:text="WEB DEVELOPERS"
-            android:textColor="@color/colorAccent"
-            android:fontFamily="@font/montserratbold"
-            android:textSize="24sp"
-            android:layout_height="wrap_content" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:orientation="horizontal"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:fontFamily="@font/montserratbold"
-                android:layout_marginBottom="20dp"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:text="\nJaswanth Y\n\nKaranam Vamsi Krishna   "
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:fontFamily="@font/montserrat"
-                android:layout_marginBottom="20dp"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:text="\n(3rd year ICT)\n\n(3rd year IT)"
-                android:layout_height="wrap_content" />
-
-
-        </LinearLayout>
-
-
-    </LinearLayout>
-</android.support.v4.widget.NestedScrollView>
+</androidx.core.widget.NestedScrollView>

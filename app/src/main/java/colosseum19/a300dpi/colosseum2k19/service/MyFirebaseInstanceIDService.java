@@ -2,11 +2,13 @@ package colosseum19.a300dpi.colosseum2k19.service;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v4.content.LocalBroadcastManager;
+
+import androidx.annotation.NonNull;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.util.Log;
 
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.FirebaseInstanceIdService;
+import com.google.firebase.messaging.FirebaseMessagingService;
 
 import colosseum19.a300dpi.colosseum2k19.Utilities.Constants_For_FCM;
 
@@ -15,13 +17,13 @@ import colosseum19.a300dpi.colosseum2k19.Utilities.Constants_For_FCM;
  * Created by  Raju on 12/6/2017.
  */
 
-public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
+public class MyFirebaseInstanceIDService extends FirebaseMessagingService {
 
     private static final String TAG = MyFirebaseInstanceIDService.class.getSimpleName();
 
     @Override
-    public void onTokenRefresh() {
-        super.onTokenRefresh();
+    public void onNewToken(@NonNull String s) {
+        super.onNewToken(s);
 
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
 
@@ -29,7 +31,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
         // Saving reg id to shared preferences
         storeRegIdInPref(refreshedToken);
-        Log.e(TAG, "\nREFRESHED TOKEN: " + refreshedToken);
+        Log.d(TAG, "\nREFRESHED TOKEN: " + refreshedToken);
 
         // sending reg id to your server
         sendRegistrationToServer(refreshedToken);

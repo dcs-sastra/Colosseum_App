@@ -1,5 +1,15 @@
 package colosseum19.a300dpi.colosseum2k19.Model;
 
+import android.util.Log;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 public class Fixture {
 
     private String id;
@@ -11,7 +21,7 @@ public class Fixture {
     private String event_time;
     private String teamA;
     private String teamB;
-
+    private String day;
 
 
     public Fixture() {
@@ -100,5 +110,33 @@ public class Fixture {
 
     public void setTeamB(String teamB) {
         this.teamB = teamB;
+    }
+
+
+    public static ArrayList<Fixture> parseIntoList(JSONArray jsonList){
+        ArrayList<Fixture> fixtureList = new ArrayList<>();
+
+        try{
+            for(int i =0; i <jsonList.length(); i++){
+                Fixture fixObj = new Fixture();
+                JSONObject jsonObj = jsonList.getJSONObject(i);
+
+                fixObj.id =jsonObj.getString("id");
+                fixObj.bestPhysiqueCategory = jsonObj.getString("bestPhysiqueCategory");
+                fixObj.event_name = jsonObj.getString("event_name");
+                fixObj.event_time = jsonObj.getString("event_time");
+                fixObj.game_name = jsonObj.getString("game_name");
+                fixObj.isNextTime = jsonObj.getBoolean("nextTime");
+                fixObj.roundNumChess = jsonObj.getString("roundNumChess");
+                fixObj.teamA = jsonObj.getString("teamA");
+                fixObj.teamB = jsonObj.getString("teamB");
+                fixObj.day = jsonObj.getString("day");
+
+                fixtureList.add(fixObj);
+            }
+        }catch (Exception e){
+            Log.d("Fixture", "PARSE ERROR: "+e.toString());
+        }
+        return fixtureList;
     }
 }

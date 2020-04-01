@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,7 +16,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/montserratbold"
         android:text="textView"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +30,7 @@
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/montserrat"
         android:text="TextView"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintHorizontal_bias="0.0"
@@ -45,7 +45,7 @@
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/montserrat"
         android:text="TextView"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserratbold"
         android:text="VS"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/score_team_b"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
@@ -72,7 +72,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/montserrat"
         android:text="physique Categoty:"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,20 +86,20 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/montserratbold"
         android:text="Round:"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textSize="18sp"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/score_physique_category" />
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.8" />
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -119,7 +119,7 @@
         android:fontFamily="@font/montserratbold"
         android:gravity="center"
         android:text="team_a_score:"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textSize="14sp"
 
 
@@ -140,7 +140,7 @@
 
         android:fontFamily="@font/montserrat"
         android:text="TextView"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
 
@@ -159,7 +159,7 @@
         android:fontFamily="@font/montserratbold"
         android:gravity="center"
         android:text="team_b_score:"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline_2"
@@ -177,7 +177,7 @@
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/montserrat"
         android:text="TextView"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/guideline_2"
@@ -193,12 +193,12 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/montserratbold"
         android:text="@string/score"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/score_chess_round" />
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -214,7 +214,7 @@
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/montserratbold"
         android:text="TextView"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textSize="18sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -230,11 +230,11 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/montserrat"
         android:text="best phy name"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textSize="18sp"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/score_sub_name" />
 
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

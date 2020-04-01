@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#2196F3</color>
+
+    <!--<color name="colorPrimary">#2196F3</color>
     <color name="colorPrimaryDark">#1976D2</color>
     <color name="colorPrimaryExtraDark">#004ba0</color>
     <color name="colorPrimaryLight">#64B5F6</color>
-    <color name="colorAccent">#448AFF</color>
+    <color name="colorAccent">#448AFF</color>-->
+
+    <!--<color name="colorPrimary">#12184a</color>-->
+    <!--<color name="colorPrimaryDark">#10143A</color>-->
+    <color name="colorPrimary">#00dbe1</color>
+    <color name="colorPrimaryDark">#00a9af</color>
+    <color name="colorPrimaryExtraDark">#FDB900</color>
+    <color name="colorPrimaryLight">#403e76</color>
+    <color name="colorAccent">#6e69a5</color>
+
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
+    <color name="grey">#F1F1F1</color>
     <color name="bg">#707070</color>
+    <color name="login_bg">#FDB900</color>
+    <color name="dark_new">#12184A</color>
+    <color name="yellow_new">#F5E410</color>
+    <color name="bg_new">#00DBE1</color>
+
 </resources>
-<!--
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="colorPrimary">#263238</color>
-    <color name="colorPrimaryDark">#000a12</color>
-    <color name="colorPrimaryLight">#4f5b62</color>
-    <color name="colorAccent">#448AFF</color>
-    <color name="black">#000000</color>
-    <color name="white">#ffffff</color>
-</resources>
--->

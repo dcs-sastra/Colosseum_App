@@ -1,13 +1,16 @@
 package colosseum19.a300dpi.colosseum2k19;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.NonNull;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.fragment.app.FragmentManager;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,12 +24,15 @@ import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import colosseum19.a300dpi.colosseum2k19.API.BackupApi;
 import colosseum19.a300dpi.colosseum2k19.Fragments.AboutFragment;
 import colosseum19.a300dpi.colosseum2k19.Fragments.EventsFragment;
 import colosseum19.a300dpi.colosseum2k19.Fragments.FixturesFragment;
 import colosseum19.a300dpi.colosseum2k19.Fragments.ScoresFragment;
+import colosseum19.a300dpi.colosseum2k19.Interfaces.DateInterface;
+import colosseum19.a300dpi.colosseum2k19.Utilities.ConstantsStorage;
 
-public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemReselectedListener {
+public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemReselectedListener, DateInterface {
 
     //Keys for Fragments
     private static String EVENTS_FRAG = "events_frag";
@@ -48,6 +54,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     private FixturesFragment fixturesFragment;
     private ScoresFragment scoresFragment;
     private AboutFragment aboutFragment;
+    private BackupApi backupApi;
 
     private String currentlySelected = EVENTS_FRAG;
 
@@ -64,6 +71,9 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
+
+        backupApi = new BackupApi();
+        backupApi.getDate(getApplicationContext(), this);
 
         fragmentManager = getSupportFragmentManager();
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
@@ -138,6 +148,18 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     @Override
+    public void setDate(String date, boolean isSuccess) {
+        if(isSuccess){
+            SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.shared_pref_name), Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString(getString(R.string.day_key), date);
+            editor.apply();
+        }else{
+            Toast.makeText(this, "Failed to get current date", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString(BUNDLE_KEY_CURRENTLY_SELECTED_BOTTOM_NAV, currentlySelected);
@@ -175,8 +197,16 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_notifications) {
-            //startActivity(new Intent(this, NotificationActivity.class));
+        if (id == R.id.action_feedback) {
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            intent.setData(Uri.parse("mailto:colosseum@sastra.ac.in"));
+            startActivity(intent);
+            return true;
+        }else if(id == R.id.action_share){
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            String url = ConstantsStorage.APP_URL;
+            intent.setData(Uri.parse(url));
+            startActivity(intent);
             return true;
         }else if (id == R.id.action_sign_out) {
             FirebaseAuth.getInstance().signOut();
